@@ -18,7 +18,7 @@
 }
 
 .ariya-ing-container {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 60px 24px 100px;
 }
@@ -26,84 +26,173 @@
 /* ---- Hero / Header ---- */
 .ariya-ing-hero {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 72px;
+  padding: 80px 24px;
+  background: linear-gradient(160deg, var(--ariya-surface) 0%, #ffffff 50%, var(--ariya-surface) 100%);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.ariya-ing-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(201,156,241,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.ariya-ing-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(239,203,33,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 .ariya-ing-hero__label {
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ariya-purple);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  position: relative;
 }
 .ariya-ing-hero__heading {
   font-family: var(--font-heading--family, 'Lora', serif);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
   font-weight: 700;
   color: var(--ariya-text);
-  line-height: 1.15;
-  margin: 0 0 16px;
+  line-height: 1.12;
+  margin: 0 0 20px;
+  position: relative;
 }
 .ariya-ing-hero__sub {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: var(--ariya-text-muted);
-  max-width: 600px;
+  max-width: 580px;
   margin: 0 auto;
-  line-height: 1.7;
+  line-height: 1.75;
+  position: relative;
+}
+.ariya-ing-hero__badge-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  position: relative;
+}
+.ariya-ing-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ariya-white);
+  border: 1px solid var(--ariya-border);
+  border-radius: 100px;
+  padding: 8px 18px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ariya-text);
+}
+.ariya-ing-hero__badge svg {
+  color: var(--ariya-purple);
 }
 
 /* ---- Ingredient Cards ---- */
 .ariya-ing-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  margin-bottom: 72px;
+  gap: 20px;
+  margin-bottom: 80px;
+  counter-reset: ingredient;
 }
 .ariya-ing-card {
   background: var(--ariya-white);
   border: 1px solid var(--ariya-border);
-  border-radius: 16px;
-  padding: 32px;
+  border-radius: 20px;
+  padding: 0;
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 16px 32px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  grid-template-columns: 72px 1fr auto;
+  overflow: hidden;
+  transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+  counter-increment: ingredient;
 }
 .ariya-ing-card:hover {
-  box-shadow: 0 8px 32px rgba(60, 14, 102, 0.08);
-  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(60, 14, 102, 0.1);
+  transform: translateY(-3px);
+  border-color: var(--ariya-purple-light);
 }
-.ariya-ing-card__header {
+.ariya-ing-card__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--ariya-purple) 0%, var(--ariya-purple-hover) 100%);
+  color: var(--ariya-white);
+  font-family: var(--font-heading--family, 'Lora', serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  min-height: 100%;
+}
+.ariya-ing-card__number::before {
+  content: counter(ingredient);
+}
+.ariya-ing-card__body {
+  padding: 28px 24px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 .ariya-ing-card__name {
   font-family: var(--font-heading--family, 'Lora', serif);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--ariya-text);
   margin: 0;
 }
 .ariya-ing-card__spec {
-  font-size: 0.85rem;
-  color: var(--ariya-text-muted);
-}
-.ariya-ing-card__dosage {
-  font-family: var(--font-heading--family, 'Lora', serif);
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 0.82rem;
   color: var(--ariya-purple);
-  white-space: nowrap;
-  align-self: start;
-  text-align: right;
+  font-weight: 500;
+  background: var(--ariya-surface);
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  width: fit-content;
 }
 .ariya-ing-card__purpose {
-  grid-column: 1 / -1;
   font-size: 0.95rem;
   color: var(--ariya-text-muted);
   line-height: 1.7;
-  margin: 0;
+  margin: 4px 0 0;
+}
+.ariya-ing-card__dosage-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 28px 28px 0;
+  gap: 2px;
+}
+.ariya-ing-card__dosage {
+  font-family: var(--font-heading--family, 'Lora', serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ariya-purple);
+  line-height: 1;
+}
+.ariya-ing-card__dosage-unit {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ariya-text-muted);
 }
 
 /* ---- Divider ---- */
@@ -115,9 +204,6 @@
   border-radius: 2px;
   margin: 0 auto 64px;
 }
-.ariya-ing-divider--left {
-  margin: 0 0 40px;
-}
 
 /* ---- Info Sections ---- */
 .ariya-ing-section {
@@ -125,7 +211,7 @@
 }
 .ariya-ing-section__heading {
   font-family: var(--font-heading--family, 'Lora', serif);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--ariya-text);
   margin: 0 0 16px;
@@ -139,25 +225,29 @@
 .ariya-ing-section__list {
   list-style: none;
   padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  margin: 16px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
 }
 .ariya-ing-section__list li {
   font-size: 0.95rem;
-  color: var(--ariya-text-muted);
+  color: var(--ariya-text);
   line-height: 1.6;
-  padding-left: 28px;
+  padding: 14px 18px 14px 44px;
   position: relative;
+  background: var(--ariya-surface);
+  border-radius: 12px;
+  font-weight: 500;
 }
 .ariya-ing-section__list li::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 6px;
-  width: 16px;
-  height: 16px;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
   background: var(--ariya-purple);
   border-radius: 50%;
   mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
@@ -167,20 +257,26 @@
 /* ---- Clean Formula Grid ---- */
 .ariya-ing-clean-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 12px;
   margin-top: 20px;
 }
 .ariya-ing-clean-item {
   background: var(--ariya-surface);
-  border-radius: 10px;
-  padding: 14px 18px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 16px 18px;
   font-size: 0.9rem;
   color: var(--ariya-text);
-  font-weight: 500;
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 10px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.ariya-ing-clean-item:hover {
+  border-color: var(--ariya-border);
+  box-shadow: 0 4px 16px rgba(60, 14, 102, 0.06);
 }
 .ariya-ing-clean-item svg {
   flex-shrink: 0;
@@ -189,23 +285,24 @@
 
 /* ---- Testing Section ---- */
 .ariya-ing-testing {
-  background: var(--ariya-surface);
-  border-radius: 16px;
-  padding: 40px 32px;
+  background: linear-gradient(135deg, var(--ariya-purple) 0%, var(--ariya-purple-hover) 100%);
+  border-radius: 20px;
+  padding: 48px 40px;
   margin-bottom: 64px;
+  color: var(--ariya-white);
 }
 .ariya-ing-testing__heading {
   font-family: var(--font-heading--family, 'Lora', serif);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  color: var(--ariya-text);
+  color: var(--ariya-white);
   margin: 0 0 12px;
 }
 .ariya-ing-testing__body {
   font-size: 0.95rem;
-  color: var(--ariya-text-muted);
-  line-height: 1.7;
-  margin: 0 0 20px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.75;
+  margin: 0 0 24px;
 }
 .ariya-ing-testing__checks {
   display: flex;
@@ -213,54 +310,101 @@
   gap: 12px;
 }
 .ariya-ing-testing__check {
-  background: var(--ariya-white);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.15);
   border-radius: 100px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--ariya-text);
+  font-weight: 600;
+  color: var(--ariya-white);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .ariya-ing-testing__check svg {
-  color: var(--ariya-purple);
+  color: var(--ariya-gold);
 }
 
 /* ---- Closing CTA ---- */
 .ariya-ing-closing {
   text-align: center;
-  padding: 48px 0;
+  padding: 56px 0 0;
   border-top: 1px solid var(--ariya-border);
 }
 .ariya-ing-closing__text {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: var(--ariya-text-muted);
-  line-height: 1.7;
-  max-width: 560px;
-  margin: 0 auto 24px;
+  line-height: 1.75;
+  max-width: 540px;
+  margin: 0 auto 20px;
 }
 .ariya-ing-closing__tagline {
   font-family: var(--font-heading--family, 'Lora', serif);
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--ariya-text);
+  margin-bottom: 28px;
+}
+.ariya-ing-cta {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--ariya-purple);
+  color: #fff;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.ariya-ing-cta:hover {
+  background: var(--ariya-purple-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(60, 14, 102, 0.25);
 }
 
 /* ---- Mobile ---- */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .ariya-ing-card {
     grid-template-columns: 1fr;
-    padding: 24px;
+  }
+  .ariya-ing-card__number {
+    min-height: auto;
+    padding: 12px;
+    flex-direction: row;
+    gap: 8px;
+    font-size: 1rem;
+  }
+  .ariya-ing-card__number::after {
+    content: attr(data-name);
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+  .ariya-ing-card__dosage-wrap {
+    padding: 0 24px 20px;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 6px;
   }
   .ariya-ing-card__dosage {
-    text-align: left;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+  }
+  .ariya-ing-card__dosage-unit {
+    align-self: flex-end;
+    padding-bottom: 2px;
   }
   .ariya-ing-container {
-    padding: 40px 16px 80px;
+    padding: 32px 16px 80px;
+  }
+  .ariya-ing-hero {
+    padding: 48px 20px;
+    margin-bottom: 48px;
   }
   .ariya-ing-testing {
-    padding: 28px 20px;
+    padding: 32px 24px;
+  }
+  .ariya-ing-section__list {
+    grid-template-columns: 1fr;
   }
 }
