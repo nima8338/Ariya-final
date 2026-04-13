@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+
+# Zip archives
+*.zip
+
+# Next.js / Node (legacy)
+/.next/
+/node_modules
+
+# Environment files
+.env*
+!.env.local.example
