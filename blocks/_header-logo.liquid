@@ -64,6 +64,7 @@
       style: logo_style
     %}
   </span>
+  <span class="header-logo__text">ARIYA</span>
 
   {% if use_inverse_logo %}
     <span
@@ -118,6 +119,15 @@
     &:hover {
       text-decoration: none;
     }
+  }
+
+  .header-logo__text {
+    font-family: var(--font-heading--family, var(--font-family));
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.08em;
+    margin-left: 8px;
+    color: var(--color-foreground);
   }
 
   .header-logo__image {
