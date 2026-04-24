@@ -367,14 +367,12 @@
 
 <script>
   function applySubscriptionDefault() {
-    const inputs = document.querySelectorAll('input[name="selling_plan"]');
-    inputs.forEach(function(input) {
-      if (input.value !== '') {
-        input.checked = true;
-        input.dispatchEvent(new Event('change', { bubbles: true }));
-      }
-    });
-    return inputs.length > 0;
+    const input = document.querySelector('input[data-radio-type="selling_plan"]');
+    if (input) {
+      input.click();
+      return true;
+    }
+    return false;
   }
 
   function addDailyPrice() {
