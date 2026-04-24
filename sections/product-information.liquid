@@ -181,7 +181,7 @@
     left: 50%;
     opacity: 0;
     transform: translateX(-50%) translateY(calc(100% + 40px));
-    z-index: calc(var(--layer-sticky) - 1); /* Below sticky header */
+    z-index: calc(var(--layer-sticky) - 1);
     display: block;
     width: 600px;
     border-radius: calc(
@@ -189,7 +189,6 @@
     );
     box-shadow: var(--shadow-popover);
     padding: var(--padding-sm);
-    /* Layout styling */
     display: flex;
     align-items: center;
     gap: var(--gap-md);
@@ -254,7 +253,7 @@
 
   .sticky-add-to-cart__info {
     flex: 1;
-    min-width: 0; /* Allow text truncation */
+    min-width: 0;
   }
 
   .sticky-add-to-cart__title {
@@ -282,7 +281,6 @@
     position: relative;
   }
 
-  /* Mobile adjustments */
   @media screen and (max-width: 749px) {
     .sticky-add-to-cart__bar {
       bottom: 0;
@@ -328,7 +326,6 @@
     }
   }
 
-  /* Small mobile - hide text content and compare price */
   @media screen and (max-width: 389px) {
     .sticky-add-to-cart__bar {
       .compare-at-price {
@@ -340,12 +337,10 @@
       display: none;
     }
 
-    /* For product with only default variant show title */
     .sticky-add-to-cart__info[data-singleton='true'] .sticky-add-to-cart__title {
       display: block;
     }
 
-    /* For single variant show title and variant, truncate both. variant should be identifiable with truncation */
     .sticky-add-to-cart__info[data-single-option='true'] .sticky-add-to-cart__title {
       display: block;
     }
@@ -371,18 +366,19 @@
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-
-    // 1. Default to subscription option
-    const sellingPlanInputs = document.querySelectorAll('input[name="selling_plan"]');
-    sellingPlanInputs.forEach(function(input) {
+  function applySubscriptionDefault() {
+    const inputs = document.querySelectorAll('input[name="selling_plan"]');
+    inputs.forEach(function(input) {
       if (input.value !== '') {
         input.checked = true;
         input.dispatchEvent(new Event('change', { bubbles: true }));
       }
     });
+    return inputs.length > 0;
+  }
 
-    // 2. Add daily price below the product price
+  function addDailyPrice() {
+    if (document.querySelector('.ariya-daily-value')) return;
     const priceEl = document.querySelector('.price__current, .price-item--regular, [data-product-price]');
     if (priceEl) {
       const daily = document.createElement('p');
@@ -390,7 +386,19 @@
       daily.innerHTML = 'As low as <strong>$1.33/day</strong> — 30-day supply';
       priceEl.parentNode.insertAdjacentElement('afterend', daily);
     }
+  }
 
+  document.addEventListener('DOMContentLoaded', function () {
+    addDailyPrice();
+
+    if (!applySubscriptionDefault()) {
+      const observer = new MutationObserver(function () {
+        if (applySubscriptionDefault()) {
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
   });
 </script>
 
