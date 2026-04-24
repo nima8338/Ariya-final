@@ -1,5 +1,3 @@
-
-
 <script type="application/ld+json">
   {{ closest.product | structured_data }}
 </script>
@@ -360,6 +358,41 @@
     }
   }
 {% endstylesheet %}
+
+<style>
+  .ariya-daily-value {
+    font-size: 13px;
+    color: #666;
+    margin-top: 6px;
+  }
+  .ariya-daily-value strong {
+    color: #333;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // 1. Default to subscription option
+    const sellingPlanInputs = document.querySelectorAll('input[name="selling_plan"]');
+    sellingPlanInputs.forEach(function(input) {
+      if (input.value !== '') {
+        input.checked = true;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+
+    // 2. Add daily price below the product price
+    const priceEl = document.querySelector('.price__current, .price-item--regular, [data-product-price]');
+    if (priceEl) {
+      const daily = document.createElement('p');
+      daily.className = 'ariya-daily-value';
+      daily.innerHTML = 'As low as <strong>$1.33/day</strong> — 30-day supply';
+      priceEl.parentNode.insertAdjacentElement('afterend', daily);
+    }
+
+  });
+</script>
 
 {% schema %}
 {
