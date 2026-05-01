@@ -67,7 +67,9 @@
           "settings": {
             "show_sample_reviews": true,
             "reviews_selection": "all",
-            "products": [],
+            "products": [
+              "calm-nights"
+            ],
             "star_rating": "5_star",
             "review_type": "photo_and_video",
             "max_reviews": 20,
@@ -127,6 +129,19 @@
     "1777667170f7865615": {
       "type": "_blocks",
       "blocks": {
+        "review_xmYqpy": {
+          "type": "review",
+          "name": "t:names.product_review_stars",
+          "settings": {
+            "stars_style": "shaded",
+            "show_number": true,
+            "rating_color": "primary",
+            "type_preset": "paragraph",
+            "width": "100%",
+            "alignment": "center"
+          },
+          "blocks": {}
+        },
         "judge_me_reviews_cards_carousel_6y6LNQ": {
           "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
@@ -160,6 +175,7 @@
         }
       },
       "block_order": [
+        "review_xmYqpy",
         "judge_me_reviews_cards_carousel_6y6LNQ"
       ],
       "settings": {
@@ -211,7 +227,7 @@
             "max_width": 1100,
             "corner_styling": "soft",
             "quote_marks_style": "serif",
-            "card_color": "#F9F9F9",
+            "card_color": "#f9f9f9",
             "stars_and_quote_marks_color": "#108474",
             "text_color": "#000000",
             "arrows_color": "#000000",
