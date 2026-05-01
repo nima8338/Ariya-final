@@ -129,6 +129,14 @@
     "1777667170f7865615": {
       "type": "_blocks",
       "blocks": {
+        "judge_me_reviews_review_widget_homepage_4Q3Knj": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget_homepage/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "product": "calm-nights",
+            "review_data": "sample_data",
+            "max_width": 1200
+          }
+        },
         "review_xmYqpy": {
           "type": "review",
           "name": "t:names.product_review_stars",
@@ -175,6 +183,7 @@
         }
       },
       "block_order": [
+        "judge_me_reviews_review_widget_homepage_4Q3Knj",
         "review_xmYqpy",
         "judge_me_reviews_cards_carousel_6y6LNQ"
       ],
