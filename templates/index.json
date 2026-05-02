@@ -70,7 +70,7 @@
             "products": [
               "calm-nights"
             ],
-            "star_rating": "5_star",
+            "star_rating": "all",
             "review_type": "photo_and_video",
             "max_reviews": 20,
             "show_reviewer_name": true,
