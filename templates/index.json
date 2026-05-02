@@ -90,7 +90,7 @@
             "autoplay_media": true,
             "transition_speed": 5,
             "carousel_style": "highlight",
-            "header_text": "Real customer stories",
+            "header_text": "See It For Yourself",
             "show_average_rating": true
           }
         }
@@ -177,7 +177,7 @@
             "stars_color": "#efcb21",
             "arrows_color": "#c99cf1",
             "transition_speed": 5,
-            "header_text": "Customers are saying",
+            "header_text": "Real Results, Real People",
             "show_average_rating": true
           }
         }
@@ -236,10 +236,10 @@
             "max_width": 1100,
             "corner_styling": "soft",
             "quote_marks_style": "serif",
-            "card_color": "#f9f9f9",
-            "stars_and_quote_marks_color": "#108474",
-            "text_color": "#000000",
-            "arrows_color": "#000000",
+            "card_color": "#ffffff",
+            "stars_and_quote_marks_color": "#efcb21",
+            "text_color": "#3c0e66",
+            "arrows_color": "#c99cf1",
             "show_border": false,
             "border_color": "#108474",
             "show_drop_shadow": false,
