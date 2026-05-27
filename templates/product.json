@@ -16,10 +16,6 @@
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
-        "judge_me_reviews_review_snippet_widget_7HyNad": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_snippet_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        },
         "media-gallery": {
           "type": "_product-media-gallery",
           "static": true,
@@ -282,8 +278,7 @@
         }
       },
       "block_order": [
-        "judge_me_reviews_preview_badge_dBrWDP",
-        "judge_me_reviews_review_snippet_widget_7HyNad"
+        "judge_me_reviews_preview_badge_dBrWDP"
       ],
       "settings": {
         "content_width": "content-center-aligned",
