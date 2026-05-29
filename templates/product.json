@@ -12,8 +12,9 @@
     "main": {
       "type": "product-information",
       "blocks": {
-        "judge_me_reviews_preview_badge_dBrWDP": {
+        "judge_me_reviews_preview_badge_gCRQiB": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
           "settings": {}
         },
         "media-gallery": {
@@ -72,6 +73,19 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "review_RctUR8": {
+              "type": "review",
+              "name": "t:names.product_review_stars",
+              "settings": {
+                "stars_style": "shaded",
+                "show_number": true,
+                "rating_color": "primary",
+                "type_preset": "paragraph",
+                "width": "100%",
+                "alignment": "left"
+              },
+              "blocks": {}
+            },
             "group_icgrde": {
               "type": "group",
               "name": "Header",
@@ -257,6 +271,19 @@
               },
               "block_order": []
             },
+            "payment_icons_nzNc8M": {
+              "type": "payment-icons",
+              "name": "t:names.payment_icons",
+              "settings": {
+                "horizontal_alignment": "flex-start",
+                "gap": 10,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "text_F9Pi4W": {
               "type": "text",
               "name": "Product title",
@@ -311,18 +338,20 @@
             }
           },
           "block_order": [
+            "review_RctUR8",
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "judge_me_reviews_review_snippet_widget_Upy6V3",
             "buy_buttons_eYQEYi",
+            "payment_icons_nzNc8M",
             "text_F9Pi4W",
             "text_aEtTtq"
           ]
         }
       },
       "block_order": [
-        "judge_me_reviews_preview_badge_dBrWDP"
+        "judge_me_reviews_preview_badge_gCRQiB"
       ],
       "custom_css": [
         ".jdgm-rev-snippet-card__pic-wrapper {display: none;}"
@@ -504,9 +533,9 @@
             "stat_2_text": "adults don't get enough sleep on a regular basis.",
             "stat_3_number": "50–70 Million",
             "stat_3_text": "Americans struggle with chronic sleep issues.",
-            "stat_color": "#3C0E66",
+            "stat_color": "#3c0e66",
             "stat_text_color": "#1a0a2e",
-            "icon_color": "#3C0E66",
+            "icon_color": "#3c0e66",
             "stat_size_mobile": 40,
             "stat_size_desktop": 56,
             "stat_text_size_mobile": 14,
@@ -534,7 +563,7 @@
             "cta_headline_color": "#1a0a2e",
             "cta_body": "Melatonin-free sleep support designed to help quiet a racing mind, promote relaxation, and help you wake up refreshed.",
             "cta_body_color": "#6b5a85",
-            "cta_background": "#F9F6FF",
+            "cta_background": "#f9f6ff",
             "cta_radius": 16,
             "cta_padding_mobile": 40,
             "cta_padding_desktop": 56,
@@ -546,7 +575,7 @@
             "cta_body_spacing": 24,
             "button_label": "Shop Calm Nights",
             "button_link": "",
-            "button_background": "#3C0E66",
+            "button_background": "#3c0e66",
             "button_hover_background": "#5a1a9a",
             "button_text_color": "#ffffff",
             "button_size": 16,
@@ -558,7 +587,7 @@
             "benefit_2_label": "Promotes Relaxation",
             "benefit_3_label": "Supports a Calm Mind",
             "benefit_4_label": "Wake Up Refreshed",
-            "benefit_icon_color": "#3C0E66",
+            "benefit_icon_color": "#3c0e66",
             "benefit_label_color": "#1a0a2e",
             "benefit_icon_size": 32,
             "benefit_label_size": 14,
