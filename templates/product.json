@@ -257,6 +257,32 @@
               },
               "block_order": []
             },
+            "text_F9Pi4W": {
+              "type": "text",
+              "name": "Product title",
+              "settings": {
+                "text": "<p>✓ Non-GMO Ingredients. ✓ NSF GMP-Certified. ✓ Heavy Metal Tested</p><p>• Falls asleep faster — no synthetic melatonin</p><p>• Quiets racing thoughts. Your brain actually shuts off.</p><p>• Wake up clear — no grogginess, no dependency</p><p>• Standardized extracts — no underdosed fillers</p><p>Formulated around the science of natural sleep, not sedation.<br/><br/></p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-primary--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "text_aEtTtq": {
               "type": "text",
               "name": "Product description",
@@ -290,6 +316,7 @@
             "variant_picker_R3rGDr",
             "judge_me_reviews_review_snippet_widget_Upy6V3",
             "buy_buttons_eYQEYi",
+            "text_F9Pi4W",
             "text_aEtTtq"
           ]
         }
