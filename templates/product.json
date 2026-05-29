@@ -297,6 +297,9 @@
       "block_order": [
         "judge_me_reviews_preview_badge_dBrWDP"
       ],
+      "custom_css": [
+        ".jdgm-rev-snippet-card__pic-wrapper {display: none;}"
+      ],
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
