@@ -1,6 +1,888 @@
+{% doc %}
+  @prompt
+    Create a mobile-first educational statistics section for Ariya Supplements’ sleep product, Calm Nights.The design should feel premium, modern, and clean, similar to leading DTC wellness brands.Use Ariya’s purple branding, large bold statistics, plenty of white space, rounded corners, and a strong call-to-action button.Section Headline:Your Brain Wasn’t Designed For Modern Life.Supporting Text:Late-night scrolling. Constant notifications. Endless stimulation.Statistic #1:48%of Americans report frequent stress.Statistic #2:1 in 3adults don’t get enough sleep on a regular basis.Statistic #3:Millionsrely on sleep aids every night searching for better sleep.Transition Text:Modern life makes it harder than ever to slow down and relax before bed.CTA Headline:That’s Why We Created Calm Nights.CTA Text:Melatonin-free sleep support designed to help quiet a racing mind, promote relaxation, and help you wake up refreshed.Button Text:Shop Calm NightsDesign Notes:Large percentage numbers should be the visual focus.Statistics should stack vertically on mobile.Use subtle moon, sleep, or relaxation-themed icons.Maintain a premium luxury wellness aesthetic.Keep the section easy to scan in under 5 seconds.One thing I’d test against this version:The World Never Stops. Your Brain Never Gets A Break.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-stats-section-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: {{ block.settings.section_padding_mobile }}px 20px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-stats-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-stats-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size_mobile }}px;
+    font-weight: 700;
+    color: {{ block.settings.headline_color }};
+    text-align: center;
+    margin: 0 0 {{ block.settings.headline_spacing }}px;
+    line-height: 1.2;
+  }
+
+  .ai-stats-supporting-{{ ai_gen_id }} {
+    font-size: {{ block.settings.supporting_size_mobile }}px;
+    color: {{ block.settings.text_color }};
+    text-align: center;
+    margin: 0 0 {{ block.settings.stats_spacing }}px;
+    line-height: 1.6;
+  }
+
+  .ai-stats-grid-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.stat_gap }}px;
+    margin-bottom: {{ block.settings.transition_spacing }}px;
+  }
+
+  .ai-stat-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_radius }}px;
+    padding: {{ block.settings.card_padding_mobile }}px;
+    text-align: center;
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+  }
+
+  .ai-stat-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    margin: 0 auto {{ block.settings.icon_spacing }}px;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-stat-number-{{ ai_gen_id }} {
+    font-size: {{ block.settings.stat_number_size_mobile }}px;
+    font-weight: 800;
+    color: {{ block.settings.stat_number_color }};
+    margin: 0 0 {{ block.settings.stat_label_spacing }}px;
+    line-height: 1;
+  }
+
+  .ai-stat-label-{{ ai_gen_id }} {
+    font-size: {{ block.settings.stat_label_size_mobile }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .ai-stats-transition-{{ ai_gen_id }} {
+    font-size: {{ block.settings.transition_size_mobile }}px;
+    color: {{ block.settings.text_color }};
+    text-align: center;
+    margin: 0 0 {{ block.settings.cta_spacing }}px;
+    line-height: 1.6;
+  }
+
+  .ai-stats-cta-{{ ai_gen_id }} {
+    background-color: {{ block.settings.cta_background }};
+    border-radius: {{ block.settings.cta_radius }}px;
+    padding: {{ block.settings.cta_padding_mobile }}px;
+    text-align: center;
+  }
+
+  .ai-cta-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.cta_headline_size_mobile }}px;
+    font-weight: 700;
+    color: {{ block.settings.cta_headline_color }};
+    margin: 0 0 {{ block.settings.cta_text_spacing }}px;
+    line-height: 1.3;
+  }
+
+  .ai-cta-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.cta_text_size_mobile }}px;
+    color: {{ block.settings.cta_text_color }};
+    margin: 0 0 {{ block.settings.button_spacing }}px;
+    line-height: 1.6;
+  }
+
+  .ai-cta-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: {{ block.settings.button_radius }}px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ai-cta-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_text_color }};
+    transform: translateY(-2px);
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_desktop }}px 40px;
+    }
+
+    .ai-stats-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size_desktop }}px;
+    }
+
+    .ai-stats-supporting-{{ ai_gen_id }} {
+      font-size: {{ block.settings.supporting_size_desktop }}px;
+    }
+
+    .ai-stats-grid-{{ ai_gen_id }} {
+      flex-direction: row;
+      gap: {{ block.settings.stat_gap_desktop }}px;
+    }
+
+    .ai-stat-card-{{ ai_gen_id }} {
+      flex: 1;
+      padding: {{ block.settings.card_padding_desktop }}px;
+    }
+
+    .ai-stat-number-{{ ai_gen_id }} {
+      font-size: {{ block.settings.stat_number_size_desktop }}px;
+    }
+
+    .ai-stat-label-{{ ai_gen_id }} {
+      font-size: {{ block.settings.stat_label_size_desktop }}px;
+    }
+
+    .ai-stats-transition-{{ ai_gen_id }} {
+      font-size: {{ block.settings.transition_size_desktop }}px;
+    }
+
+    .ai-stats-cta-{{ ai_gen_id }} {
+      padding: {{ block.settings.cta_padding_desktop }}px;
+    }
+
+    .ai-cta-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.cta_headline_size_desktop }}px;
+    }
+
+    .ai-cta-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.cta_text_size_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-stats-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-stats-container-{{ ai_gen_id }}">
+    {% if block.settings.headline != blank %}
+      <h2 class="ai-stats-headline-{{ ai_gen_id }}">{{ block.settings.headline }}</h2>
+    {% endif %}
+
+    {% if block.settings.supporting_text != blank %}
+      <div class="ai-stats-supporting-{{ ai_gen_id }}">{{ block.settings.supporting_text }}</div>
+    {% endif %}
+
+    <div class="ai-stats-grid-{{ ai_gen_id }}">
+      {% if block.settings.stat_1_enabled %}
+        <div class="ai-stat-card-{{ ai_gen_id }}">
+          {% if block.settings.show_icons %}
+            <div class="ai-stat-icon-{{ ai_gen_id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+                <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+          {% endif %}
+          <div class="ai-stat-number-{{ ai_gen_id }}">{{ block.settings.stat_1_number }}</div>
+          <div class="ai-stat-label-{{ ai_gen_id }}">{{ block.settings.stat_1_label }}</div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.stat_2_enabled %}
+        <div class="ai-stat-card-{{ ai_gen_id }}">
+          {% if block.settings.show_icons %}
+            <div class="ai-stat-icon-{{ ai_gen_id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </div>
+          {% endif %}
+          <div class="ai-stat-number-{{ ai_gen_id }}">{{ block.settings.stat_2_number }}</div>
+          <div class="ai-stat-label-{{ ai_gen_id }}">{{ block.settings.stat_2_label }}</div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.stat_3_enabled %}
+        <div class="ai-stat-card-{{ ai_gen_id }}">
+          {% if block.settings.show_icons %}
+            <div class="ai-stat-icon-{{ ai_gen_id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a10 10 0 0 0 0 20 7 7 0 0 1 0-14 5 5 0 0 0 0-6Z"></path>
+              </svg>
+            </div>
+          {% endif %}
+          <div class="ai-stat-number-{{ ai_gen_id }}">{{ block.settings.stat_3_number }}</div>
+          <div class="ai-stat-label-{{ ai_gen_id }}">{{ block.settings.stat_3_label }}</div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if block.settings.transition_text != blank %}
+      <div class="ai-stats-transition-{{ ai_gen_id }}">{{ block.settings.transition_text }}</div>
+    {% endif %}
+
+    <div class="ai-stats-cta-{{ ai_gen_id }}">
+      {% if block.settings.cta_headline != blank %}
+        <h3 class="ai-cta-headline-{{ ai_gen_id }}">{{ block.settings.cta_headline }}</h3>
+      {% endif %}
+
+      {% if block.settings.cta_text != blank %}
+        <div class="ai-cta-text-{{ ai_gen_id }}">{{ block.settings.cta_text }}</div>
+      {% endif %}
+
+      {% if block.settings.button_text != blank %}
+        <a href="{{ block.settings.button_link }}" class="ai-cta-button-{{ ai_gen_id }}">
+          {{ block.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Sleep statistics",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section headline"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Your Brain Wasn't Designed For Modern Life."
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline color",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "range",
+      "id": "headline_size_mobile",
+      "label": "Mobile size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "headline_size_desktop",
+      "label": "Desktop size",
+      "min": 30,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "headline_spacing",
+      "label": "Bottom spacing",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Supporting text"
+    },
+    {
+      "type": "textarea",
+      "id": "supporting_text",
+      "label": "Text",
+      "default": "Late-night scrolling. Constant notifications. Endless stimulation."
+    },
+    {
+      "type": "range",
+      "id": "supporting_size_mobile",
+      "label": "Mobile size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "supporting_size_desktop",
+      "label": "Desktop size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "stats_spacing",
+      "label": "Bottom spacing",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Statistic 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "stat_1_enabled",
+      "label": "Enable statistic 1",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "stat_1_number",
+      "label": "Number",
+      "default": "48%"
+    },
+    {
+      "type": "textarea",
+      "id": "stat_1_label",
+      "label": "Label",
+      "default": "of Americans report frequent stress."
+    },
+    {
+      "type": "header",
+      "content": "Statistic 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "stat_2_enabled",
+      "label": "Enable statistic 2",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "stat_2_number",
+      "label": "Number",
+      "default": "1 in 3"
+    },
+    {
+      "type": "textarea",
+      "id": "stat_2_label",
+      "label": "Label",
+      "default": "adults don't get enough sleep on a regular basis."
+    },
+    {
+      "type": "header",
+      "content": "Statistic 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "stat_3_enabled",
+      "label": "Enable statistic 3",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "stat_3_number",
+      "label": "Number",
+      "default": "Millions"
+    },
+    {
+      "type": "textarea",
+      "id": "stat_3_label",
+      "label": "Label",
+      "default": "rely on sleep aids every night searching for better sleep."
+    },
+    {
+      "type": "header",
+      "content": "Statistics style"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icons",
+      "label": "Show icons",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#C99CF1"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "Icon bottom spacing",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "stat_number_color",
+      "label": "Number color",
+      "default": "#3C0E66"
+    },
+    {
+      "type": "range",
+      "id": "stat_number_size_mobile",
+      "label": "Mobile number size",
+      "min": 30,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "stat_number_size_desktop",
+      "label": "Desktop number size",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "stat_label_spacing",
+      "label": "Number bottom spacing",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "stat_label_size_mobile",
+      "label": "Mobile label size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "stat_label_size_desktop",
+      "label": "Desktop label size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "stat_gap",
+      "label": "Mobile gap",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "stat_gap_desktop",
+      "label": "Desktop gap",
+      "min": 15,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Stat card style"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Background",
+      "default": "#F9F6FF"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Border color",
+      "default": "#e8d9f7"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_padding_mobile",
+      "label": "Mobile padding",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "card_padding_desktop",
+      "label": "Desktop padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Transition text"
+    },
+    {
+      "type": "textarea",
+      "id": "transition_text",
+      "label": "Text",
+      "default": "Modern life makes it harder than ever to slow down and relax before bed."
+    },
+    {
+      "type": "range",
+      "id": "transition_size_mobile",
+      "label": "Mobile size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "transition_size_desktop",
+      "label": "Desktop size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "transition_spacing",
+      "label": "Bottom spacing",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "cta_headline",
+      "label": "Headline",
+      "default": "That's Why We Created Calm Nights."
+    },
+    {
+      "type": "color",
+      "id": "cta_headline_color",
+      "label": "Headline color",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "range",
+      "id": "cta_headline_size_mobile",
+      "label": "Mobile headline size",
+      "min": 18,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "cta_headline_size_desktop",
+      "label": "Desktop headline size",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "cta_text_spacing",
+      "label": "Headline bottom spacing",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text",
+      "label": "Text",
+      "default": "Melatonin-free sleep support designed to help quiet a racing mind, promote relaxation, and help you wake up refreshed."
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "Text color",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "range",
+      "id": "cta_text_size_mobile",
+      "label": "Mobile text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "cta_text_size_desktop",
+      "label": "Desktop text size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_spacing",
+      "label": "Text bottom spacing",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "CTA box style"
+    },
+    {
+      "type": "color",
+      "id": "cta_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "cta_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "cta_padding_mobile",
+      "label": "Mobile padding",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "cta_padding_desktop",
+      "label": "Desktop padding",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Text",
+      "default": "Shop Calm Nights"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#3C0E66"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background",
+      "default": "#5a1a9a"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Vertical padding",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max width",
+      "min": 600,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "default": 1000
+    },
+    {
+      "type": "range",
+      "id": "section_padding_mobile",
+      "label": "Mobile padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_desktop",
+      "label": "Desktop padding",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "cta_spacing",
+      "label": "CTA top spacing",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sleep statistics"
+    }
+  ]
+}
 {% endschema %}
