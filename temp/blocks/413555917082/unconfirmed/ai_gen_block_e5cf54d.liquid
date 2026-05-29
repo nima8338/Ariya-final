@@ -1,6 +1,962 @@
+{% doc %}
+  @prompt
+    Create a mobile-first educational statistics section for Ariya Supplements' sleep supplement, Calm Nights.The section should feel premium, modern, clean, and trustworthy—similar to leading wellness brands like Ritual, Eight Sleep, AG1, and Momentous.Use Ariya's purple as an accent color, not the primary color for everything.Section HeadlineYour Brain Wasn't Designed For Modern Life.Supporting TextLate-night scrolling. Constant notifications. Endless stimulation.Statistic Card 1Icon:
+    Simple outline brain iconStatistic:
+    48%Supporting Text:
+    of U.S. adults report lying awake at night due to stress.Purpose:
+    Show how modern stress affects the brain and sleep.Statistic Card 2Icon:
+    Simple outline icon showing 3 people with 1 highlightedStatistic:
+    1 in 3Supporting Text:
+    adults don't get enough sleep on a regular basis.Purpose:
+    Visually represent "1 in 3."Statistic Card 3Icon:
+    Simple outline crescent moon iconStatistic:
+    50–70 MillionSupporting Text:
+    Americans struggle with chronic sleep issues.Purpose:
+    Visually represent sleep problems.Icon RequirementsUse ONLY these icons:BrainThree people with one highlightedCrescent moonDo not use:sad facessmiley facesbedsbasketsbadgescircleslocation pinsabstract symbolsdotsdecorative graphicsstarsIcons should:be minimalbe outline stylematch each other visuallybe centered above the statisticsbe the same sizeuse a subtle Ariya purple or dark grayDesign RequirementsHeadline:
+    BlackSupporting text:
+    Dark grayStatistic numbers:
+    Ariya purpleStatistic descriptions:
+    Dark grayBackground:
+    WhiteCards:
+    White with subtle shadowsCorners:
+    RoundedSpacing:
+    Generous white spaceThe large statistics should be the primary visual focus.Transition TextModern life makes it harder than ever to slow down and relax before bed.CTA SectionHeadline:
+    That's Why We Created Calm Nights.Body Text:
+    Melatonin-free sleep support designed to help quiet a racing mind, promote relaxation, and help you wake up refreshed.Button Text:
+    Shop Calm NightsButton Color:
+    Ariya purpleMobile LayoutStack the three statistic cards vertically.Each card should contain:IconStatisticSupporting TextMake the section easy to scan in under 5 seconds.The visual story should be:Brain under stress → People affected → Sleep problems
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-stats-section-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding_mobile }}px 20px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_desktop }}px 40px;
+    }
+  }
+
+  .ai-stats-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-stats-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: {{ block.settings.header_spacing_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-header-{{ ai_gen_id }} {
+      margin-bottom: {{ block.settings.header_spacing_desktop }}px;
+    }
+  }
+
+  .ai-stats-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size_mobile }}px;
+    line-height: 1.2;
+    color: {{ block.settings.headline_color }};
+    margin: 0 0 {{ block.settings.headline_spacing }}px 0;
+    font-weight: 700;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size_desktop }}px;
+    }
+  }
+
+  .ai-stats-supporting-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.supporting_text_size_mobile }}px;
+    line-height: 1.5;
+    color: {{ block.settings.supporting_text_color }};
+    margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-supporting-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.supporting_text_size_desktop }}px;
+    }
+  }
+
+  .ai-stats-cards-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.card_gap_mobile }}px;
+    margin-bottom: {{ block.settings.cards_bottom_spacing_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-cards-{{ ai_gen_id }} {
+      flex-direction: row;
+      gap: {{ block.settings.card_gap_desktop }}px;
+      margin-bottom: {{ block.settings.cards_bottom_spacing_desktop }}px;
+    }
+  }
+
+  .ai-stats-card-{{ ai_gen_id }} {
+    flex: 1;
+    background-color: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: {{ block.settings.card_padding_mobile }}px;
+    text-align: center;
+    box-shadow: {{ block.settings.card_shadow }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-card-{{ ai_gen_id }} {
+      padding: {{ block.settings.card_padding_desktop }}px;
+    }
+  }
+
+  .ai-stats-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size_mobile }}px;
+    height: {{ block.settings.icon_size_mobile }}px;
+    margin: 0 auto {{ block.settings.icon_spacing }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-icon-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size_desktop }}px;
+      height: {{ block.settings.icon_size_desktop }}px;
+    }
+  }
+
+  .ai-stats-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke: {{ block.settings.icon_color }};
+    fill: none;
+    stroke-width: {{ block.settings.icon_stroke_width }};
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .ai-stats-number-{{ ai_gen_id }} {
+    font-size: {{ block.settings.stat_size_mobile }}px;
+    line-height: 1.1;
+    color: {{ block.settings.stat_color }};
+    font-weight: 700;
+    margin: 0 0 {{ block.settings.stat_spacing }}px 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-number-{{ ai_gen_id }} {
+      font-size: {{ block.settings.stat_size_desktop }}px;
+    }
+  }
+
+  .ai-stats-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size_mobile }}px;
+    line-height: 1.4;
+    color: {{ block.settings.description_color }};
+    margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size_desktop }}px;
+    }
+  }
+
+  .ai-stats-transition-{{ ai_gen_id }} {
+    text-align: center;
+    font-size: {{ block.settings.transition_size_mobile }}px;
+    line-height: 1.5;
+    color: {{ block.settings.transition_color }};
+    margin: 0 0 {{ block.settings.transition_spacing_mobile }}px 0;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-transition-{{ ai_gen_id }} {
+      font-size: {{ block.settings.transition_size_desktop }}px;
+      margin-bottom: {{ block.settings.transition_spacing_desktop }}px;
+    }
+  }
+
+  .ai-stats-cta-{{ ai_gen_id }} {
+    text-align: center;
+  }
+
+  .ai-stats-cta-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.cta_headline_size_mobile }}px;
+    line-height: 1.2;
+    color: {{ block.settings.cta_headline_color }};
+    margin: 0 0 {{ block.settings.cta_headline_spacing }}px 0;
+    font-weight: 700;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-cta-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.cta_headline_size_desktop }}px;
+    }
+  }
+
+  .ai-stats-cta-body-{{ ai_gen_id }} {
+    font-size: {{ block.settings.cta_body_size_mobile }}px;
+    line-height: 1.5;
+    color: {{ block.settings.cta_body_color }};
+    margin: 0 0 {{ block.settings.cta_body_spacing }}px 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-stats-cta-body-{{ ai_gen_id }} {
+      font-size: {{ block.settings.cta_body_size_desktop }}px;
+    }
+  }
+
+  .ai-stats-cta-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .ai-stats-cta-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    transform: translateY(-2px);
+  }
+{% endstyle %}
+
+<div class="ai-stats-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-stats-container-{{ ai_gen_id }}">
+    <div class="ai-stats-header-{{ ai_gen_id }}">
+      {% if block.settings.headline != blank %}
+        <h2 class="ai-stats-headline-{{ ai_gen_id }}">{{ block.settings.headline }}</h2>
+      {% endif %}
+      {% if block.settings.supporting_text != blank %}
+        <p class="ai-stats-supporting-text-{{ ai_gen_id }}">{{ block.settings.supporting_text }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ai-stats-cards-{{ ai_gen_id }}">
+      <div class="ai-stats-card-{{ ai_gen_id }}">
+        <div class="ai-stats-icon-{{ ai_gen_id }}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z"/>
+            <path d="M9 21v-2h6v2c0 .55-.45 1-1 1h-4c-.55 0-1-.45-1-1z"/>
+            <circle cx="12" cy="9" r="2"/>
+          </svg>
+        </div>
+        {% if block.settings.stat_1 != blank %}
+          <div class="ai-stats-number-{{ ai_gen_id }}">{{ block.settings.stat_1 }}</div>
+        {% endif %}
+        {% if block.settings.stat_1_description != blank %}
+          <p class="ai-stats-description-{{ ai_gen_id }}">{{ block.settings.stat_1_description }}</p>
+        {% endif %}
+      </div>
+
+      <div class="ai-stats-card-{{ ai_gen_id }}">
+        <div class="ai-stats-icon-{{ ai_gen_id }}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="8" cy="8" r="3"/>
+            <circle cx="16" cy="8" r="3"/>
+            <circle cx="12" cy="16" r="3"/>
+            <path d="M8 11v3c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-3"/>
+          </svg>
+        </div>
+        {% if block.settings.stat_2 != blank %}
+          <div class="ai-stats-number-{{ ai_gen_id }}">{{ block.settings.stat_2 }}</div>
+        {% endif %}
+        {% if block.settings.stat_2_description != blank %}
+          <p class="ai-stats-description-{{ ai_gen_id }}">{{ block.settings.stat_2_description }}</p>
+        {% endif %}
+      </div>
+
+      <div class="ai-stats-card-{{ ai_gen_id }}">
+        <div class="ai-stats-icon-{{ ai_gen_id }}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </div>
+        {% if block.settings.stat_3 != blank %}
+          <div class="ai-stats-number-{{ ai_gen_id }}">{{ block.settings.stat_3 }}</div>
+        {% endif %}
+        {% if block.settings.stat_3_description != blank %}
+          <p class="ai-stats-description-{{ ai_gen_id }}">{{ block.settings.stat_3_description }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if block.settings.transition_text != blank %}
+      <p class="ai-stats-transition-{{ ai_gen_id }}">{{ block.settings.transition_text }}</p>
+    {% endif %}
+
+    <div class="ai-stats-cta-{{ ai_gen_id }}">
+      {% if block.settings.cta_headline != blank %}
+        <h3 class="ai-stats-cta-headline-{{ ai_gen_id }}">{{ block.settings.cta_headline }}</h3>
+      {% endif %}
+      {% if block.settings.cta_body != blank %}
+        <p class="ai-stats-cta-body-{{ ai_gen_id }}">{{ block.settings.cta_body }}</p>
+      {% endif %}
+      {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+        <a href="{{ block.settings.button_link }}" class="ai-stats-cta-button-{{ ai_gen_id }}">
+          {{ block.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Sleep statistics",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Your Brain Wasn't Designed For Modern Life."
+    },
+    {
+      "type": "textarea",
+      "id": "supporting_text",
+      "label": "Supporting text",
+      "default": "Late-night scrolling. Constant notifications. Endless stimulation."
+    },
+    {
+      "type": "range",
+      "id": "headline_size_mobile",
+      "label": "Headline size (mobile)",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "headline_size_desktop",
+      "label": "Headline size (desktop)",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "supporting_text_size_mobile",
+      "label": "Supporting text size (mobile)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "supporting_text_size_desktop",
+      "label": "Supporting text size (desktop)",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Statistic card 1"
+    },
+    {
+      "type": "text",
+      "id": "stat_1",
+      "label": "Statistic",
+      "default": "48%"
+    },
+    {
+      "type": "textarea",
+      "id": "stat_1_description",
+      "label": "Description",
+      "default": "of U.S. adults report lying awake at night due to stress."
+    },
+    {
+      "type": "header",
+      "content": "Statistic card 2"
+    },
+    {
+      "type": "text",
+      "id": "stat_2",
+      "label": "Statistic",
+      "default": "1 in 3"
+    },
+    {
+      "type": "textarea",
+      "id": "stat_2_description",
+      "label": "Description",
+      "default": "adults don't get enough sleep on a regular basis."
+    },
+    {
+      "type": "header",
+      "content": "Statistic card 3"
+    },
+    {
+      "type": "text",
+      "id": "stat_3",
+      "label": "Statistic",
+      "default": "50–70 Million"
+    },
+    {
+      "type": "textarea",
+      "id": "stat_3_description",
+      "label": "Description",
+      "default": "Americans struggle with chronic sleep issues."
+    },
+    {
+      "type": "header",
+      "content": "Transition text"
+    },
+    {
+      "type": "textarea",
+      "id": "transition_text",
+      "label": "Transition text",
+      "default": "Modern life makes it harder than ever to slow down and relax before bed."
+    },
+    {
+      "type": "range",
+      "id": "transition_size_mobile",
+      "label": "Text size (mobile)",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "transition_size_desktop",
+      "label": "Text size (desktop)",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "cta_headline",
+      "label": "CTA headline",
+      "default": "That's Why We Created Calm Nights."
+    },
+    {
+      "type": "textarea",
+      "id": "cta_body",
+      "label": "CTA body text",
+      "default": "Melatonin-free sleep support designed to help quiet a racing mind, promote relaxation, and help you wake up refreshed."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Calm Nights"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "cta_headline_size_mobile",
+      "label": "CTA headline size (mobile)",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "cta_headline_size_desktop",
+      "label": "CTA headline size (desktop)",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "cta_body_size_mobile",
+      "label": "CTA body size (mobile)",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "cta_body_size_desktop",
+      "label": "CTA body size (desktop)",
+      "min": 16,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "supporting_text_color",
+      "label": "Supporting text",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "color",
+      "id": "stat_color",
+      "label": "Statistics",
+      "default": "#3C0E66"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Descriptions",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icons",
+      "default": "#3C0E66"
+    },
+    {
+      "type": "color",
+      "id": "transition_color",
+      "label": "Transition text",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "color",
+      "id": "cta_headline_color",
+      "label": "CTA headline",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "cta_body_color",
+      "label": "CTA body",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#3C0E66"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover",
+      "default": "#5a1a9a"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "card_shadow",
+      "label": "Shadow",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "0 2px 8px rgba(0, 0, 0, 0.06)",
+          "label": "Subtle"
+        },
+        {
+          "value": "0 4px 12px rgba(0, 0, 0, 0.08)",
+          "label": "Medium"
+        },
+        {
+          "value": "0 8px 24px rgba(0, 0, 0, 0.12)",
+          "label": "Strong"
+        }
+      ],
+      "default": "0 2px 8px rgba(0, 0, 0, 0.06)"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_mobile",
+      "label": "Card padding (mobile)",
+      "min": 16,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_padding_desktop",
+      "label": "Card padding (desktop)",
+      "min": 20,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Icon style"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "label": "Icon size (mobile)",
+      "min": 32,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "icon_size_desktop",
+      "label": "Icon size (desktop)",
+      "min": 40,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "icon_stroke_width",
+      "label": "Icon stroke width",
+      "min": 1,
+      "max": 3,
+      "step": 0.5,
+      "default": 1.5
+    },
+    {
+      "type": "header",
+      "content": "Typography sizes"
+    },
+    {
+      "type": "range",
+      "id": "stat_size_mobile",
+      "label": "Statistic size (mobile)",
+      "min": 28,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "stat_size_desktop",
+      "label": "Statistic size (desktop)",
+      "min": 32,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "label": "Description size (mobile)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "description_size_desktop",
+      "label": "Description size (desktop)",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Text size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Vertical padding",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_mobile",
+      "label": "Section padding (mobile)",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_desktop",
+      "label": "Section padding (desktop)",
+      "min": 40,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "header_spacing_mobile",
+      "label": "Header spacing (mobile)",
+      "min": 20,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "header_spacing_desktop",
+      "label": "Header spacing (desktop)",
+      "min": 32,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "headline_spacing",
+      "label": "Headline bottom spacing",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_gap_mobile",
+      "label": "Card gap (mobile)",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_gap_desktop",
+      "label": "Card gap (desktop)",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "cards_bottom_spacing_mobile",
+      "label": "Cards bottom spacing (mobile)",
+      "min": 24,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "cards_bottom_spacing_desktop",
+      "label": "Cards bottom spacing (desktop)",
+      "min": 32,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "Icon bottom spacing",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "stat_spacing",
+      "label": "Statistic bottom spacing",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "transition_spacing_mobile",
+      "label": "Transition spacing (mobile)",
+      "min": 24,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "transition_spacing_desktop",
+      "label": "Transition spacing (desktop)",
+      "min": 32,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "cta_headline_spacing",
+      "label": "CTA headline spacing",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "cta_body_spacing",
+      "label": "CTA body spacing",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 800,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sleep statistics"
+    }
+  ]
+}
 {% endschema %}
