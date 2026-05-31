@@ -688,7 +688,7 @@
             "ingredient_name_color": "#1a0a2e",
             "description_color": "#6b5a85",
             "chevron_color": "#C99CF1",
-            "card_shadow": "0 2px 8px rgba(0, 0, 0, 0.04)"
+            "card_shadow": "0 4px 16px rgba(0, 0, 0, 0.12)"
           },
           "blocks": {}
         },
