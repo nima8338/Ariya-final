@@ -568,6 +568,47 @@
           },
           "blocks": {}
         },
+        "ai_gen_block_d98e457_c7Ykag": {
+          "type": "ai_gen_block_d98e457",
+          "settings": {
+            "title": "Why Ariya Is Different",
+            "subtitle": "Most sleep supplements are designed to sell. Calm Nights was designed to work.",
+            "title_size": 28,
+            "subtitle_size": 15,
+            "ariya_column_title": "Calm Nights",
+            "other_column_title": "Other Brands",
+            "header_text_size": 14,
+            "row_1_ariya": "Fully Disclosed Doses",
+            "row_1_other": "Proprietary Blends",
+            "row_2_ariya": "Standardized Plant Extracts",
+            "row_2_other": "Non-Standardized Ingredients",
+            "row_3_ariya": "Melatonin-Free Formula",
+            "row_3_other": "Melatonin-Based Formulas",
+            "row_4_ariya": "Wake Up Refreshed",
+            "row_4_other": "Morning Grogginess For Some Users",
+            "text_size": 14,
+            "icon_size": 20,
+            "border_radius": 12,
+            "section_padding": 40,
+            "desktop_width_percent": 100,
+            "background_color": "#ffffff",
+            "title_color": "#1a0a2e",
+            "subtitle_color": "#6b5a85",
+            "card_background": "#ffffff",
+            "divider_color": "#e8d9f7",
+            "ariya_header_bg": "#3C0E66",
+            "ariya_header_text": "#ffffff",
+            "other_header_bg": "#f4f4f4",
+            "other_header_text": "#6b5a85",
+            "ariya_bg_color": "#F9F6FF",
+            "ariya_text_color": "#3C0E66",
+            "other_bg_color": "#ffffff",
+            "other_text_color": "#6b5a85",
+            "check_color": "#3C0E66",
+            "x_color": "#f21212"
+          },
+          "blocks": {}
+        },
         "ai_gen_block_da851df_REiEHz": {
           "type": "ai_gen_block_da851df",
           "settings": {
@@ -694,6 +735,7 @@
       },
       "block_order": [
         "ai_gen_block_8c1b4be_NJ8pxA",
+        "ai_gen_block_d98e457_c7Ykag",
         "ai_gen_block_da851df_REiEHz",
         "judge_me_reviews_review_widget_xepgRK",
         "judge_me_reviews_store_summary_VzgDAx"
