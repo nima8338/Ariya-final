@@ -596,7 +596,7 @@
             "x_color": "#f70505",
             "divider_color": "#09090a",
             "ariya_emphasis": true,
-            "ariya_cell_bg": "#F9F6FF",
+            "ariya_cell_bg": "#ffffff",
             "max_width": 700,
             "border_radius": 16,
             "min_cell_height": 70,
@@ -621,7 +621,7 @@
             "shadow_horizontal": 0,
             "shadow_vertical": 4,
             "shadow_blur": 12,
-            "shadow_color": "rgba(0, 0, 0, 0.08)"
+            "shadow_color": "#3c0e66"
           },
           "blocks": {}
         },
