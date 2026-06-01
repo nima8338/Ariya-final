@@ -1,6 +1,774 @@
+{% doc %}
+  @prompt
+    Create a new FAQ-style education section for Ariya Supplements’ Calm Nights product.
+    
+    This section should be inspired by the clean expandable accordion style used by premium wellness brands like Moonbrew, AG1, and Grüns.
+    
+    Section Headline
+    Questions About Calm Nights
+    
+    Supporting Text
+    Everything you need to know before your first night.
+    
+    Layout Requirements
+    Mobile-first design.
+    Premium wellness aesthetic.
+    White background.
+    Ariya purple accents.
+    Clean typography.
+    Large touch-friendly accordion rows.
+    Smooth expand/collapse animations.
+    One accordion should be expanded by default.
+    Plenty of white space.
+    Simple and easy to scan.
+    Minimalistic luxury design.
+    Accordion 1 (Expanded By Default)
+    Can Calm Nights Help You?
+    
+    If any of these sound familiar, Calm Nights was designed for you:
+    
+    ✓ Your mind won’t stop racing when you lay down
+    
+    ✓ Stress follows you into bed
+    
+    ✓ You take more than 30 minutes to fall asleep
+    
+    ✓ You wake up during the night
+    
+    ✓ You wake up feeling exhausted
+    
+    ✓ You want sleep support without melatonin
+    
+    Accordion 2
+    How Does Calm Nights Work?
+    
+    Calm Nights combines amino acids, botanical extracts, and sleep-support nutrients that help calm a racing mind, support natural sleep pathways, and promote deeper overnight recovery without melatonin.
+    
+    Accordion 3
+    What’s Inside Calm Nights?
+    
+    Calm Nights contains L-Theanine, L-Tryptophan, Lemon Balm Extract, Chamomile Extract, Tart Cherry Extract, Magnolia Bark Extract, and Vitamin B6.
+    
+    Every ingredient and dosage is fully disclosed.
+    
+    No proprietary blends.
+    
+    Accordion 4
+    How To Use
+    
+    Take 2 capsules 30–60 minutes before bed.
+    
+    For best results, use consistently as part of a healthy nighttime routine.
+    
+    Accordion 5
+    Quality & Transparency
+    
+    Every ingredient and dosage is fully disclosed.
+    
+    Manufactured in an FDA-registered facility and produced following NSF GMP standards.
+    
+    No proprietary blends.
+    
+    No hidden doses.
+    
+    Design Direction
+    The first accordion should be expanded by default.
+    Use subtle Ariya purple accents for active states.
+    Keep the section educational and trustworthy.
+    Prioritize readability over decoration.
+    Similar visual feel to Moonbrew’s “Can MoonBrew Help You?” section.
+    Make users immediately identify with the sleep problems before learning about the formula.
+    Goal
+    Help visitors self-identify with their sleep struggles, understand how Calm Nights works, and build confidence before purchasing.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-faq-section-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding_mobile }}px 20px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-faq-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_desktop }}px 40px;
+    }
+  }
+
+  .ai-faq-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-faq-header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+    margin-bottom: {{ block.settings.header_spacing_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-faq-header-{{ ai_gen_id }} {
+      margin-bottom: {{ block.settings.header_spacing_desktop }}px;
+    }
+  }
+
+  .ai-faq-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size_mobile }}px;
+    line-height: 1.2;
+    color: {{ block.settings.headline_color }};
+    margin: 0 0 {{ block.settings.subtext_spacing }}px 0;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-faq-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size_desktop }}px;
+    }
+  }
+
+  .ai-faq-subtext-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtext_size_mobile }}px;
+    line-height: 1.5;
+    color: {{ block.settings.subtext_color }};
+    margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-faq-subtext-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtext_size_desktop }}px;
+    }
+  }
+
+  .ai-faq-accordion-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.accordion_gap }}px;
+  }
+
+  .ai-faq-item-{{ ai_gen_id }} {
+    border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+    background-color: {{ block.settings.item_background }};
+    transition: border-color 0.3s ease;
+  }
+
+  .ai-faq-item-{{ ai_gen_id }}.active {
+    border-color: {{ block.settings.active_border_color }};
+  }
+
+  .ai-faq-question-{{ ai_gen_id }} {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: {{ block.settings.question_padding_mobile }}px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-faq-question-{{ ai_gen_id }} {
+      padding: {{ block.settings.question_padding_desktop }}px;
+    }
+  }
+
+  .ai-faq-question-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.question_hover_bg }};
+  }
+
+  .ai-faq-question-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.question_size_mobile }}px;
+    line-height: 1.3;
+    color: {{ block.settings.question_color }};
+    font-weight: 600;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-faq-question-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.question_size_desktop }}px;
+    }
+  }
+
+  .ai-faq-icon-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-faq-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke: {{ block.settings.icon_color }};
+    stroke-width: 2;
+  }
+
+  .ai-faq-item-{{ ai_gen_id }}.active .ai-faq-icon-{{ ai_gen_id }} {
+    transform: rotate(180deg);
+  }
+
+  .ai-faq-item-{{ ai_gen_id }}.active .ai-faq-icon-{{ ai_gen_id }} svg {
+    stroke: {{ block.settings.active_icon_color }};
+  }
+
+  .ai-faq-answer-wrapper-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .ai-faq-answer-{{ ai_gen_id }} {
+    padding: 0 {{ block.settings.question_padding_mobile }}px {{ block.settings.question_padding_mobile }}px;
+    font-size: {{ block.settings.answer_size_mobile }}px;
+    line-height: 1.6;
+    color: {{ block.settings.answer_color }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-faq-answer-{{ ai_gen_id }} {
+      padding: 0 {{ block.settings.question_padding_desktop }}px {{ block.settings.question_padding_desktop }}px;
+      font-size: {{ block.settings.answer_size_desktop }}px;
+    }
+  }
+
+  .ai-faq-answer-{{ ai_gen_id }} p {
+    margin: 0 0 12px 0;
+  }
+
+  .ai-faq-answer-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+{% endstyle %}
+
+<faq-accordion-{{ ai_gen_id }} class="ai-faq-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-faq-container-{{ ai_gen_id }}">
+    {% if block.settings.headline != blank or block.settings.subtext != blank %}
+      <div class="ai-faq-header-{{ ai_gen_id }}">
+        {% if block.settings.headline != blank %}
+          <h2 class="ai-faq-headline-{{ ai_gen_id }}">{{ block.settings.headline }}</h2>
+        {% endif %}
+        {% if block.settings.subtext != blank %}
+          <p class="ai-faq-subtext-{{ ai_gen_id }}">{{ block.settings.subtext }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ai-faq-accordion-{{ ai_gen_id }}">
+      {% for i in (1..5) %}
+        {% liquid
+          assign question_key = 'question_' | append: i
+          assign answer_key = 'answer_' | append: i
+          assign default_open_key = 'default_open_' | append: i
+
+          assign question = block.settings[question_key]
+          assign answer = block.settings[answer_key]
+          assign is_default_open = block.settings[default_open_key]
+        %}
+
+        {% if question != blank and answer != blank %}
+          <div class="ai-faq-item-{{ ai_gen_id }} {% if is_default_open %}active{% endif %}" data-faq-item>
+            <button
+              class="ai-faq-question-{{ ai_gen_id }}"
+              aria-expanded="{% if is_default_open %}true{% else %}false{% endif %}"
+              data-faq-button
+            >
+              <h3 class="ai-faq-question-text-{{ ai_gen_id }}">{{ question }}</h3>
+              <span class="ai-faq-icon-{{ ai_gen_id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+            <div class="ai-faq-answer-wrapper-{{ ai_gen_id }}" data-faq-answer>
+              <div class="ai-faq-answer-{{ ai_gen_id }}">
+                {{ answer }}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</faq-accordion-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class FaqAccordion{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.items = this.querySelectorAll('[data-faq-item]');
+        this.setupAccordion();
+      }
+
+      setupAccordion() {
+        this.items.forEach((item) => {
+          const button = item.querySelector('[data-faq-button]');
+          const answerWrapper = item.querySelector('[data-faq-answer]');
+          const answer = answerWrapper.querySelector('.ai-faq-answer-{{ ai_gen_id }}');
+
+          if (item.classList.contains('active')) {
+            answerWrapper.style.maxHeight = answer.scrollHeight + 'px';
+          }
+
+          button.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            if (isActive) {
+              item.classList.remove('active');
+              button.setAttribute('aria-expanded', 'false');
+              answerWrapper.style.maxHeight = '0';
+            } else {
+              item.classList.add('active');
+              button.setAttribute('aria-expanded', 'true');
+              answerWrapper.style.maxHeight = answer.scrollHeight + 'px';
+            }
+          });
+        });
+
+        window.addEventListener('resize', () => {
+          this.items.forEach((item) => {
+            if (item.classList.contains('active')) {
+              const answerWrapper = item.querySelector('[data-faq-answer]');
+              const answer = answerWrapper.querySelector('.ai-faq-answer-{{ ai_gen_id }}');
+              answerWrapper.style.maxHeight = answer.scrollHeight + 'px';
+            }
+          });
+        });
+      }
+    }
+
+    customElements.define('faq-accordion-{{ ai_gen_id }}', FaqAccordion{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "FAQ education section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Questions About Calm Nights"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtext",
+      "label": "Supporting text",
+      "default": "Everything you need to know before your first night."
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "headline_size_mobile",
+      "label": "Headline size (mobile)",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "headline_size_desktop",
+      "label": "Headline size (desktop)",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "subtext_size_mobile",
+      "label": "Subtext size (mobile)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subtext_size_desktop",
+      "label": "Subtext size (desktop)",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "subtext_spacing",
+      "label": "Space below headline",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "header_spacing_mobile",
+      "label": "Header spacing (mobile)",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "header_spacing_desktop",
+      "label": "Header spacing (desktop)",
+      "min": 24,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "FAQ items"
+    },
+    {
+      "type": "richtext",
+      "id": "question_1",
+      "label": "Question 1",
+      "default": "<p>Can Calm Nights Help You?</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_1",
+      "label": "Answer 1",
+      "default": "<p>If any of these sound familiar, Calm Nights was designed for you:</p><p>✓ Your mind won't stop racing when you lay down</p><p>✓ Stress follows you into bed</p><p>✓ You take more than 30 minutes to fall asleep</p><p>✓ You wake up during the night</p><p>✓ You wake up feeling exhausted</p><p>✓ You want sleep support without melatonin</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "default_open_1",
+      "label": "Open by default",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "question_2",
+      "label": "Question 2",
+      "default": "<p>How Does Calm Nights Work?</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_2",
+      "label": "Answer 2",
+      "default": "<p>Calm Nights combines amino acids, botanical extracts, and sleep-support nutrients that help calm a racing mind, support natural sleep pathways, and promote deeper overnight recovery without melatonin.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "default_open_2",
+      "label": "Open by default",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "question_3",
+      "label": "Question 3",
+      "default": "<p>What's Inside Calm Nights?</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_3",
+      "label": "Answer 3",
+      "default": "<p>Calm Nights contains L-Theanine, L-Tryptophan, Lemon Balm Extract, Chamomile Extract, Tart Cherry Extract, Magnolia Bark Extract, and Vitamin B6.</p><p>Every ingredient and dosage is fully disclosed.</p><p>No proprietary blends.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "default_open_3",
+      "label": "Open by default",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "question_4",
+      "label": "Question 4",
+      "default": "<p>How To Use</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_4",
+      "label": "Answer 4",
+      "default": "<p>Take 2 capsules 30–60 minutes before bed.</p><p>For best results, use consistently as part of a healthy nighttime routine.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "default_open_4",
+      "label": "Open by default",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "question_5",
+      "label": "Question 5",
+      "default": "<p>Quality & Transparency</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_5",
+      "label": "Answer 5",
+      "default": "<p>Every ingredient and dosage is fully disclosed.</p><p>Manufactured in an FDA-registered facility and produced following NSF GMP standards.</p><p>No proprietary blends.</p><p>No hidden doses.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "default_open_5",
+      "label": "Open by default",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Accordion style"
+    },
+    {
+      "type": "range",
+      "id": "question_size_mobile",
+      "label": "Question size (mobile)",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "question_size_desktop",
+      "label": "Question size (desktop)",
+      "min": 16,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "answer_size_mobile",
+      "label": "Answer size (mobile)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "answer_size_desktop",
+      "label": "Answer size (desktop)",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "question_padding_mobile",
+      "label": "Item padding (mobile)",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "question_padding_desktop",
+      "label": "Item padding (desktop)",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "accordion_gap",
+      "label": "Space between items",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 600,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "section_padding_mobile",
+      "label": "Section padding (mobile)",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_desktop",
+      "label": "Section padding (desktop)",
+      "min": 40,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "color",
+      "id": "item_background",
+      "label": "Item background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "question_color",
+      "label": "Question text",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "answer_color",
+      "label": "Answer text",
+      "default": "#3C0E66"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#e8d9f7"
+    },
+    {
+      "type": "color",
+      "id": "active_border_color",
+      "label": "Active border",
+      "default": "#3C0E66"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "color",
+      "id": "active_icon_color",
+      "label": "Active icon",
+      "default": "#3C0E66"
+    },
+    {
+      "type": "color",
+      "id": "question_hover_bg",
+      "label": "Question hover background",
+      "default": "#F9F6FF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ education section"
+    }
+  ]
+}
 {% endschema %}
