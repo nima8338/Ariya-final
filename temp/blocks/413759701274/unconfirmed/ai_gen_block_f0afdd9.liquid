@@ -1,6 +1,518 @@
+{% doc %}
+  @prompt
+    Create a brand new section called:Why Calm Nights?Supporting text:Most sleep supplements are designed to sell. Calm Nights was designed to work.Use a layout inspired by Moonbrew.Do NOT create a traditional comparison table.Create a highlighted Calm Nights column in the center with a subtle Ariya purple background.Each row should contain a benefit.Under the Calm Nights column display a green checkmark.On the opposite side display only a red X icon.Do NOT include any competitor text.Do NOT mention “Other Brands.”Do NOT write competitor claims.Only show the benefit on the left and the visual comparison using ✓ and ✕.Rows:Fully Disclosed DosesStandardized Plant ExtractsMelatonin-Free FormulaWake Up RefreshedNon-Habit FormingOptional sixth row:Made In An FDA-Registered FacilityDesign Requirements:Mobile firstWhite backgroundPremium wellness aestheticRounded cornersSoft shadowsAriya purple accentsGreen checkmarksRed X iconsClean typographyEasy to scan in under 3 secondsSimilar visual hierarchy to MoonbrewThe goal is to create a premium visual comparison section that immediately communicates why Calm Nights is different without requiring users to read long paragraphs.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-why-calm-nights-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 40px 20px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-why-calm-nights-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-why-calm-nights-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .ai-why-calm-nights-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 12px 0;
+    line-height: 1.2;
+  }
+
+  .ai-why-calm-nights-subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ai-why-calm-nights-comparison-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+    box-shadow: {{ block.settings.shadow_horizontal }}px {{ block.settings.shadow_vertical }}px {{ block.settings.shadow_blur }}px {{ block.settings.shadow_color }};
+  }
+
+  .ai-why-calm-nights-row-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    border-bottom: 1px solid {{ block.settings.divider_color }};
+  }
+
+  .ai-why-calm-nights-row-{{ ai_gen_id }}:last-child {
+    border-bottom: none;
+  }
+
+  .ai-why-calm-nights-benefit-{{ ai_gen_id }} {
+    padding: {{ block.settings.row_padding }}px;
+    font-size: {{ block.settings.benefit_text_size }}px;
+    color: {{ block.settings.benefit_text_color }};
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .ai-why-calm-nights-center-{{ ai_gen_id }} {
+    background-color: {{ block.settings.center_background }};
+    padding: {{ block.settings.row_padding }}px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+  }
+
+  .ai-why-calm-nights-other-{{ ai_gen_id }} {
+    padding: {{ block.settings.row_padding }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-why-calm-nights-checkmark-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    color: {{ block.settings.checkmark_color }};
+  }
+
+  .ai-why-calm-nights-x-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    color: {{ block.settings.x_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-why-calm-nights-{{ ai_gen_id }} {
+      padding: 32px 16px;
+    }
+
+    .ai-why-calm-nights-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.7 }}px;
+    }
+
+    .ai-why-calm-nights-subtitle-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtitle_size | times: 0.9 }}px;
+    }
+
+    .ai-why-calm-nights-benefit-{{ ai_gen_id }} {
+      font-size: {{ block.settings.benefit_text_size | times: 0.9 }}px;
+      padding: {{ block.settings.row_padding | times: 0.8 }}px;
+    }
+
+    .ai-why-calm-nights-center-{{ ai_gen_id }} {
+      padding: {{ block.settings.row_padding | times: 0.8 }}px 16px;
+      min-width: 60px;
+    }
+
+    .ai-why-calm-nights-other-{{ ai_gen_id }} {
+      padding: {{ block.settings.row_padding | times: 0.8 }}px;
+    }
+
+    .ai-why-calm-nights-checkmark-{{ ai_gen_id }},
+    .ai-why-calm-nights-x-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size | times: 0.8 }}px;
+      height: {{ block.settings.icon_size | times: 0.8 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-why-calm-nights-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-why-calm-nights-container-{{ ai_gen_id }}">
+    <div class="ai-why-calm-nights-header-{{ ai_gen_id }}">
+      <h2 class="ai-why-calm-nights-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+      <p class="ai-why-calm-nights-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+    </div>
+
+    <div class="ai-why-calm-nights-comparison-{{ ai_gen_id }}">
+      {% if block.settings.show_benefit_1 %}
+        <div class="ai-why-calm-nights-row-{{ ai_gen_id }}">
+          <div class="ai-why-calm-nights-benefit-{{ ai_gen_id }}">{{ block.settings.benefit_1 }}</div>
+          <div class="ai-why-calm-nights-center-{{ ai_gen_id }}">
+            <svg class="ai-why-calm-nights-checkmark-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div class="ai-why-calm-nights-other-{{ ai_gen_id }}">
+            <svg class="ai-why-calm-nights-x-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_benefit_2 %}
+        <div class="ai-why-calm-nights-row-{{ ai_gen_id }}">
+          <div class="ai-why-calm-nights-benefit-{{ ai_gen_id }}">{{ block.settings.benefit_2 }}</div>
+          <div class="ai-why-calm-nights-center-{{ ai_gen_id }}">
+            <svg class="ai-why-calm-nights-checkmark-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div class="ai-why-calm-nights-other-{{ ai_gen_id }}">
+            <svg class="ai-why-calm-nights-x-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_benefit_3 %}
+        <div class="ai-why-calm-nights-row-{{ ai_gen_id }}">
+          <div class="ai-why-calm-nights-benefit-{{ ai_gen_id }}">{{ block.settings.benefit_3 }}</div>
+          <div class="ai-why-calm-nights-center-{{ ai_gen_id }}">
+            <svg class="ai-why-calm-nights-checkmark-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div class="ai-why-calm-nights-other-{{ ai_gen_id }}">
+            <svg class="ai-why-calm-nights-x-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_benefit_4 %}
+        <div class="ai-why-calm-nights-row-{{ ai_gen_id }}">
+          <div class="ai-why-calm-nights-benefit-{{ ai_gen_id }}">{{ block.settings.benefit_4 }}</div>
+          <div class="ai-why-calm-nights-center-{{ ai_gen_id }}">
+            <svg class="ai-why-calm-nights-checkmark-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div class="ai-why-calm-nights-other-{{ ai_gen_id }}">
+            <svg class="ai-why-calm-nights-x-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_benefit_5 %}
+        <div class="ai-why-calm-nights-row-{{ ai_gen_id }}">
+          <div class="ai-why-calm-nights-benefit-{{ ai_gen_id }}">{{ block.settings.benefit_5 }}</div>
+          <div class="ai-why-calm-nights-center-{{ ai_gen_id }}">
+            <svg class="ai-why-calm-nights-checkmark-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div class="ai-why-calm-nights-other-{{ ai_gen_id }}">
+            <svg class="ai-why-calm-nights-x-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_benefit_6 %}
+        <div class="ai-why-calm-nights-row-{{ ai_gen_id }}">
+          <div class="ai-why-calm-nights-benefit-{{ ai_gen_id }}">{{ block.settings.benefit_6 }}</div>
+          <div class="ai-why-calm-nights-center-{{ ai_gen_id }}">
+            <svg class="ai-why-calm-nights-checkmark-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div class="ai-why-calm-nights-other-{{ ai_gen_id }}">
+            <svg class="ai-why-calm-nights-x-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Why Calm Nights?",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Why Calm Nights?"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Most sleep supplements are designed to sell. Calm Nights was designed to work."
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "label": "Subtitle size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "header",
+      "content": "Benefits"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefit_1",
+      "label": "Show benefit 1",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Benefit 1",
+      "default": "Fully Disclosed Doses"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefit_2",
+      "label": "Show benefit 2",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Benefit 2",
+      "default": "Standardized Plant Extracts"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefit_3",
+      "label": "Show benefit 3",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Benefit 3",
+      "default": "Melatonin-Free Formula"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefit_4",
+      "label": "Show benefit 4",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_4",
+      "label": "Benefit 4",
+      "default": "Wake Up Refreshed"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefit_5",
+      "label": "Show benefit 5",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_5",
+      "label": "Benefit 5",
+      "default": "Non-Habit Forming"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefit_6",
+      "label": "Show benefit 6",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_6",
+      "label": "Benefit 6",
+      "default": "Made In An FDA-Registered Facility"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "row_padding",
+      "label": "Row padding",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "benefit_text_size",
+      "label": "Benefit text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "center_background",
+      "label": "Center column background",
+      "default": "#F9F6FF"
+    },
+    {
+      "type": "color",
+      "id": "benefit_text_color",
+      "label": "Benefit text",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "checkmark_color",
+      "label": "Checkmark",
+      "default": "#10b981"
+    },
+    {
+      "type": "color",
+      "id": "x_color",
+      "label": "X icon",
+      "default": "#ef4444"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider",
+      "default": "#e8d9f7"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "shadow_horizontal",
+      "label": "Shadow horizontal",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "shadow_vertical",
+      "label": "Shadow vertical",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "shadow_blur",
+      "label": "Shadow blur",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "shadow_color",
+      "label": "Shadow color",
+      "default": "rgba(26, 10, 46, 0.08)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Calm Nights?"
+    }
+  ]
+}
 {% endschema %}
