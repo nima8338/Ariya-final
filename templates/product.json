@@ -696,7 +696,7 @@
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "shopify://shop_images/Ariya_032126_JRS_0053__1_-removebg-preview.png",
+            "image": "shopify://shop_images/Ariya_032126_JRS_0053_1.jpg",
             "link": "",
             "image_ratio": "adapt",
             "width": "fill",
@@ -706,12 +706,12 @@
             "height": "fit",
             "border": "solid",
             "border_width": 0,
-            "border_opacity": 100,
-            "border_radius": 100,
-            "padding-block-start": 100,
-            "padding-block-end": 100,
-            "padding-inline-start": 100,
-            "padding-inline-end": 100
+            "border_opacity": 36,
+            "border_radius": 43,
+            "padding-block-start": 47,
+            "padding-block-end": 0,
+            "padding-inline-start": 46,
+            "padding-inline-end": 56
           },
           "blocks": {}
         },
@@ -797,7 +797,7 @@
             "benefit_icon_spacing": 8,
             "benefits_gap_mobile": 20,
             "benefits_gap_desktop": 32,
-            "background_color": "#ffffff",
+            "background_color": "#eaeaea",
             "max_width": 1350,
             "section_padding_mobile": 40,
             "section_padding_desktop": 64
