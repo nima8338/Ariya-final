@@ -261,45 +261,6 @@
                 }
               },
               "block_order": []
-            },
-            "payment_icons_nzNc8M": {
-              "type": "payment-icons",
-              "name": "t:names.payment_icons",
-              "settings": {
-                "horizontal_alignment": "flex-start",
-                "gap": 10,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_F9Pi4W": {
-              "type": "text",
-              "name": "Product title",
-              "settings": {
-                "text": "<p>• Non-GMO Ingredients. </p><p>• NSF GMP-Certified. </p><p>• Heavy Metal Tested</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-primary--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
             }
           },
           "block_order": [
@@ -308,9 +269,7 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "judge_me_reviews_review_snippet_widget_Upy6V3",
-            "buy_buttons_eYQEYi",
-            "payment_icons_nzNc8M",
-            "text_F9Pi4W"
+            "buy_buttons_eYQEYi"
           ]
         }
       },
@@ -671,10 +630,10 @@
             "card_shadow_x": 0,
             "card_shadow_y": 4,
             "card_shadow_blur": 12,
-            "card_shadow_color": "rgba(0, 0, 0, 0.08)",
+            "card_shadow_color": "#00000014",
             "image_border_radius": 8,
-            "badge_background": "#C99CF1",
-            "badge_text_color": "#3C0E66",
+            "badge_background": "#c99cf1",
+            "badge_text_color": "#3c0e66",
             "badge_font_size": 11,
             "title_color": "#1a0a2e",
             "subtitle_color": "#6b5a85",
@@ -866,6 +825,19 @@
             "heading_text": "Customers rate this store",
             "button_text": "See AI reviews summary"
           }
+        },
+        "payment_icons_xQk8yq": {
+          "type": "payment-icons",
+          "name": "t:names.payment_icons",
+          "settings": {
+            "horizontal_alignment": "flex-start",
+            "gap": 10,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -876,7 +848,8 @@
         "image_8FqMUy",
         "ai_gen_block_40e708e_MzQhRp",
         "judge_me_reviews_review_widget_xepgRK",
-        "judge_me_reviews_store_summary_VzgDAx"
+        "judge_me_reviews_store_summary_VzgDAx",
+        "payment_icons_xQk8yq"
       ],
       "settings": {
         "content_direction": "column",
