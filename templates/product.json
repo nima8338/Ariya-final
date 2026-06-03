@@ -435,6 +435,38 @@
     "17776601748cd480bc": {
       "type": "_blocks",
       "blocks": {
+        "judge_me_reviews_videos_carousel_EJLLTA": {
+          "type": "shopify://apps/judge-me-reviews/blocks/videos_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": true,
+            "reviews_selection": "all",
+            "products": [
+              "calm-nights"
+            ],
+            "star_rating": "all",
+            "review_type": "photo_and_video",
+            "max_reviews": 20,
+            "show_reviewer_name": true,
+            "stars_size": "medium",
+            "text_size": "medium",
+            "arrows_position": "bottom",
+            "max_width": 1100,
+            "corner_styling": "soft",
+            "header_text_color": "#3c0e66",
+            "card_color": "#3c0e66",
+            "stars_color": "#efcb21",
+            "text_color": "#FFFFFF",
+            "arrows_color": "#e8d9f7",
+            "show_drop_shadow": false,
+            "show_border": false,
+            "border_color": "#108474",
+            "autoplay_media": true,
+            "transition_speed": 5,
+            "carousel_style": "highlight",
+            "header_text": "Real customer stories",
+            "show_average_rating": true
+          }
+        },
         "ai_gen_block_a92c538_jbmKfN": {
           "type": "ai_gen_block_a92c538",
           "name": "FAQ education section",
@@ -482,11 +514,11 @@
             "subtext_color": "#6b5a85",
             "item_background": "#ffffff",
             "question_color": "#1a0a2e",
-            "answer_color": "#3C0E66",
+            "answer_color": "#3c0e66",
             "border_color": "#e8d9f7",
-            "active_border_color": "#3C0E66",
+            "active_border_color": "#3c0e66",
             "icon_color": "#6b5a85",
-            "active_icon_color": "#3C0E66",
+            "active_icon_color": "#3c0e66",
             "question_hover_bg": "#ffffff"
           },
           "blocks": {}
@@ -725,8 +757,8 @@
             "stat_2_text": "adults don't get enough sleep on a regular basis.",
             "stat_3_number": "50–70 Million",
             "stat_3_text": "Americans struggle with chronic sleep issues.",
-            "stat_color": "#3C0E66",
-            "icon_color": "#3C0E66",
+            "stat_color": "#3c0e66",
+            "icon_color": "#3c0e66",
             "card_text_color": "#1a0a2e",
             "stat_size_mobile": 36,
             "stat_size_desktop": 48,
@@ -761,12 +793,12 @@
             "cta_body_size_mobile": 15,
             "cta_body_size_desktop": 17,
             "cta_body_spacing": 24,
-            "cta_background": "#F9F6FF",
+            "cta_background": "#f9f6ff",
             "cta_radius": 16,
             "cta_padding_mobile": 32,
             "cta_padding_desktop": 48,
             "button_label": "Shop Calm Nights",
-            "button_background": "#3C0E66",
+            "button_background": "#3c0e66",
             "button_text_color": "#ffffff",
             "button_hover_background": "#5a1a9a",
             "button_hover_text": "#ffffff",
@@ -779,7 +811,7 @@
             "benefit_2_label": "Promotes Relaxation",
             "benefit_3_label": "Supports a Calm Mind",
             "benefit_4_label": "Wake Up Refreshed",
-            "benefit_icon_color": "#3C0E66",
+            "benefit_icon_color": "#3c0e66",
             "benefit_label_color": "#6b5a85",
             "benefit_icon_size": 24,
             "benefit_label_size": 13,
@@ -843,6 +875,7 @@
         }
       },
       "block_order": [
+        "judge_me_reviews_videos_carousel_EJLLTA",
         "ai_gen_block_a92c538_jbmKfN",
         "ai_gen_block_8c1b4be_NJ8pxA",
         "ai_gen_block_13b5f83_tbnKyy",
