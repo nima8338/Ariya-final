@@ -435,6 +435,43 @@
     "17776601748cd480bc": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_3a17386_pMDhiC": {
+          "type": "ai_gen_block_3a17386",
+          "name": "Video testimonials",
+          "settings": {
+            "title": "Real People. Real Results.",
+            "title_size": 36,
+            "subtitle": "Hear directly from people who have made Calm Nights part of their nightly routine.",
+            "subtitle_size": 16,
+            "background_color": "#ffffff",
+            "text_color": "#1a0a2e",
+            "accent_color": "#3C0E66",
+            "card_background": "#ffffff",
+            "badge_background": "#3C0E66",
+            "badge_text_color": "#ffffff",
+            "star_color": "#EFCB21",
+            "card_border_radius": 16,
+            "video_border_radius": 12,
+            "video_1": "shopify://files/videos/Video Jun 03 2026, 11 15 37 AM.mov",
+            "badge_1": "BENEFITS",
+            "customer_name_1": "Sarah M.",
+            "review_text_1": "Best sleep I've had in years.",
+            "show_stars_1": true,
+            "badge_2": "SLEEP QUALITY",
+            "customer_name_2": "Jake T.",
+            "review_text_2": "Finally waking up refreshed.",
+            "show_stars_2": true,
+            "badge_3": "FALL ASLEEP FASTER",
+            "customer_name_3": "Emily R.",
+            "review_text_3": "No more tossing and turning.",
+            "show_stars_3": true,
+            "badge_4": "WAKE UP REFRESHED",
+            "customer_name_4": "Michael P.",
+            "review_text_4": "Game changer for my sleep routine.",
+            "show_stars_4": true
+          },
+          "blocks": {}
+        },
         "ai_gen_block_4836360_T4hKY9": {
           "type": "ai_gen_block_4836360",
           "settings": {
@@ -917,6 +954,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_3a17386_pMDhiC",
         "ai_gen_block_4836360_T4hKY9",
         "ai_gen_block_a92c538_jbmKfN",
         "ai_gen_block_8c1b4be_NJ8pxA",
