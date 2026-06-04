@@ -467,6 +467,48 @@
             "show_average_rating": true
           }
         },
+        "ai_gen_block_4836360_T4hKY9": {
+          "type": "ai_gen_block_4836360",
+          "settings": {
+            "section_title": "Real People. Real Results.",
+            "section_subtitle": "Hear directly from people who have made Calm Nights part of their nightly routine.",
+            "title_size": 32,
+            "subtitle_size": 16,
+            "video_1": "shopify://files/videos/Video Jun 03 2026, 11 15 37 AM.mov",
+            "thumbnail_1": "shopify://shop_images/IMG_7559.png",
+            "badge_1": "BENEFITS",
+            "show_review_1": true,
+            "customer_name_1": "Sarah M.",
+            "review_text_1": "Best sleep I've had in years.",
+            "badge_2": "SLEEP QUALITY",
+            "show_review_2": true,
+            "customer_name_2": "Jake T.",
+            "review_text_2": "Finally waking up refreshed.",
+            "badge_3": "FALL ASLEEP FASTER",
+            "show_review_3": true,
+            "customer_name_3": "Emily R.",
+            "review_text_3": "I fall asleep within minutes now.",
+            "badge_4": "WAKE UP REFRESHED",
+            "show_review_4": true,
+            "customer_name_4": "Michael P.",
+            "review_text_4": "No more groggy mornings.",
+            "card_width_mobile": 280,
+            "card_width_desktop": 320,
+            "card_gap": 20,
+            "card_padding": 16,
+            "card_border_radius": 16,
+            "video_border_radius": 12,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "background_color": "#ffffff",
+            "text_color": "#1a0a2e",
+            "card_background": "#ffffff",
+            "badge_background": "#3C0E66",
+            "badge_text_color": "#ffffff",
+            "star_color": "#EFCB21"
+          },
+          "blocks": {}
+        },
         "ai_gen_block_3a17386_9YNzVd": {
           "type": "ai_gen_block_3a17386",
           "settings": {
@@ -912,6 +954,7 @@
       },
       "block_order": [
         "judge_me_reviews_videos_carousel_EJLLTA",
+        "ai_gen_block_4836360_T4hKY9",
         "ai_gen_block_3a17386_9YNzVd",
         "ai_gen_block_a92c538_jbmKfN",
         "ai_gen_block_8c1b4be_NJ8pxA",
