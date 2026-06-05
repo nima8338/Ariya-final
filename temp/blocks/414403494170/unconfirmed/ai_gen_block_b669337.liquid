@@ -1,6 +1,599 @@
+{% doc %}
+  @prompt
+    Create a New “Why Sleep Matters” SectionCreate a new section inspired by the simple statistics layout used by premium wellness brands.LayoutAllow a large image at the top of the section that can be uploaded and changed inside the Shopify editor.Image should be full width with rounded corners.Keep the section clean, minimal, and easy to scan.No icons.No decorative graphics.No extra cards.No animations.Use a simple vertical flow:ImageHeadlineShort supporting textStatistic 1Statistic 2Design StyleWhite backgroundAriya purple for numbers and headingsDark text for descriptionsLarge bold percentagesMinimal spacingMobile-first designInspired by the clean simplicity of Grüns’ statistics sectionContentHeadlineModern Life Makes Restful Sleep Harder Than EverSupporting TextStress, screens, and constant stimulation make it harder to unwind and get quality sleep.Statistic 174%of adults say stress disrupts their sleep.Statistic 272%of adults experience daytime sleepiness linked to:Mood Changes • Increased Stress • Lower ProductivityTypographyPercentages should be the largest element in the section.Headline should be bold and easy to read.Descriptions should be noticeably smaller than the percentages.Center align all content.ImportantKeep this section extremely simple.Do not add icons, badges, symbols, extra statistics, explanations, or feature callouts.The goal is to create a clean, high-impact visual section where the large percentages immediately grab attention, similar to premium wellness brands., at the bottom put this,                                          That’s Why We Created Calm Nights.
+    Melatonin-free sleep support designed to quiet a racing mind and help you wake up feeling rested.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-sleep-stats-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding }}px 20px;
+  }
+
+  .ai-sleep-stats-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .ai-sleep-stats-image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    margin-bottom: {{ block.settings.spacing_after_image }}px;
+  }
+
+  .ai-sleep-stats-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: block;
+  }
+
+  .ai-sleep-stats-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-sleep-stats-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-sleep-stats-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-sleep-stats-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.headline_color }};
+    margin: 0 0 {{ block.settings.spacing_after_headline }}px 0;
+    line-height: 1.2;
+  }
+
+  .ai-sleep-stats-subtext-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtext_size }}px;
+    color: {{ block.settings.subtext_color }};
+    margin: 0 0 {{ block.settings.spacing_after_subtext }}px 0;
+    line-height: 1.5;
+  }
+
+  .ai-sleep-stats-stat-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.spacing_between_stats }}px;
+  }
+
+  .ai-sleep-stats-stat-{{ ai_gen_id }}:last-child {
+    margin-bottom: {{ block.settings.spacing_after_last_stat }}px;
+  }
+
+  .ai-sleep-stats-percentage-{{ ai_gen_id }} {
+    font-size: {{ block.settings.percentage_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.percentage_color }};
+    margin: 0 0 {{ block.settings.spacing_after_percentage }}px 0;
+    line-height: 1;
+  }
+
+  .ai-sleep-stats-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ai-sleep-stats-closing-{{ ai_gen_id }} {
+    margin-top: {{ block.settings.spacing_before_closing }}px;
+  }
+
+  .ai-sleep-stats-closing-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.closing_headline_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.closing_headline_color }};
+    margin: 0 0 {{ block.settings.spacing_after_closing_headline }}px 0;
+    line-height: 1.2;
+  }
+
+  .ai-sleep-stats-closing-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.closing_text_size }}px;
+    color: {{ block.settings.closing_text_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-sleep-stats-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_mobile }}px 16px;
+    }
+
+    .ai-sleep-stats-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size_mobile }}px;
+    }
+
+    .ai-sleep-stats-subtext-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtext_size_mobile }}px;
+    }
+
+    .ai-sleep-stats-percentage-{{ ai_gen_id }} {
+      font-size: {{ block.settings.percentage_size_mobile }}px;
+    }
+
+    .ai-sleep-stats-description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size_mobile }}px;
+    }
+
+    .ai-sleep-stats-closing-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.closing_headline_size_mobile }}px;
+    }
+
+    .ai-sleep-stats-closing-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.closing_text_size_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-sleep-stats-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-sleep-stats-container-{{ ai_gen_id }}">
+    <div class="ai-sleep-stats-image-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.image %}
+        <img
+          src="{{ block.settings.image | image_url: width: 2000 }}"
+          alt="{{ block.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.image.width }}"
+          height="{{ block.settings.image.height }}"
+          class="ai-sleep-stats-image-{{ ai_gen_id }}"
+        >
+      {% else %}
+        <div class="ai-sleep-stats-image-placeholder-{{ ai_gen_id }}">
+          {{ 'lifestyle-1' | placeholder_svg_tag }}
+          <div class="ai-sleep-stats-empty-state-{{ ai_gen_id }}">
+            Add an image to get started
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if block.settings.headline != blank %}
+      <h2 class="ai-sleep-stats-headline-{{ ai_gen_id }}">{{ block.settings.headline }}</h2>
+    {% endif %}
+
+    {% if block.settings.subtext != blank %}
+      <p class="ai-sleep-stats-subtext-{{ ai_gen_id }}">{{ block.settings.subtext }}</p>
+    {% endif %}
+
+    {% if block.settings.stat_1_percentage != blank %}
+      <div class="ai-sleep-stats-stat-{{ ai_gen_id }}">
+        <div class="ai-sleep-stats-percentage-{{ ai_gen_id }}">{{ block.settings.stat_1_percentage }}</div>
+        {% if block.settings.stat_1_description != blank %}
+          <p class="ai-sleep-stats-description-{{ ai_gen_id }}">{{ block.settings.stat_1_description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.stat_2_percentage != blank %}
+      <div class="ai-sleep-stats-stat-{{ ai_gen_id }}">
+        <div class="ai-sleep-stats-percentage-{{ ai_gen_id }}">{{ block.settings.stat_2_percentage }}</div>
+        {% if block.settings.stat_2_description != blank %}
+          <p class="ai-sleep-stats-description-{{ ai_gen_id }}">{{ block.settings.stat_2_description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.closing_headline != blank or block.settings.closing_text != blank %}
+      <div class="ai-sleep-stats-closing-{{ ai_gen_id }}">
+        {% if block.settings.closing_headline != blank %}
+          <h3 class="ai-sleep-stats-closing-headline-{{ ai_gen_id }}">{{ block.settings.closing_headline }}</h3>
+        {% endif %}
+        {% if block.settings.closing_text != blank %}
+          <p class="ai-sleep-stats-closing-text-{{ ai_gen_id }}">{{ block.settings.closing_text }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Why sleep matters",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Modern Life Makes Restful Sleep Harder Than Ever"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Supporting text",
+      "default": "Stress, screens, and constant stimulation make it harder to unwind and get quality sleep."
+    },
+    {
+      "type": "header",
+      "content": "Statistic 1"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_percentage",
+      "label": "Percentage",
+      "default": "74%"
+    },
+    {
+      "type": "textarea",
+      "id": "stat_1_description",
+      "label": "Description",
+      "default": "of adults say stress disrupts their sleep."
+    },
+    {
+      "type": "header",
+      "content": "Statistic 2"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_percentage",
+      "label": "Percentage",
+      "default": "72%"
+    },
+    {
+      "type": "textarea",
+      "id": "stat_2_description",
+      "label": "Description",
+      "default": "of adults experience daytime sleepiness linked to:\nMood Changes • Increased Stress • Lower Productivity"
+    },
+    {
+      "type": "header",
+      "content": "Closing message"
+    },
+    {
+      "type": "text",
+      "id": "closing_headline",
+      "label": "Closing headline",
+      "default": "That's Why We Created Calm Nights."
+    },
+    {
+      "type": "textarea",
+      "id": "closing_text",
+      "label": "Closing text",
+      "default": "Melatonin-free sleep support designed to quiet a racing mind and help you wake up feeling rested."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding (desktop)",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_mobile",
+      "label": "Section padding (mobile)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_image",
+      "label": "After image",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_headline",
+      "label": "After headline",
+      "min": 5,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_subtext",
+      "label": "After supporting text",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_percentage",
+      "label": "After percentage",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "spacing_between_stats",
+      "label": "Between statistics",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_last_stat",
+      "label": "After last statistic",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "spacing_before_closing",
+      "label": "Before closing message",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_closing_headline",
+      "label": "After closing headline",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Supporting text",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "percentage_color",
+      "label": "Percentages",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Descriptions",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "closing_headline_color",
+      "label": "Closing headline",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "closing_text_color",
+      "label": "Closing text",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "header",
+      "content": "Typography (desktop)"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "label": "Headline size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subtext_size",
+      "label": "Supporting text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "percentage_size",
+      "label": "Percentage size",
+      "min": 40,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "closing_headline_size",
+      "label": "Closing headline size",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "closing_text_size",
+      "label": "Closing text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Typography (mobile)"
+    },
+    {
+      "type": "range",
+      "id": "headline_size_mobile",
+      "label": "Headline size",
+      "min": 18,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "subtext_size_mobile",
+      "label": "Supporting text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "percentage_size_mobile",
+      "label": "Percentage size",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "label": "Description size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "closing_headline_size_mobile",
+      "label": "Closing headline size",
+      "min": 18,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "closing_text_size_mobile",
+      "label": "Closing text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why sleep matters"
+    }
+  ]
+}
 {% endschema %}
