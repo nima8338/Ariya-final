@@ -1,6 +1,754 @@
+{% doc %}
+  @prompt
+    Important video behavior:
+    
+    Each card must have two separate media settings:
+    1. Uploaded video file
+    2. Optional poster/thumbnail image
+    
+    The thumbnail/poster image must only be used as the video poster before playback. It must not replace the video, cover the video, or block clicks.
+    
+    When the user taps the card, the uploaded video should play inside the same card.
+    
+    Use the poster image as the HTML video poster attribute, not as a separate overlay image.
+    
+    If a poster image is uploaded, display it before the video starts. Once tapped, the poster should disappear and the video should play.
+    
+    Do not require video URLs. Allow Shopify-hosted uploaded video files.
+    
+    Create a New Video Testimonial Carousel Section Place this section directly below the Hero Section and above the written reviews section. The goal is to create a premium video testimonial carousel similar to leading wellness brands. ⸻ Section Title Real People. Real Results. Supporting Text Hear directly from people who have made Calm Nights part of their nightly routine. ⸻ Layout Requirements Create a horizontal video carousel. Users should be able to: Swipe left and right on mobile Click left and right arrows on desktop Scroll through multiple testimonial videos Tap any video to play it directly inside the carousel The carousel should support at least 4 uploaded videos. Create placeholders for: Video 1 Video 2 Video 3 Video 4 Allow me to easily replace each placeholder with my own uploaded video later. ⸻ Card Design Each video should appear inside its own premium card. Each card should include: Vertical TikTok/Reel style video format Rounded corners Soft shadow White card background Consistent video sizing Smooth scrolling animation Display one primary video centered on screen with the next and previous video partially visible on each side, similar to premium product testimonial carousels. ⸻ Video Labels Allow a small badge above each video. Examples: BENEFITS SLEEP QUALITY FALL ASLEEP FASTER WAKE UP REFRESHED Allow these labels to be edited later. ⸻ Optional Review Text Under each video, allow: Customer name Short review headline Examples: ★★★★★ Sarah M. "Best sleep I've had in years." ★★★★★ Jake T. "Finally waking up refreshed." Make these fields editable. ⸻ Mobile Optimization This section must be optimized primarily for mobile. Video cards should be large enough to easily view facial expressions and captions. Keep spacing clean and premium. Maintain Ariya's branding: White backgrounds Ariya purple accents Black text Rounded corners Luxury wellness aesthetic ⸻ Goal Create a highly visual social proof section that immediately builds trust and allows visitors to watch multiple customer testimonials without leaving the product page. The section should feel similar to premium wellness brands that showcase user-generated video reviews through a swipeable video carousel., give me the option to insert videos from my files instead of having to paste a link, give me the option for each video for me to put a cover image for the thumnail
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-video-testimonials-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 60px 20px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-video-testimonials__container-{{ ai_gen_id }} {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .ai-video-testimonials__header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .ai-video-testimonials__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 12px;
+    font-weight: 600;
+  }
+
+  .ai-video-testimonials__subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ai-video-testimonials__carousel-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .ai-video-testimonials__carousel-{{ ai_gen_id }} {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px 0 40px;
+  }
+
+  .ai-video-testimonials__carousel-{{ ai_gen_id }}::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ai-video-testimonials__card-{{ ai_gen_id }} {
+    flex: 0 0 auto;
+    width: 280px;
+    background: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    box-shadow: 0 4px 20px rgba(26, 10, 46, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ai-video-testimonials__card-{{ ai_gen_id }}:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(60, 14, 102, 0.15);
+  }
+
+  .ai-video-testimonials__video-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    background: #f9f6ff;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .ai-video-testimonials__video-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-video-testimonials__badge-{{ ai_gen_id }} {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: {{ block.settings.badge_background }};
+    color: {{ block.settings.badge_text_color }};
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+  }
+
+  .ai-video-testimonials__play-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(26, 10, 46, 0.3);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .ai-video-testimonials__video-{{ ai_gen_id }}[data-playing="true"] + .ai-video-testimonials__play-overlay-{{ ai_gen_id }} {
+    opacity: 0;
+  }
+
+  .ai-video-testimonials__play-button-{{ ai_gen_id }} {
+    width: 60px;
+    height: 60px;
+    background: {{ block.settings.play_button_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .ai-video-testimonials__play-icon-{{ ai_gen_id }} {
+    width: 0;
+    height: 0;
+    border-left: 18px solid {{ block.settings.play_icon_color }};
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    margin-left: 4px;
+  }
+
+  .ai-video-testimonials__content-{{ ai_gen_id }} {
+    padding: 20px;
+  }
+
+  .ai-video-testimonials__stars-{{ ai_gen_id }} {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 8px;
+    color: {{ block.settings.star_color }};
+  }
+
+  .ai-video-testimonials__name-{{ ai_gen_id }} {
+    font-size: 16px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 6px;
+  }
+
+  .ai-video-testimonials__review-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ai-video-testimonials__nav-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .ai-video-testimonials__nav-button-{{ ai_gen_id }} {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: {{ block.settings.nav_button_background }};
+    border: 1px solid {{ block.settings.nav_button_border }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ai-video-testimonials__nav-button-{{ ai_gen_id }}:hover {
+    background: {{ block.settings.nav_button_hover_background }};
+    border-color: {{ block.settings.nav_button_hover_border }};
+  }
+
+  .ai-video-testimonials__nav-button-{{ ai_gen_id }}:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .ai-video-testimonials__nav-arrow-{{ ai_gen_id }} {
+    width: 20px;
+    height: 20px;
+    stroke: {{ block.settings.nav_arrow_color }};
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .ai-video-testimonials__placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f9f6ff 0%, #e8d9f7 100%);
+    padding: 20px;
+    text-align: center;
+  }
+
+  .ai-video-testimonials__placeholder-icon-{{ ai_gen_id }} {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 12px;
+    opacity: 0.4;
+  }
+
+  .ai-video-testimonials__placeholder-text-{{ ai_gen_id }} {
+    font-size: 13px;
+    color: #6b5a85;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-video-testimonials-{{ ai_gen_id }} {
+      padding: 40px 16px;
+    }
+
+    .ai-video-testimonials__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.7 }}px;
+    }
+
+    .ai-video-testimonials__subtitle-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtitle_size | times: 0.9 }}px;
+    }
+
+    .ai-video-testimonials__card-{{ ai_gen_id }} {
+      width: 260px;
+    }
+
+    .ai-video-testimonials__carousel-{{ ai_gen_id }} {
+      padding-left: 10px;
+    }
+
+    .ai-video-testimonials__nav-{{ ai_gen_id }} {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-video-testimonials__carousel-{{ ai_gen_id }} {
+      justify-content: center;
+      padding-left: 60px;
+    }
+
+    .ai-video-testimonials__card-{{ ai_gen_id }} {
+      width: 320px;
+    }
+  }
+{% endstyle %}
+
+<video-testimonials-{{ ai_gen_id }} class="ai-video-testimonials-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-video-testimonials__container-{{ ai_gen_id }}">
+    <div class="ai-video-testimonials__header-{{ ai_gen_id }}">
+      {% if block.settings.section_title != blank %}
+        <h2 class="ai-video-testimonials__title-{{ ai_gen_id }}">{{ block.settings.section_title }}</h2>
+      {% endif %}
+      {% if block.settings.section_subtitle != blank %}
+        <p class="ai-video-testimonials__subtitle-{{ ai_gen_id }}">{{ block.settings.section_subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ai-video-testimonials__carousel-wrapper-{{ ai_gen_id }}">
+      <div class="ai-video-testimonials__carousel-{{ ai_gen_id }}" data-carousel>
+        {% for i in (1..4) %}
+          {% liquid
+            assign video_key = 'video_' | append: i
+            assign poster_key = 'poster_' | append: i
+            assign badge_key = 'badge_' | append: i
+            assign name_key = 'name_' | append: i
+            assign review_key = 'review_' | append: i
+            
+            assign video = block.settings[video_key]
+            assign poster = block.settings[poster_key]
+            assign badge = block.settings[badge_key]
+            assign name = block.settings[name_key]
+            assign review = block.settings[review_key]
+          %}
+
+          <div class="ai-video-testimonials__card-{{ ai_gen_id }}">
+            <div class="ai-video-testimonials__video-wrapper-{{ ai_gen_id }}" data-video-container>
+              {% if video != blank %}
+                <video
+                  class="ai-video-testimonials__video-{{ ai_gen_id }}"
+                  {% if poster != blank %}
+                    poster="{{ poster | image_url: width: 640 }}"
+                  {% endif %}
+                  playsinline
+                  preload="metadata"
+                  data-video
+                >
+                  <source src="{{ video }}" type="video/mp4">
+                </video>
+                <div class="ai-video-testimonials__play-overlay-{{ ai_gen_id }}">
+                  <div class="ai-video-testimonials__play-button-{{ ai_gen_id }}">
+                    <div class="ai-video-testimonials__play-icon-{{ ai_gen_id }}"></div>
+                  </div>
+                </div>
+              {% else %}
+                <div class="ai-video-testimonials__placeholder-{{ ai_gen_id }}">
+                  <svg class="ai-video-testimonials__placeholder-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <div class="ai-video-testimonials__placeholder-text-{{ ai_gen_id }}">Upload video {{ i }}</div>
+                </div>
+              {% endif %}
+
+              {% if badge != blank %}
+                <div class="ai-video-testimonials__badge-{{ ai_gen_id }}">{{ badge }}</div>
+              {% endif %}
+            </div>
+
+            <div class="ai-video-testimonials__content-{{ ai_gen_id }}">
+              <div class="ai-video-testimonials__stars-{{ ai_gen_id }}">
+                {% for star in (1..5) %}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                {% endfor %}
+              </div>
+
+              {% if name != blank %}
+                <h3 class="ai-video-testimonials__name-{{ ai_gen_id }}">{{ name }}</h3>
+              {% endif %}
+
+              {% if review != blank %}
+                <p class="ai-video-testimonials__review-{{ ai_gen_id }}">"{{ review }}"</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="ai-video-testimonials__nav-{{ ai_gen_id }}">
+        <button class="ai-video-testimonials__nav-button-{{ ai_gen_id }}" data-nav-prev aria-label="Previous testimonials">
+          <svg class="ai-video-testimonials__nav-arrow-{{ ai_gen_id }}" viewBox="0 0 24 24">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="ai-video-testimonials__nav-button-{{ ai_gen_id }}" data-nav-next aria-label="Next testimonials">
+          <svg class="ai-video-testimonials__nav-arrow-{{ ai_gen_id }}" viewBox="0 0 24 24">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</video-testimonials-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class VideoTestimonials{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.carousel = this.querySelector('[data-carousel]');
+        this.prevButton = this.querySelector('[data-nav-prev]');
+        this.nextButton = this.querySelector('[data-nav-next]');
+        this.videoContainers = this.querySelectorAll('[data-video-container]');
+      }
+
+      connectedCallback() {
+        this.setupVideoPlayers();
+        this.setupNavigation();
+        this.updateNavigationState();
+      }
+
+      setupVideoPlayers() {
+        this.videoContainers.forEach((container) => {
+          const video = container.querySelector('[data-video]');
+          if (!video) return;
+
+          container.addEventListener('click', () => {
+            if (video.paused) {
+              this.pauseAllVideos();
+              video.play();
+              video.setAttribute('data-playing', 'true');
+            } else {
+              video.pause();
+              video.setAttribute('data-playing', 'false');
+            }
+          });
+
+          video.addEventListener('ended', () => {
+            video.setAttribute('data-playing', 'false');
+          });
+
+          video.addEventListener('pause', () => {
+            video.setAttribute('data-playing', 'false');
+          });
+
+          video.addEventListener('play', () => {
+            video.setAttribute('data-playing', 'true');
+          });
+        });
+      }
+
+      pauseAllVideos() {
+        this.videoContainers.forEach((container) => {
+          const video = container.querySelector('[data-video]');
+          if (video && !video.paused) {
+            video.pause();
+            video.setAttribute('data-playing', 'false');
+          }
+        });
+      }
+
+      setupNavigation() {
+        if (!this.prevButton || !this.nextButton) return;
+
+        this.prevButton.addEventListener('click', () => {
+          this.scroll(-1);
+        });
+
+        this.nextButton.addEventListener('click', () => {
+          this.scroll(1);
+        });
+
+        this.carousel.addEventListener('scroll', () => {
+          this.updateNavigationState();
+        });
+      }
+
+      scroll(direction) {
+        const scrollAmount = 340;
+        this.carousel.scrollBy({
+          left: direction * scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+
+      updateNavigationState() {
+        if (!this.prevButton || !this.nextButton) return;
+
+        const isAtStart = this.carousel.scrollLeft <= 0;
+        const isAtEnd = this.carousel.scrollLeft + this.carousel.clientWidth >= this.carousel.scrollWidth - 1;
+
+        this.prevButton.disabled = isAtStart;
+        this.nextButton.disabled = isAtEnd;
+      }
+    }
+
+    customElements.define('video-testimonials-{{ ai_gen_id }}', VideoTestimonials{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Video testimonials",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Title",
+      "default": "Real People. Real Results."
+    },
+    {
+      "type": "textarea",
+      "id": "section_subtitle",
+      "label": "Subtitle",
+      "default": "Hear directly from people who have made Calm Nights part of their nightly routine."
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "label": "Subtitle size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Video 1"
+    },
+    {
+      "type": "video",
+      "id": "video_1",
+      "label": "Video file"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_1",
+      "label": "Thumbnail image"
+    },
+    {
+      "type": "text",
+      "id": "badge_1",
+      "label": "Badge text",
+      "default": "BENEFITS"
+    },
+    {
+      "type": "text",
+      "id": "name_1",
+      "label": "Customer name",
+      "default": "Sarah M."
+    },
+    {
+      "type": "text",
+      "id": "review_1",
+      "label": "Review headline",
+      "default": "Best sleep I've had in years."
+    },
+    {
+      "type": "header",
+      "content": "Video 2"
+    },
+    {
+      "type": "video",
+      "id": "video_2",
+      "label": "Video file"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_2",
+      "label": "Thumbnail image"
+    },
+    {
+      "type": "text",
+      "id": "badge_2",
+      "label": "Badge text",
+      "default": "SLEEP QUALITY"
+    },
+    {
+      "type": "text",
+      "id": "name_2",
+      "label": "Customer name",
+      "default": "Jake T."
+    },
+    {
+      "type": "text",
+      "id": "review_2",
+      "label": "Review headline",
+      "default": "Finally waking up refreshed."
+    },
+    {
+      "type": "header",
+      "content": "Video 3"
+    },
+    {
+      "type": "video",
+      "id": "video_3",
+      "label": "Video file"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_3",
+      "label": "Thumbnail image"
+    },
+    {
+      "type": "text",
+      "id": "badge_3",
+      "label": "Badge text",
+      "default": "FALL ASLEEP FASTER"
+    },
+    {
+      "type": "text",
+      "id": "name_3",
+      "label": "Customer name",
+      "default": "Emily R."
+    },
+    {
+      "type": "text",
+      "id": "review_3",
+      "label": "Review headline",
+      "default": "No more tossing and turning."
+    },
+    {
+      "type": "header",
+      "content": "Video 4"
+    },
+    {
+      "type": "video",
+      "id": "video_4",
+      "label": "Video file"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_4",
+      "label": "Thumbnail image"
+    },
+    {
+      "type": "text",
+      "id": "badge_4",
+      "label": "Badge text",
+      "default": "WAKE UP REFRESHED"
+    },
+    {
+      "type": "text",
+      "id": "name_4",
+      "label": "Customer name",
+      "default": "Michael K."
+    },
+    {
+      "type": "text",
+      "id": "review_4",
+      "label": "Review headline",
+      "default": "Game changer for my sleep routine."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Badge background",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star rating",
+      "default": "#efcb21"
+    },
+    {
+      "type": "color",
+      "id": "play_button_color",
+      "label": "Play button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "play_icon_color",
+      "label": "Play icon",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_background",
+      "label": "Navigation background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_border",
+      "label": "Navigation border",
+      "default": "#e8d9f7"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_hover_background",
+      "label": "Navigation hover background",
+      "default": "#f9f6ff"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_hover_border",
+      "label": "Navigation hover border",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "nav_arrow_color",
+      "label": "Navigation arrow",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video testimonials"
+    }
+  ]
+}
 {% endschema %}
