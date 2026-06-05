@@ -680,10 +680,10 @@
         "ai_gen_block_13b5f83_tbnKyy": {
           "type": "ai_gen_block_13b5f83",
           "settings": {
-            "title": "Why Calm Nights?",
+            "title": "US VS. Them",
             "subtitle": "Most sleep supplements are designed to sell. Calm Nights was designed to work.",
-            "title_color": "#1a0a2e",
-            "subtitle_color": "#3c0e66",
+            "title_color": "#3c0e66",
+            "subtitle_color": "#000000",
             "ariya_column_title": "Calm Nights",
             "other_column_title": "Other Brands",
             "ariya_header_bg": "#3c0e66",
@@ -806,7 +806,7 @@
           "settings": {
             "image": "shopify://shop_images/Artboard1_3_80cb1d5f-2b81-4aa0-a3df-a8186792cb24.png",
             "image_border_radius": 16,
-            "headline": "Modern Life Makes Restful Sleep Harder Than Ever",
+            "headline": "Your Brain Wasn't Designed For Modern Life",
             "subtext": "Stress, screens, and constant stimulation make it harder to unwind and get quality sleep.",
             "stat_1_percentage": "74%",
             "stat_1_description": "of adults say stress disrupts their sleep.",
