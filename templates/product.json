@@ -615,14 +615,14 @@
         "ai_gen_block_8c1b4be_NJ8pxA": {
           "type": "ai_gen_block_8c1b4be",
           "settings": {
-            "headline": "Why Calm Nights Feels Different",
+            "headline": "Why Calm Nights Feels DIFFERENT",
             "subtext": "Designed to help quiet a racing mind, support natural sleep, and help you wake up refreshed.",
             "headline_size_mobile": 26,
             "headline_size_desktop": 36,
             "subtext_size_mobile": 14,
             "subtext_size_desktop": 16,
-            "headline_color": "#1a0a2e",
-            "subtext_color": "#6b5a85",
+            "headline_color": "#3c0e66",
+            "subtext_color": "#000000",
             "benefit_1_enabled": true,
             "benefit_1_title": "Quiets Racing Thoughts",
             "benefit_1_ingredient": "L-Theanine + Lemon Balm",
