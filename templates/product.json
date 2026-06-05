@@ -518,8 +518,8 @@
           "settings": {
             "title": "Frequently Asked Questions",
             "subtitle": "Everything you need to know before your first night.",
-            "title_size": 24,
-            "subtitle_size": 14,
+            "title_size": 32,
+            "subtitle_size": 20,
             "header_spacing": 24,
             "question_1": "Can Calm Nights Help You?",
             "answer_1": "<p>If any of these sound familiar, Calm Nights was designed for you:</p><p>✓ Racing thoughts at bedtime<br/>✓ Stress keeping you awake<br/>✓ Taking too long to fall asleep<br/>✓ Waking up during the night<br/>✓ Waking up tired<br/>✓ Looking for sleep support without melatonin</p>",
