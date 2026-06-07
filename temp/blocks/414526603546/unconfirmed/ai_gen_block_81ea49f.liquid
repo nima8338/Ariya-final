@@ -1,6 +1,990 @@
+{% doc %}
+  @prompt
+    Create a premium mobile-first accordion section for Ariya Supplements’ Calm Nights product.Section Title:
+    Why Calm Nights Feels DifferentSupporting Text:
+    A multi-pathway formula designed to help you fall asleep, stay asleep, and wake up refreshed.Design Style:Match the existing Ariya website design.White background.Ariya purple accents.Rounded accordion cards.Clean luxury wellness aesthetic.Mobile-first.One accordion open at a time.First accordion open by default.Smooth expand/collapse animation.Consistent width and spacing with the rest of the page.Accordion 1Title:
+    Quiets Racing ThoughtsSubtitle:
+    L-Theanine + Lemon BalmContent:
+    L-Theanine and Lemon Balm help support a calmer state of mind before bed by helping ease racing thoughts and mental chatter.Icon:
+    BrainAccordion 2Title:
+    Supports Deep RelaxationSubtitle:
+    Chamomile + Magnolia BarkContent:
+    Chamomile and Magnolia Bark help support relaxation and help your body unwind before sleep.Icon:
+    LeafAccordion 3Title:
+    Fall Asleep NaturallySubtitle:
+    L-Tryptophan + Vitamin B6Content:
+    L-Tryptophan helps support your body’s natural sleep pathways while Vitamin B6 supports its utilization.Icon:
+    Crescent MoonAccordion 4Title:
+    Stay Asleep LongerSubtitle:
+    Multi-Pathway FormulaContent:
+    Multiple complementary ingredients work together to support restful, uninterrupted sleep throughout the night.Icon:
+    Triple Z Sleep IconAccordion 5Title:
+    Wake Up RefreshedSubtitle:
+    Melatonin-Free FormulaContent:
+    Designed to support quality sleep without relying on melatonin.Icon:
+    SunriseAccordion 6Title:
+    Fully Transparent FormulaSubtitle:
+    No Proprietary BlendsContent:
+    Every ingredient and dosage is clearly disclosed. No hidden blends. No mystery formulas.Icon:
+    Magnifying GlassGoal:
+    Help visitors quickly understand how Calm Nights works while reinforcing Ariya’s transparency and melatonin-free approach., change the icon for quiets racing thoughts to a brain symbol, change the icon for supports deep relaxation to a leaf symbol, change the icon for stay asleep longer to the letter Z as the symbol
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-accordion-section-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding_mobile }}px 16px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-accordion-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_desktop }}px 40px;
+    }
+  }
+
+  .ai-accordion-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-accordion-header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+    margin-bottom: {{ block.settings.header_spacing_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-accordion-header-{{ ai_gen_id }} {
+      margin-bottom: {{ block.settings.header_spacing_desktop }}px;
+    }
+  }
+
+  .ai-accordion-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size_mobile }}px;
+    font-weight: 600;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 {{ block.settings.title_spacing }}px 0;
+    line-height: 1.2;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-accordion-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size_desktop }}px;
+    }
+  }
+
+  .ai-accordion-subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size_mobile }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-accordion-subtitle-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtitle_size_desktop }}px;
+    }
+  }
+
+  .ai-accordion-items-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.card_spacing }}px;
+  }
+
+  .ai-accordion-item-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .ai-accordion-item-{{ ai_gen_id }}:hover {
+    border-color: {{ block.settings.card_border_hover_color }};
+  }
+
+  .ai-accordion-button-{{ ai_gen_id }} {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.icon_spacing }}px;
+    padding: {{ block.settings.card_padding_mobile }}px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s ease;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-accordion-button-{{ ai_gen_id }} {
+      padding: {{ block.settings.card_padding_desktop }}px;
+    }
+  }
+
+  .ai-accordion-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.card_hover_background }};
+  }
+
+  .ai-accordion-icon-wrapper-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: {{ block.settings.icon_background }};
+    border-radius: {{ block.settings.icon_border_radius }}px;
+  }
+
+  .ai-accordion-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_inner_size }}px;
+    height: {{ block.settings.icon_inner_size }}px;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-accordion-text-wrapper-{{ ai_gen_id }} {
+    flex-grow: 1;
+  }
+
+  .ai-accordion-item-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.item_title_size_mobile }}px;
+    font-weight: 600;
+    color: {{ block.settings.item_title_color }};
+    margin: 0 0 {{ block.settings.item_title_spacing }}px 0;
+    line-height: 1.3;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-accordion-item-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.item_title_size_desktop }}px;
+    }
+  }
+
+  .ai-accordion-item-subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.item_subtitle_size }}px;
+    color: {{ block.settings.item_subtitle_color }};
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .ai-accordion-chevron-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: {{ block.settings.chevron_color }};
+    transition: transform 0.3s ease;
+  }
+
+  .ai-accordion-item-{{ ai_gen_id }}.active .ai-accordion-chevron-{{ ai_gen_id }} {
+    transform: rotate(180deg);
+  }
+
+  .ai-accordion-content-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+
+  .ai-accordion-item-{{ ai_gen_id }}.active .ai-accordion-content-{{ ai_gen_id }} {
+    max-height: 500px;
+    padding: 0 {{ block.settings.card_padding_mobile }}px {{ block.settings.card_padding_mobile }}px {{ block.settings.card_padding_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-accordion-item-{{ ai_gen_id }}.active .ai-accordion-content-{{ ai_gen_id }} {
+      padding: 0 {{ block.settings.card_padding_desktop }}px {{ block.settings.card_padding_desktop }}px {{ block.settings.card_padding_desktop }}px;
+    }
+  }
+
+  .ai-accordion-content-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.content_size }}px;
+    color: {{ block.settings.content_color }};
+    line-height: 1.6;
+    margin: 0;
+    padding-left: calc({{ block.settings.icon_size }}px + {{ block.settings.icon_spacing }}px);
+  }
+
+  .ai-accordion-z-icon-{{ ai_gen_id }} {
+    font-family: {{ block.settings.icon_font_family }}, serif;
+    font-size: {{ block.settings.icon_inner_size }}px;
+    font-weight: 700;
+    font-style: italic;
+    color: {{ block.settings.icon_color }};
+    line-height: 1;
+  }
+{% endstyle %}
+
+<calm-nights-accordion-{{ ai_gen_id }} class="ai-accordion-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-accordion-container-{{ ai_gen_id }}">
+    {% if block.settings.section_title != blank or block.settings.section_subtitle != blank %}
+      <div class="ai-accordion-header-{{ ai_gen_id }}">
+        {% if block.settings.section_title != blank %}
+          <h2 class="ai-accordion-title-{{ ai_gen_id }}">{{ block.settings.section_title }}</h2>
+        {% endif %}
+        {% if block.settings.section_subtitle != blank %}
+          <p class="ai-accordion-subtitle-{{ ai_gen_id }}">{{ block.settings.section_subtitle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ai-accordion-items-{{ ai_gen_id }}">
+      {% if block.settings.item_1_enabled %}
+        <div class="ai-accordion-item-{{ ai_gen_id }} {% if block.settings.first_open %}active{% endif %}" data-accordion-item>
+          <button class="ai-accordion-button-{{ ai_gen_id }}" aria-expanded="{% if block.settings.first_open %}true{% else %}false{% endif %}">
+            <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+              <svg class="ai-accordion-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+                <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+              </svg>
+            </div>
+            <div class="ai-accordion-text-wrapper-{{ ai_gen_id }}">
+              <h3 class="ai-accordion-item-title-{{ ai_gen_id }}">{{ block.settings.item_1_title }}</h3>
+              <p class="ai-accordion-item-subtitle-{{ ai_gen_id }}">{{ block.settings.item_1_subtitle }}</p>
+            </div>
+            <svg class="ai-accordion-chevron-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ai-accordion-content-{{ ai_gen_id }}">
+            <p class="ai-accordion-content-text-{{ ai_gen_id }}">{{ block.settings.item_1_content }}</p>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.item_2_enabled %}
+        <div class="ai-accordion-item-{{ ai_gen_id }}" data-accordion-item>
+          <button class="ai-accordion-button-{{ ai_gen_id }}" aria-expanded="false">
+            <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+              <svg class="ai-accordion-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+              </svg>
+            </div>
+            <div class="ai-accordion-text-wrapper-{{ ai_gen_id }}">
+              <h3 class="ai-accordion-item-title-{{ ai_gen_id }}">{{ block.settings.item_2_title }}</h3>
+              <p class="ai-accordion-item-subtitle-{{ ai_gen_id }}">{{ block.settings.item_2_subtitle }}</p>
+            </div>
+            <svg class="ai-accordion-chevron-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ai-accordion-content-{{ ai_gen_id }}">
+            <p class="ai-accordion-content-text-{{ ai_gen_id }}">{{ block.settings.item_2_content }}</p>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.item_3_enabled %}
+        <div class="ai-accordion-item-{{ ai_gen_id }}" data-accordion-item>
+          <button class="ai-accordion-button-{{ ai_gen_id }}" aria-expanded="false">
+            <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+              <svg class="ai-accordion-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </div>
+            <div class="ai-accordion-text-wrapper-{{ ai_gen_id }}">
+              <h3 class="ai-accordion-item-title-{{ ai_gen_id }}">{{ block.settings.item_3_title }}</h3>
+              <p class="ai-accordion-item-subtitle-{{ ai_gen_id }}">{{ block.settings.item_3_subtitle }}</p>
+            </div>
+            <svg class="ai-accordion-chevron-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ai-accordion-content-{{ ai_gen_id }}">
+            <p class="ai-accordion-content-text-{{ ai_gen_id }}">{{ block.settings.item_3_content }}</p>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.item_4_enabled %}
+        <div class="ai-accordion-item-{{ ai_gen_id }}" data-accordion-item>
+          <button class="ai-accordion-button-{{ ai_gen_id }}" aria-expanded="false">
+            <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+              <span class="ai-accordion-z-icon-{{ ai_gen_id }}">Z</span>
+            </div>
+            <div class="ai-accordion-text-wrapper-{{ ai_gen_id }}">
+              <h3 class="ai-accordion-item-title-{{ ai_gen_id }}">{{ block.settings.item_4_title }}</h3>
+              <p class="ai-accordion-item-subtitle-{{ ai_gen_id }}">{{ block.settings.item_4_subtitle }}</p>
+            </div>
+            <svg class="ai-accordion-chevron-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ai-accordion-content-{{ ai_gen_id }}">
+            <p class="ai-accordion-content-text-{{ ai_gen_id }}">{{ block.settings.item_4_content }}</p>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.item_5_enabled %}
+        <div class="ai-accordion-item-{{ ai_gen_id }}" data-accordion-item>
+          <button class="ai-accordion-button-{{ ai_gen_id }}" aria-expanded="false">
+            <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+              <svg class="ai-accordion-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+              </svg>
+            </div>
+            <div class="ai-accordion-text-wrapper-{{ ai_gen_id }}">
+              <h3 class="ai-accordion-item-title-{{ ai_gen_id }}">{{ block.settings.item_5_title }}</h3>
+              <p class="ai-accordion-item-subtitle-{{ ai_gen_id }}">{{ block.settings.item_5_subtitle }}</p>
+            </div>
+            <svg class="ai-accordion-chevron-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ai-accordion-content-{{ ai_gen_id }}">
+            <p class="ai-accordion-content-text-{{ ai_gen_id }}">{{ block.settings.item_5_content }}</p>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.item_6_enabled %}
+        <div class="ai-accordion-item-{{ ai_gen_id }}" data-accordion-item>
+          <button class="ai-accordion-button-{{ ai_gen_id }}" aria-expanded="false">
+            <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+              <svg class="ai-accordion-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+                <line x1="11" y1="8" x2="11" y2="14"/>
+                <line x1="8" y1="11" x2="14" y2="11"/>
+              </svg>
+            </div>
+            <div class="ai-accordion-text-wrapper-{{ ai_gen_id }}">
+              <h3 class="ai-accordion-item-title-{{ ai_gen_id }}">{{ block.settings.item_6_title }}</h3>
+              <p class="ai-accordion-item-subtitle-{{ ai_gen_id }}">{{ block.settings.item_6_subtitle }}</p>
+            </div>
+            <svg class="ai-accordion-chevron-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ai-accordion-content-{{ ai_gen_id }}">
+            <p class="ai-accordion-content-text-{{ ai_gen_id }}">{{ block.settings.item_6_content }}</p>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</calm-nights-accordion-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CalmNightsAccordion{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.items = this.querySelectorAll('[data-accordion-item]');
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.items.forEach((item) => {
+          const button = item.querySelector('.ai-accordion-button-{{ ai_gen_id }}');
+          
+          button.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            this.items.forEach((otherItem) => {
+              if (otherItem !== item) {
+                otherItem.classList.remove('active');
+                const otherButton = otherItem.querySelector('.ai-accordion-button-{{ ai_gen_id }}');
+                otherButton.setAttribute('aria-expanded', 'false');
+              }
+            });
+            
+            if (isActive) {
+              item.classList.remove('active');
+              button.setAttribute('aria-expanded', 'false');
+            } else {
+              item.classList.add('active');
+              button.setAttribute('aria-expanded', 'true');
+            }
+          });
+        });
+      }
+    }
+
+    customElements.define('calm-nights-accordion-{{ ai_gen_id }}', CalmNightsAccordion{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Calm Nights accordion",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_title",
+      "label": "Title",
+      "default": "Why Calm Nights Feels Different"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_subtitle",
+      "label": "Subtitle",
+      "default": "A multi-pathway formula designed to help you fall asleep, stay asleep, and wake up refreshed."
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "section_padding_mobile",
+      "label": "Mobile padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_desktop",
+      "label": "Desktop padding",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "header_spacing_mobile",
+      "label": "Header spacing mobile",
+      "min": 16,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "header_spacing_desktop",
+      "label": "Header spacing desktop",
+      "min": 24,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_spacing",
+      "label": "Card spacing",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_background",
+      "label": "Card hover background",
+      "default": "#f9f6ff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border",
+      "default": "#e8d9f7"
+    },
+    {
+      "type": "color",
+      "id": "card_border_hover_color",
+      "label": "Card border hover",
+      "default": "#c99cf1"
+    },
+    {
+      "type": "color",
+      "id": "icon_background",
+      "label": "Icon background",
+      "default": "#f9f6ff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "item_title_color",
+      "label": "Item title",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "item_subtitle_color",
+      "label": "Item subtitle",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Content text",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "chevron_color",
+      "label": "Chevron",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title size mobile",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "label": "Title size desktop",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "label": "Title spacing",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_mobile",
+      "label": "Subtitle size mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_desktop",
+      "label": "Subtitle size desktop",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "item_title_size_mobile",
+      "label": "Item title size mobile",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "item_title_size_desktop",
+      "label": "Item title size desktop",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "item_title_spacing",
+      "label": "Item title spacing",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "item_subtitle_size",
+      "label": "Item subtitle size",
+      "min": 11,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "content_size",
+      "label": "Content size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_padding_mobile",
+      "label": "Padding mobile",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_padding_desktop",
+      "label": "Padding desktop",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Icon style"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon wrapper size",
+      "min": 32,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "icon_inner_size",
+      "label": "Icon size",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "icon_border_radius",
+      "label": "Icon border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "Icon spacing",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "text",
+      "id": "icon_font_family",
+      "label": "Z icon font family",
+      "default": "Georgia"
+    },
+    {
+      "type": "header",
+      "content": "Behavior"
+    },
+    {
+      "type": "checkbox",
+      "id": "first_open",
+      "label": "First accordion open by default",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Accordion 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_1_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "item_1_title",
+      "label": "Title",
+      "default": "Quiets Racing Thoughts"
+    },
+    {
+      "type": "text",
+      "id": "item_1_subtitle",
+      "label": "Subtitle",
+      "default": "L-Theanine + Lemon Balm"
+    },
+    {
+      "type": "textarea",
+      "id": "item_1_content",
+      "label": "Content",
+      "default": "L-Theanine and Lemon Balm help support a calmer state of mind before bed by helping ease racing thoughts and mental chatter."
+    },
+    {
+      "type": "header",
+      "content": "Accordion 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_2_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "item_2_title",
+      "label": "Title",
+      "default": "Supports Deep Relaxation"
+    },
+    {
+      "type": "text",
+      "id": "item_2_subtitle",
+      "label": "Subtitle",
+      "default": "Chamomile + Magnolia Bark"
+    },
+    {
+      "type": "textarea",
+      "id": "item_2_content",
+      "label": "Content",
+      "default": "Chamomile and Magnolia Bark help support relaxation and help your body unwind before sleep."
+    },
+    {
+      "type": "header",
+      "content": "Accordion 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_3_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "item_3_title",
+      "label": "Title",
+      "default": "Fall Asleep Naturally"
+    },
+    {
+      "type": "text",
+      "id": "item_3_subtitle",
+      "label": "Subtitle",
+      "default": "L-Tryptophan + Vitamin B6"
+    },
+    {
+      "type": "textarea",
+      "id": "item_3_content",
+      "label": "Content",
+      "default": "L-Tryptophan helps support your body's natural sleep pathways while Vitamin B6 supports its utilization."
+    },
+    {
+      "type": "header",
+      "content": "Accordion 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_4_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "item_4_title",
+      "label": "Title",
+      "default": "Stay Asleep Longer"
+    },
+    {
+      "type": "text",
+      "id": "item_4_subtitle",
+      "label": "Subtitle",
+      "default": "Multi-Pathway Formula"
+    },
+    {
+      "type": "textarea",
+      "id": "item_4_content",
+      "label": "Content",
+      "default": "Multiple complementary ingredients work together to support restful, uninterrupted sleep throughout the night."
+    },
+    {
+      "type": "header",
+      "content": "Accordion 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_5_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "item_5_title",
+      "label": "Title",
+      "default": "Wake Up Refreshed"
+    },
+    {
+      "type": "text",
+      "id": "item_5_subtitle",
+      "label": "Subtitle",
+      "default": "Melatonin-Free Formula"
+    },
+    {
+      "type": "textarea",
+      "id": "item_5_content",
+      "label": "Content",
+      "default": "Designed to support quality sleep without relying on melatonin."
+    },
+    {
+      "type": "header",
+      "content": "Accordion 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_6_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "item_6_title",
+      "label": "Title",
+      "default": "Fully Transparent Formula"
+    },
+    {
+      "type": "text",
+      "id": "item_6_subtitle",
+      "label": "Subtitle",
+      "default": "No Proprietary Blends"
+    },
+    {
+      "type": "textarea",
+      "id": "item_6_content",
+      "label": "Content",
+      "default": "Every ingredient and dosage is clearly disclosed. No hidden blends. No mystery formulas."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Calm Nights accordion"
+    }
+  ]
+}
 {% endschema %}
