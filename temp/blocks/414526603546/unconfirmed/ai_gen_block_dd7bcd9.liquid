@@ -1,6 +1,788 @@
+{% doc %}
+  @prompt
+    Create a premium mobile-first interactive benefits section for Ariya Supplements’ sleep product, Calm Nights.The design should be inspired by premium wellness brands like Auri, using expandable accordion-style benefit cards.The section should feel clean, modern, trustworthy, and easy to scan on mobile devices.Use a white background, Ariya purple accents, rounded corners, subtle shadows, and generous spacing.Only one accordion should be expanded at a time. When tapped, the accordion should smoothly open to reveal additional information. When tapped again, it should collapse.SECTION HEADLINEWhy Calm Nights Feels DifferentSUPPORTING TEXTDesigned to help quiet a racing mind, support natural sleep, and help you wake up refreshed.ACCORDION 1Icon:
+    BrainTitle:
+    Quiets Racing ThoughtsIngredient Highlight:
+    L-Theanine + Lemon BalmContent:
+    L-Theanine and Lemon Balm help calm an overactive mind and ease the mental chatter that keeps many people awake at night.ACCORDION 2Icon:
+    Lotus FlowerTitle:
+    Supports Deep RelaxationIngredient Highlight:
+    Chamomile + Magnolia BarkContent:
+    Chamomile and Magnolia Bark help promote relaxation and support your body’s transition from a stressed state into a calmer one before bed.ACCORDION 3Icon:
+    Crescent MoonTitle:
+    Fall Asleep NaturallyIngredient Highlight:
+    L-Tryptophan + Vitamin B6Content:
+    L-Tryptophan helps support your body’s natural sleep pathways while Vitamin B6 helps support its utilization.ACCORDION 4Icon:
+    ZZZ Sleep IconTitle:
+    Stay Asleep LongerIngredient Highlight:
+    Multi-Pathway FormulaContent:
+    Calm Nights combines multiple ingredients that work together to support uninterrupted, restorative sleep throughout the night.ACCORDION 5Icon:
+    SunriseTitle:
+    Wake Up RefreshedIngredient Highlight:
+    Melatonin-Free FormulaContent:
+    Designed to support sleep without the next-day grogginess commonly associated with melatonin-based products.ACCORDION 6Icon:
+    Magnifying GlassTitle:
+    Built DifferentIngredient Highlight:
+    Transparent Formula + Standardized ExtractsContent:
+    No proprietary blends. Every ingredient and dosage is clearly listed, and our extracts are standardized for consistency and quality.ICON REQUIREMENTSUse these exact icons:Quiets Racing Thoughts → Brain IconSupports Deep Relaxation → Lotus Flower IconFall Asleep Naturally → Crescent Moon IconStay Asleep Longer → ZZZ Sleep IconWake Up Refreshed → Sunrise IconBuilt Different → Magnifying Glass IconDo not substitute other icons.Do not use abstract symbols.Do not use decorative illustrations.Icons should be:Small and premiumConsistent line-art styleAriya purplePositioned to the left of each accordion titleEasy to recognize instantlyDESIGN REQUIREMENTSMobile-first design.Use accordion cards similar to Auri’s benefits section.Only one accordion open at a time.Closed cards should remain compact and easy to scan.Use Ariya purple for active states, icons, and subtle accents.Keep background white.Use clean rounded corners and premium spacing.Benefit titles should be bold and easy to read.Ingredient highlights should appear directly underneath each benefit title in a smaller accent font.Maintain a luxury wellness aesthetic.Prioritize readability and user interaction.The section should help customers understand exactly how Calm Nights works in less than 10 seconds.The benefit flow should tell this story:Racing Thoughts → Relaxation → Fall Asleep → Stay Asleep → Wake Refreshed → Why Ariya Is Different, the symbol for quiets racing thoughts should be changed to a brain icon,  the symbol for supports deep relaxation should be changed to a leaf icon,  the symbol for stay asleep longer should be changed to a zzz icon,  the symbol for stay asleep longer should be changed to a stick mans head that is asleep with 2 letter z over the top of his head icon, the symbol for stay asleep longer should be changed to just the letter Z as the icon , can you add another Z next to the Z that is already there in the icon for stay asleep longer but make this new letter Z a little bit higher than the first one, Now add a 3rd and final Z next to the second Z on the icon for stay asleep longer and make that one a little bit higher than the second Z and also make sure none of them are touching all 3 of the Z should be close but not touching
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-benefits-section-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding_mobile }}px 20px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-benefits-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_desktop }}px 40px;
+      width: {{ block.settings.desktop_width_percent }}%;
+      margin: 0 auto;
+    }
+  }
+
+  .ai-benefits-container-{{ ai_gen_id }} {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .ai-benefits-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .ai-benefits-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size_mobile }}px;
+    font-weight: 700;
+    color: {{ block.settings.headline_color }};
+    margin: 0 0 12px 0;
+    line-height: 1.2;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-benefits-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size_desktop }}px;
+    }
+  }
+
+  .ai-benefits-subtext-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtext_size }}px;
+    color: {{ block.settings.subtext_color }};
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .ai-benefits-accordion-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ai-accordion-item-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    box-shadow: {{ block.settings.card_shadow }};
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .ai-accordion-header-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.2s ease;
+  }
+
+  .ai-accordion-header-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.card_hover_background }};
+  }
+
+  .ai-accordion-icon-wrapper-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-accordion-icon-{{ ai_gen_id }} {
+    width: 28px;
+    height: 28px;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-accordion-title-wrapper-{{ ai_gen_id }} {
+    flex-grow: 1;
+  }
+
+  .ai-accordion-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+  }
+
+  .ai-accordion-ingredient-{{ ai_gen_id }} {
+    font-size: {{ block.settings.ingredient_size }}px;
+    color: {{ block.settings.ingredient_color }};
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .ai-accordion-chevron-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: {{ block.settings.chevron_color }};
+    transition: transform 0.3s ease;
+  }
+
+  .ai-accordion-item-{{ ai_gen_id }}.active .ai-accordion-chevron-{{ ai_gen_id }} {
+    transform: rotate(180deg);
+  }
+
+  .ai-accordion-content-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+
+  .ai-accordion-item-{{ ai_gen_id }}.active .ai-accordion-content-{{ ai_gen_id }} {
+    max-height: 500px;
+  }
+
+  .ai-accordion-content-inner-{{ ai_gen_id }} {
+    padding: 0 20px 20px 68px;
+  }
+
+  .ai-accordion-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.content_size }}px;
+    color: {{ block.settings.content_color }};
+    line-height: 1.6;
+    margin: 0;
+  }
+{% endstyle %}
+
+<benefits-accordion-{{ ai_gen_id }} class="ai-benefits-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-benefits-container-{{ ai_gen_id }}">
+    <div class="ai-benefits-header-{{ ai_gen_id }}">
+      {% if block.settings.headline != blank %}
+        <h2 class="ai-benefits-headline-{{ ai_gen_id }}">{{ block.settings.headline }}</h2>
+      {% endif %}
+      {% if block.settings.subtext != blank %}
+        <p class="ai-benefits-subtext-{{ ai_gen_id }}">{{ block.settings.subtext }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ai-benefits-accordion-{{ ai_gen_id }}">
+      {% if block.settings.benefit_1_enabled %}
+        <div class="ai-accordion-item-{{ ai_gen_id }}" data-accordion-item>
+          <button class="ai-accordion-header-{{ ai_gen_id }}" aria-expanded="false">
+            <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+              <svg class="ai-accordion-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+                <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+              </svg>
+            </div>
+            <div class="ai-accordion-title-wrapper-{{ ai_gen_id }}">
+              <h3 class="ai-accordion-title-{{ ai_gen_id }}">{{ block.settings.benefit_1_title }}</h3>
+              <p class="ai-accordion-ingredient-{{ ai_gen_id }}">{{ block.settings.benefit_1_ingredient }}</p>
+            </div>
+            <svg class="ai-accordion-chevron-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ai-accordion-content-{{ ai_gen_id }}">
+            <div class="ai-accordion-content-inner-{{ ai_gen_id }}">
+              <p class="ai-accordion-text-{{ ai_gen_id }}">{{ block.settings.benefit_1_content }}</p>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.benefit_2_enabled %}
+        <div class="ai-accordion-item-{{ ai_gen_id }}" data-accordion-item>
+          <button class="ai-accordion-header-{{ ai_gen_id }}" aria-expanded="false">
+            <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+              <svg class="ai-accordion-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a10 10 0 0 1 10 10 4 4 0 0 1-5 3.88 4 4 0 0 0-6.77 2.63L9 20.5a3.5 3.5 0 0 1-6.18-3.09A10 10 0 0 1 12 2Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <div class="ai-accordion-title-wrapper-{{ ai_gen_id }}">
+              <h3 class="ai-accordion-title-{{ ai_gen_id }}">{{ block.settings.benefit_2_title }}</h3>
+              <p class="ai-accordion-ingredient-{{ ai_gen_id }}">{{ block.settings.benefit_2_ingredient }}</p>
+            </div>
+            <svg class="ai-accordion-chevron-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ai-accordion-content-{{ ai_gen_id }}">
+            <div class="ai-accordion-content-inner-{{ ai_gen_id }}">
+              <p class="ai-accordion-text-{{ ai_gen_id }}">{{ block.settings.benefit_2_content }}</p>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.benefit_3_enabled %}
+        <div class="ai-accordion-item-{{ ai_gen_id }}" data-accordion-item>
+          <button class="ai-accordion-header-{{ ai_gen_id }}" aria-expanded="false">
+            <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+              <svg class="ai-accordion-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </div>
+            <div class="ai-accordion-title-wrapper-{{ ai_gen_id }}">
+              <h3 class="ai-accordion-title-{{ ai_gen_id }}">{{ block.settings.benefit_3_title }}</h3>
+              <p class="ai-accordion-ingredient-{{ ai_gen_id }}">{{ block.settings.benefit_3_ingredient }}</p>
+            </div>
+            <svg class="ai-accordion-chevron-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ai-accordion-content-{{ ai_gen_id }}">
+            <div class="ai-accordion-content-inner-{{ ai_gen_id }}">
+              <p class="ai-accordion-text-{{ ai_gen_id }}">{{ block.settings.benefit_3_content }}</p>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.benefit_4_enabled %}
+        <div class="ai-accordion-item-{{ ai_gen_id }}" data-accordion-item>
+          <button class="ai-accordion-header-{{ ai_gen_id }}" aria-expanded="false">
+            <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+              <svg class="ai-accordion-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <text x="3" y="10" font-size="8" font-weight="bold" fill="currentColor">Z</text>
+                <text x="9" y="7" font-size="8" font-weight="bold" fill="currentColor">Z</text>
+                <text x="15" y="4" font-size="8" font-weight="bold" fill="currentColor">Z</text>
+              </svg>
+            </div>
+            <div class="ai-accordion-title-wrapper-{{ ai_gen_id }}">
+              <h3 class="ai-accordion-title-{{ ai_gen_id }}">{{ block.settings.benefit_4_title }}</h3>
+              <p class="ai-accordion-ingredient-{{ ai_gen_id }}">{{ block.settings.benefit_4_ingredient }}</p>
+            </div>
+            <svg class="ai-accordion-chevron-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ai-accordion-content-{{ ai_gen_id }}">
+            <div class="ai-accordion-content-inner-{{ ai_gen_id }}">
+              <p class="ai-accordion-text-{{ ai_gen_id }}">{{ block.settings.benefit_4_content }}</p>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.benefit_5_enabled %}
+        <div class="ai-accordion-item-{{ ai_gen_id }}" data-accordion-item>
+          <button class="ai-accordion-header-{{ ai_gen_id }}" aria-expanded="false">
+            <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+              <svg class="ai-accordion-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+              </svg>
+            </div>
+            <div class="ai-accordion-title-wrapper-{{ ai_gen_id }}">
+              <h3 class="ai-accordion-title-{{ ai_gen_id }}">{{ block.settings.benefit_5_title }}</h3>
+              <p class="ai-accordion-ingredient-{{ ai_gen_id }}">{{ block.settings.benefit_5_ingredient }}</p>
+            </div>
+            <svg class="ai-accordion-chevron-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ai-accordion-content-{{ ai_gen_id }}">
+            <div class="ai-accordion-content-inner-{{ ai_gen_id }}">
+              <p class="ai-accordion-text-{{ ai_gen_id }}">{{ block.settings.benefit_5_content }}</p>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.benefit_6_enabled %}
+        <div class="ai-accordion-item-{{ ai_gen_id }}" data-accordion-item>
+          <button class="ai-accordion-header-{{ ai_gen_id }}" aria-expanded="false">
+            <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+              <svg class="ai-accordion-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </div>
+            <div class="ai-accordion-title-wrapper-{{ ai_gen_id }}">
+              <h3 class="ai-accordion-title-{{ ai_gen_id }}">{{ block.settings.benefit_6_title }}</h3>
+              <p class="ai-accordion-ingredient-{{ ai_gen_id }}">{{ block.settings.benefit_6_ingredient }}</p>
+            </div>
+            <svg class="ai-accordion-chevron-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="ai-accordion-content-{{ ai_gen_id }}">
+            <div class="ai-accordion-content-inner-{{ ai_gen_id }}">
+              <p class="ai-accordion-text-{{ ai_gen_id }}">{{ block.settings.benefit_6_content }}</p>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</benefits-accordion-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class BenefitsAccordion{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.accordionItems = this.querySelectorAll('[data-accordion-item]');
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.accordionItems.forEach((item) => {
+          const header = item.querySelector('.ai-accordion-header-{{ ai_gen_id }}');
+          
+          header.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            this.accordionItems.forEach((otherItem) => {
+              if (otherItem !== item) {
+                otherItem.classList.remove('active');
+                const otherHeader = otherItem.querySelector('.ai-accordion-header-{{ ai_gen_id }}');
+                otherHeader.setAttribute('aria-expanded', 'false');
+              }
+            });
+            
+            if (isActive) {
+              item.classList.remove('active');
+              header.setAttribute('aria-expanded', 'false');
+            } else {
+              item.classList.add('active');
+              header.setAttribute('aria-expanded', 'true');
+            }
+          });
+        });
+      }
+    }
+
+    customElements.define('benefits-accordion-{{ ai_gen_id }}', BenefitsAccordion{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Benefits accordion",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Why Calm Nights Feels Different"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Supporting text",
+      "default": "Designed to help quiet a racing mind, support natural sleep, and help you wake up refreshed."
+    },
+    {
+      "type": "range",
+      "id": "headline_size_mobile",
+      "label": "Headline size (mobile)",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "headline_size_desktop",
+      "label": "Headline size (desktop)",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subtext_size",
+      "label": "Supporting text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Benefit 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "benefit_1_enabled",
+      "label": "Enable benefit 1",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_title",
+      "label": "Title",
+      "default": "Quiets Racing Thoughts"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_ingredient",
+      "label": "Ingredient highlight",
+      "default": "L-Theanine + Lemon Balm"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_1_content",
+      "label": "Content",
+      "default": "L-Theanine and Lemon Balm help calm an overactive mind and ease the mental chatter that keeps many people awake at night."
+    },
+    {
+      "type": "header",
+      "content": "Benefit 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "benefit_2_enabled",
+      "label": "Enable benefit 2",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_title",
+      "label": "Title",
+      "default": "Supports Deep Relaxation"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_ingredient",
+      "label": "Ingredient highlight",
+      "default": "Chamomile + Magnolia Bark"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_2_content",
+      "label": "Content",
+      "default": "Chamomile and Magnolia Bark help promote relaxation and support your body's transition from a stressed state into a calmer one before bed."
+    },
+    {
+      "type": "header",
+      "content": "Benefit 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "benefit_3_enabled",
+      "label": "Enable benefit 3",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_title",
+      "label": "Title",
+      "default": "Fall Asleep Naturally"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_ingredient",
+      "label": "Ingredient highlight",
+      "default": "L-Tryptophan + Vitamin B6"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_3_content",
+      "label": "Content",
+      "default": "L-Tryptophan helps support your body's natural sleep pathways while Vitamin B6 helps support its utilization."
+    },
+    {
+      "type": "header",
+      "content": "Benefit 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "benefit_4_enabled",
+      "label": "Enable benefit 4",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_4_title",
+      "label": "Title",
+      "default": "Stay Asleep Longer"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4_ingredient",
+      "label": "Ingredient highlight",
+      "default": "Multi-Pathway Formula"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_4_content",
+      "label": "Content",
+      "default": "Calm Nights combines multiple ingredients that work together to support uninterrupted, restorative sleep throughout the night."
+    },
+    {
+      "type": "header",
+      "content": "Benefit 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "benefit_5_enabled",
+      "label": "Enable benefit 5",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_5_title",
+      "label": "Title",
+      "default": "Wake Up Refreshed"
+    },
+    {
+      "type": "text",
+      "id": "benefit_5_ingredient",
+      "label": "Ingredient highlight",
+      "default": "Melatonin-Free Formula"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_5_content",
+      "label": "Content",
+      "default": "Designed to support sleep without the next-day grogginess commonly associated with melatonin-based products."
+    },
+    {
+      "type": "header",
+      "content": "Benefit 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "benefit_6_enabled",
+      "label": "Enable benefit 6",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_6_title",
+      "label": "Title",
+      "default": "Built Different"
+    },
+    {
+      "type": "text",
+      "id": "benefit_6_ingredient",
+      "label": "Ingredient highlight",
+      "default": "Transparent Formula + Standardized Extracts"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_6_content",
+      "label": "Content",
+      "default": "No proprietary blends. Every ingredient and dosage is clearly listed, and our extracts are standardized for consistency and quality."
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Benefit title size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "ingredient_size",
+      "label": "Ingredient size",
+      "min": 11,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "content_size",
+      "label": "Content size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Supporting text",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_background",
+      "label": "Card hover background",
+      "default": "#f9f6ff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Benefit title",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "ingredient_color",
+      "label": "Ingredient highlight",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Content text",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "color",
+      "id": "chevron_color",
+      "label": "Chevron",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "card_shadow",
+      "label": "Shadow",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "0 1px 3px rgba(0, 0, 0, 0.08)",
+          "label": "Subtle"
+        },
+        {
+          "value": "0 2px 8px rgba(0, 0, 0, 0.1)",
+          "label": "Medium"
+        },
+        {
+          "value": "0 4px 12px rgba(0, 0, 0, 0.12)",
+          "label": "Strong"
+        }
+      ],
+      "default": "0 2px 8px rgba(0, 0, 0, 0.1)"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_mobile",
+      "label": "Section padding (mobile)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_desktop",
+      "label": "Section padding (desktop)",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits accordion"
+    }
+  ]
+}
 {% endschema %}
