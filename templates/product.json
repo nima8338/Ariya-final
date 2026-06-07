@@ -528,8 +528,8 @@
             "subtext_size_mobile": 14,
             "percentage_size_mobile": 60,
             "description_size_mobile": 14,
-            "closing_headline_size_mobile": 24,
-            "closing_text_size_mobile": 14
+            "closing_headline_size_mobile": 18,
+            "closing_text_size_mobile": 12
           },
           "blocks": {}
         },
