@@ -1,6 +1,990 @@
+{% doc %}
+  @prompt
+    Create a New Ingredient Spotlight SectionReplace the current “Inside Calm Nights” accordion section with a visual ingredient grid inspired by premium wellness brands.Section TitleInside Calm NightsSupporting TextEvery ingredient was chosen for a reason. No proprietary blends. No hidden doses.⸻Design StyleCreate a clean card-based ingredient grid similar to premium supplement brands.Each ingredient should appear inside its own card.Each card should include:Real ingredient image (not icons)Ingredient nameSmall benefit badgeOne sentence explanationUse soft shadows, rounded corners, generous spacing, and a premium wellness aesthetic.Use Ariya’s color palette:White backgroundsSoft purple accentsBlack textLight gray bordersConsistent image sizing⸻Layout RequirementsDo NOT use a single-column ingredient layout.On mobile devices, display 2 ingredient cards per row, similar to premium wellness brands.On desktop, display 3–4 ingredient cards per row depending on screen size.All cards should maintain equal height and width for a clean professional appearance.Images should be displayed at the top of each card and remain consistent in size and positioning.The goal is to allow visitors to see multiple ingredients at once without excessive scrolling.Keep descriptions concise so the 2-column mobile layout remains clean and visually appealing.Reduce overall section height while maintaining readability.The section should feel modern, premium, and highly visual.⸻Card 1L-TheanineBadge:
+    Calm MindDescription:Supports relaxation and helps quiet racing thoughts before bed.Image:
+    Green tea leaves or L-Theanine source image.⸻Card 2L-TryptophanBadge:
+    Sleep SupportDescription:Amino acid that helps support your body’s natural melatonin and serotonin production.Image:
+    Salmon image.⸻Card 3Lemon Balm ExtractBadge:
+    Stress ReliefDescription:Traditional botanical used to promote calmness and support relaxation.Image:
+    Real lemon balm plant.⸻Card 4Chamomile ExtractBadge:
+    RelaxationDescription:Well-known herbal extract traditionally used to support restful sleep.Image:
+    Chamomile flower.⸻Card 5Magnolia Bark ExtractBadge:
+    Deep CalmDescription:Supports relaxation and helps ease mental tension before bed.Image:
+    Magnolia tree or magnolia bark.⸻Card 6Tart Cherry ExtractBadge:
+    Sleep QualityDescription:Naturally contains compounds that support healthy sleep quality and recovery.Image:
+    Tart cherries.⸻Card 7Vitamin B6Badge:
+    Sleep PathwaysDescription:Supports neurotransmitter production involved in healthy sleep cycles.Image:
+    Sunrise or vitamin-rich food imagery.⸻Layout GoalCreate a highly visual ingredient section that feels premium, educational, and easy to browse without requiring users to tap open individual ingredients.The section should break up the page visually and make the formula feel tangible and trustworthy.The overall look should resemble premium ingredient showcase sections used by modern wellness brands, where multiple ingredients are visible immediately and users can quickly understand what each ingredient contributes to the formula., the vitamin b6 Colum can you center that one instead of it being on the left side, put it in this order, l-theanine, lemon balm extract, chamomile extract, magnolia bark, l trytophan, vitamin b6, tart cherry extract, make vitamin b6 to the right of l-trytophan and tart cherry under the both of them in the middle, keep the mobile look the same but for the desktop version just place the tart cherry on the right hand side under magnolia bark and chamomile extract and take vitamin b6 and take it close to the middle , make the vitamin b6 smaller on the desktop version and keep the tart cherry extract on the mobile version in the middle and a bit bigger, for the desktop version make the vitamin b6 as big as the tart cherry and trytophan and put it in the middle make sure its properly spaced out from each other and for the mobile version just make the tart cherry bigger to cover all of the bottom that it occupies , make the vitmain b6 picture option as big as the tart cherry and trytophan next to it for the desktop version, dont touch anything else even on the mobile version, on the desktop version take that vitamin b6 and put it in the center it should be apart from l trytophan and tart cherry the same distance and dont touch anything else even on mobile, do not touch the mobile version at all, leave that alone completely. Just fix the image size for vitamin b6 to be the length of the rest on desktop, now the bottom row, l trytophan, vitamin b6 and tart cherry need to be spaced out from one another properly for desktop only do not touch anything on mobile version , bring l tryptophan a bit to the right and move tart cherry a bit to the left on the desktop version only, do not touch the mobile version at all, for mobile version only make the tart cherry the same size as the rest but keep it in the same spot which is aligned in the middle of vitamin b6 and l trytophan 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-ingredient-spotlight-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 60px 20px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-ingredient-spotlight__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-ingredient-spotlight__header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .ai-ingredient-spotlight__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 12px 0;
+    font-weight: 600;
+  }
+
+  .ai-ingredient-spotlight__subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .ai-ingredient-spotlight__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @media (min-width: 750px) {
+    .ai-ingredient-spotlight__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+  }
+
+  @media (min-width: 990px) {
+    .ai-ingredient-spotlight__grid-{{ ai_gen_id }} {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+    }
+  }
+
+  .ai-ingredient-spotlight__card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: {{ block.settings.card_shadow_horizontal }}px {{ block.settings.card_shadow_vertical }}px {{ block.settings.card_shadow_blur }}px {{ block.settings.card_shadow_color }};
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+  }
+
+  .ai-ingredient-spotlight__card-{{ ai_gen_id }}:hover {
+    transform: translateY(-4px);
+    box-shadow: {{ block.settings.card_shadow_horizontal }}px {{ block.settings.card_shadow_vertical | plus: 4 }}px {{ block.settings.card_shadow_blur | plus: 8 }}px {{ block.settings.card_shadow_color }};
+  }
+
+  .ai-ingredient-spotlight__card-{{ ai_gen_id }}.ai-ingredient-spotlight__card--mobile-full-{{ ai_gen_id }} {
+    order: 0;
+  }
+
+  @media (min-width: 990px) {
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }} {
+      flex: 0 0 calc(25% - 21px);
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}.ai-ingredient-spotlight__card--desktop-left-{{ ai_gen_id }} {
+      order: 1;
+      margin-right: 14px;
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}.ai-ingredient-spotlight__card--desktop-center-{{ ai_gen_id }} {
+      order: 2;
+      flex: 0 0 calc(25% - 21px);
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}.ai-ingredient-spotlight__card--desktop-right-{{ ai_gen_id }} {
+      order: 3;
+      margin-left: 14px;
+    }
+  }
+
+  .ai-ingredient-spotlight__image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 16px;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-ingredient-spotlight__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-ingredient-spotlight__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-ingredient-spotlight__image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-ingredient-spotlight__badge-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: {{ block.settings.badge_background }};
+    color: {{ block.settings.badge_text_color }};
+    font-size: {{ block.settings.badge_font_size }}px;
+    font-weight: 600;
+    border-radius: {{ block.settings.badge_border_radius }}px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .ai-ingredient-spotlight__name-{{ ai_gen_id }} {
+    font-size: {{ block.settings.ingredient_name_size }}px;
+    color: {{ block.settings.ingredient_name_color }};
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+  }
+
+  .ai-ingredient-spotlight__description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+{% endstyle %}
+
+<ingredient-spotlight-{{ ai_gen_id }} class="ai-ingredient-spotlight-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-ingredient-spotlight__container-{{ ai_gen_id }}">
+    <div class="ai-ingredient-spotlight__header-{{ ai_gen_id }}">
+      {% if block.settings.title != blank %}
+        <h2 class="ai-ingredient-spotlight__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+      {% endif %}
+      {% if block.settings.subtitle != blank %}
+        <p class="ai-ingredient-spotlight__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ai-ingredient-spotlight__grid-{{ ai_gen_id }}">
+      {% for i in (1..7) %}
+        {% liquid
+          assign enabled_key = 'ingredient_' | append: i | append: '_enabled'
+          assign image_key = 'ingredient_' | append: i | append: '_image'
+          assign name_key = 'ingredient_' | append: i | append: '_name'
+          assign badge_key = 'ingredient_' | append: i | append: '_badge'
+          assign description_key = 'ingredient_' | append: i | append: '_description'
+          assign desktop_position_key = 'ingredient_' | append: i | append: '_desktop_position'
+          assign mobile_position_key = 'ingredient_' | append: i | append: '_mobile_position'
+
+          assign enabled = block.settings[enabled_key]
+          assign image = block.settings[image_key]
+          assign name = block.settings[name_key]
+          assign badge = block.settings[badge_key]
+          assign description = block.settings[description_key]
+          assign desktop_position = block.settings[desktop_position_key]
+          assign mobile_position = block.settings[mobile_position_key]
+        %}
+
+        {% if enabled %}
+          <div class="ai-ingredient-spotlight__card-{{ ai_gen_id }} {% if desktop_position == 'right' %}ai-ingredient-spotlight__card--desktop-right-{{ ai_gen_id }}{% elsif desktop_position == 'center' %}ai-ingredient-spotlight__card--desktop-center-{{ ai_gen_id }}{% elsif desktop_position == 'left' %}ai-ingredient-spotlight__card--desktop-left-{{ ai_gen_id }}{% endif %}">
+            <div class="ai-ingredient-spotlight__image-wrapper-{{ ai_gen_id }}">
+              {% if image %}
+                <img
+                  src="{{ image | image_url: width: 400 }}"
+                  alt="{{ name | escape }}"
+                  class="ai-ingredient-spotlight__image-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="400"
+                  height="400"
+                >
+              {% else %}
+                <div class="ai-ingredient-spotlight__image-placeholder-{{ ai_gen_id }}">
+                  {{ 'product-1' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+            </div>
+
+            {% if badge != blank %}
+              <span class="ai-ingredient-spotlight__badge-{{ ai_gen_id }}">{{ badge }}</span>
+            {% endif %}
+
+            {% if name != blank %}
+              <h3 class="ai-ingredient-spotlight__name-{{ ai_gen_id }}">{{ name }}</h3>
+            {% endif %}
+
+            {% if description != blank %}
+              <p class="ai-ingredient-spotlight__description-{{ ai_gen_id }}">{{ description }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</ingredient-spotlight-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class IngredientSpotlight{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('ingredient-spotlight-{{ ai_gen_id }}', IngredientSpotlight{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Ingredient spotlight",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Inside Calm Nights"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Every ingredient was chosen for a reason. No proprietary blends. No hidden doses."
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "label": "Subtitle size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Border color",
+      "default": "#e8d9f7"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_horizontal",
+      "label": "Shadow horizontal",
+      "min": -10,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_vertical",
+      "label": "Shadow vertical",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_blur",
+      "label": "Shadow blur",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "card_shadow_color",
+      "label": "Shadow color",
+      "default": "#1a0a2e1a"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Badge style"
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Background",
+      "default": "#c99cf1"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Text color",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Text style"
+    },
+    {
+      "type": "range",
+      "id": "ingredient_name_size",
+      "label": "Name size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "ingredient_name_color",
+      "label": "Name color",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "ingredient_1_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_1_name",
+      "label": "Name",
+      "default": "L-Theanine"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_1_badge",
+      "label": "Badge",
+      "default": "Calm Mind"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_1_description",
+      "label": "Description",
+      "default": "Supports relaxation and helps quiet racing thoughts before bed."
+    },
+    {
+      "type": "select",
+      "id": "ingredient_1_desktop_position",
+      "label": "Desktop position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "ingredient_1_mobile_position",
+      "label": "Mobile position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "ingredient_2_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_2_name",
+      "label": "Name",
+      "default": "Lemon Balm Extract"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_2_badge",
+      "label": "Badge",
+      "default": "Stress Relief"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_2_description",
+      "label": "Description",
+      "default": "Traditional botanical used to promote calmness and support relaxation."
+    },
+    {
+      "type": "select",
+      "id": "ingredient_2_desktop_position",
+      "label": "Desktop position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "ingredient_2_mobile_position",
+      "label": "Mobile position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "ingredient_3_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_3_name",
+      "label": "Name",
+      "default": "Chamomile Extract"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_3_badge",
+      "label": "Badge",
+      "default": "Relaxation"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_3_description",
+      "label": "Description",
+      "default": "Well-known herbal extract traditionally used to support restful sleep."
+    },
+    {
+      "type": "select",
+      "id": "ingredient_3_desktop_position",
+      "label": "Desktop position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "ingredient_3_mobile_position",
+      "label": "Mobile position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "ingredient_4_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_4_name",
+      "label": "Name",
+      "default": "Magnolia Bark Extract"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_4_badge",
+      "label": "Badge",
+      "default": "Deep Calm"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_4_description",
+      "label": "Description",
+      "default": "Supports relaxation and helps ease mental tension before bed."
+    },
+    {
+      "type": "select",
+      "id": "ingredient_4_desktop_position",
+      "label": "Desktop position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "ingredient_4_mobile_position",
+      "label": "Mobile position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "ingredient_5_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_5_name",
+      "label": "Name",
+      "default": "L-Tryptophan"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_5_badge",
+      "label": "Badge",
+      "default": "Sleep Support"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_5_description",
+      "label": "Description",
+      "default": "Amino acid that helps support your body's natural melatonin and serotonin production."
+    },
+    {
+      "type": "select",
+      "id": "ingredient_5_desktop_position",
+      "label": "Desktop position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "ingredient_5_mobile_position",
+      "label": "Mobile position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "ingredient_6_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_6_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_6_name",
+      "label": "Name",
+      "default": "Vitamin B6"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_6_badge",
+      "label": "Badge",
+      "default": "Sleep Pathways"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_6_description",
+      "label": "Description",
+      "default": "Supports neurotransmitter production involved in healthy sleep cycles."
+    },
+    {
+      "type": "select",
+      "id": "ingredient_6_desktop_position",
+      "label": "Desktop position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "ingredient_6_mobile_position",
+      "label": "Mobile position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 7"
+    },
+    {
+      "type": "checkbox",
+      "id": "ingredient_7_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_7_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_7_name",
+      "label": "Name",
+      "default": "Tart Cherry Extract"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_7_badge",
+      "label": "Badge",
+      "default": "Sleep Quality"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_7_description",
+      "label": "Description",
+      "default": "Naturally contains compounds that support healthy sleep quality and recovery."
+    },
+    {
+      "type": "select",
+      "id": "ingredient_7_desktop_position",
+      "label": "Desktop position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "select",
+      "id": "ingredient_7_mobile_position",
+      "label": "Mobile position",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "full",
+          "label": "Full width"
+        }
+      ],
+      "default": "normal"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredient spotlight"
+    }
+  ]
+}
 {% endschema %}
