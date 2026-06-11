@@ -1,6 +1,705 @@
+{% doc %}
+  @prompt
+    Create a New “Why Sleep Matters” SectionCreate a new section inspired by the simple statistics layout used by premium wellness brands.LayoutAllow a large image at the top of the section that can be uploaded and changed inside the Shopify editor.Image should be full width with rounded corners.Keep the section clean, minimal, and easy to scan.No icons.No decorative graphics.No extra cards.No animations.Use a simple vertical flow:ImageHeadlineShort supporting textStatistic 1Statistic 2Design StyleWhite backgroundAriya purple for numbers and headingsDark text for descriptionsLarge bold percentagesMinimal spacingMobile-first designInspired by the clean simplicity of Grüns’ statistics sectionContentHeadlineModern Life Makes Restful Sleep Harder Than EverSupporting TextStress, screens, and constant stimulation make it harder to unwind and get quality sleep.Statistic 174%of adults say stress disrupts their sleep.Statistic 272%of adults experience daytime sleepiness linked to:Mood Changes • Increased Stress • Lower ProductivityTypographyPercentages should be the largest element in the section.Headline should be bold and easy to read.Descriptions should be noticeably smaller than the percentages.Center align all content.ImportantKeep this section extremely simple.Do not add icons, badges, symbols, extra statistics, explanations, or feature callouts.The goal is to create a clean, high-impact visual section where the large percentages immediately grab attention, similar to premium wellness brands., at the bottom put this,                                          That’s Why We Created Calm Nights.
+    Melatonin-free sleep support designed to quiet a racing mind and help you wake up feeling rested., at the bottom put a SHOP Calm Nights button that when you click it it scrolls back to the very top of the page, have the numbers 74 and 72 have an animation that it starts at zero and increases to 74 and 72 when you scroll to it , make this part as a header, That's Why We Created Calm Nights. and this as the sub text Melatonin-free sleep support designed to quiet a racing mind and help you wake up feeling rested.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-sleep-stats-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding }}px 20px;
+  }
+
+  .ai-sleep-stats-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .ai-sleep-stats-image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    margin-bottom: {{ block.settings.spacing_after_image }}px;
+  }
+
+  .ai-sleep-stats-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: block;
+  }
+
+  .ai-sleep-stats-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-sleep-stats-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-sleep-stats-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-sleep-stats-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.headline_color }};
+    margin: 0 0 {{ block.settings.spacing_after_headline }}px 0;
+    line-height: 1.2;
+  }
+
+  .ai-sleep-stats-subtext-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtext_size }}px;
+    color: {{ block.settings.subtext_color }};
+    margin: 0 0 {{ block.settings.spacing_after_subtext }}px 0;
+    line-height: 1.5;
+  }
+
+  .ai-sleep-stats-stat-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.spacing_between_stats }}px;
+  }
+
+  .ai-sleep-stats-stat-{{ ai_gen_id }}:last-of-type {
+    margin-bottom: {{ block.settings.spacing_after_stats }}px;
+  }
+
+  .ai-sleep-stats-percentage-{{ ai_gen_id }} {
+    font-size: {{ block.settings.percentage_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.percentage_color }};
+    margin: 0 0 {{ block.settings.spacing_after_percentage }}px 0;
+    line-height: 1;
+  }
+
+  .ai-sleep-stats-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ai-sleep-stats-cta-wrapper-{{ ai_gen_id }} {
+    margin-top: {{ block.settings.spacing_before_cta }}px;
+  }
+
+  .ai-sleep-stats-cta-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.cta_heading_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.cta_heading_color }};
+    margin: 0 0 {{ block.settings.spacing_after_cta_heading }}px 0;
+    line-height: 1.2;
+  }
+
+  .ai-sleep-stats-cta-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.cta_text_size }}px;
+    color: {{ block.settings.cta_text_color }};
+    margin: 0 0 {{ block.settings.spacing_after_cta_text }}px 0;
+    line-height: 1.5;
+  }
+
+  .ai-sleep-stats-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-sleep-stats-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-sleep-stats-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size | times: 0.7 }}px;
+    }
+
+    .ai-sleep-stats-percentage-{{ ai_gen_id }} {
+      font-size: {{ block.settings.percentage_size | times: 0.6 }}px;
+    }
+
+    .ai-sleep-stats-subtext-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subtext_size | times: 0.9 }}px;
+    }
+
+    .ai-sleep-stats-description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size | times: 0.9 }}px;
+    }
+
+    .ai-sleep-stats-cta-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.cta_heading_size | times: 0.8 }}px;
+    }
+
+    .ai-sleep-stats-cta-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.cta_text_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<sleep-stats-{{ ai_gen_id }} class="ai-sleep-stats-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-sleep-stats-container-{{ ai_gen_id }}">
+    {% if block.settings.image %}
+      <div class="ai-sleep-stats-image-wrapper-{{ ai_gen_id }}">
+        <img
+          src="{{ block.settings.image | image_url: width: 2000 }}"
+          alt="{{ block.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.image.width }}"
+          height="{{ block.settings.image.height }}"
+          class="ai-sleep-stats-image-{{ ai_gen_id }}"
+        >
+      </div>
+    {% else %}
+      <div class="ai-sleep-stats-image-wrapper-{{ ai_gen_id }}">
+        <div class="ai-sleep-stats-image-placeholder-{{ ai_gen_id }}">
+          {{ 'lifestyle-1' | placeholder_svg_tag }}
+          <div class="ai-sleep-stats-empty-state-{{ ai_gen_id }}">
+            Add an image to get started
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if block.settings.headline != blank %}
+      <h2 class="ai-sleep-stats-headline-{{ ai_gen_id }}">{{ block.settings.headline }}</h2>
+    {% endif %}
+
+    {% if block.settings.subtext != blank %}
+      <p class="ai-sleep-stats-subtext-{{ ai_gen_id }}">{{ block.settings.subtext }}</p>
+    {% endif %}
+
+    {% if block.settings.stat_1_percentage != blank %}
+      <div class="ai-sleep-stats-stat-{{ ai_gen_id }}">
+        <div class="ai-sleep-stats-percentage-{{ ai_gen_id }}" data-counter data-target="{{ block.settings.stat_1_percentage }}">0</div>
+        {% if block.settings.stat_1_description != blank %}
+          <p class="ai-sleep-stats-description-{{ ai_gen_id }}">{{ block.settings.stat_1_description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.stat_2_percentage != blank %}
+      <div class="ai-sleep-stats-stat-{{ ai_gen_id }}">
+        <div class="ai-sleep-stats-percentage-{{ ai_gen_id }}" data-counter data-target="{{ block.settings.stat_2_percentage }}">0</div>
+        {% if block.settings.stat_2_description != blank %}
+          <p class="ai-sleep-stats-description-{{ ai_gen_id }}">{{ block.settings.stat_2_description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ai-sleep-stats-cta-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.cta_heading != blank %}
+        <h3 class="ai-sleep-stats-cta-heading-{{ ai_gen_id }}">{{ block.settings.cta_heading }}</h3>
+      {% endif %}
+
+      {% if block.settings.cta_text != blank %}
+        <p class="ai-sleep-stats-cta-text-{{ ai_gen_id }}">{{ block.settings.cta_text }}</p>
+      {% endif %}
+
+      {% if block.settings.button_text != blank %}
+        <a href="#" class="ai-sleep-stats-button-{{ ai_gen_id }}" data-scroll-to-top>
+          {{ block.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</sleep-stats-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SleepStats{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.hasAnimated = false;
+      }
+
+      connectedCallback() {
+        this.button = this.querySelector('[data-scroll-to-top]');
+        if (this.button) {
+          this.button.addEventListener('click', this.handleClick.bind(this));
+        }
+
+        this.counters = this.querySelectorAll('[data-counter]');
+        this.setupIntersectionObserver();
+      }
+
+      setupIntersectionObserver() {
+        const options = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.5
+        };
+
+        this.observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !this.hasAnimated) {
+              this.hasAnimated = true;
+              this.animateCounters();
+            }
+          });
+        }, options);
+
+        this.observer.observe(this);
+      }
+
+      animateCounters() {
+        this.counters.forEach((counter) => {
+          const target = counter.getAttribute('data-target');
+          const numericValue = parseInt(target.replace(/\D/g, ''), 10);
+          const suffix = target.replace(/[0-9]/g, '');
+          const duration = 2000;
+          const startTime = performance.now();
+
+          const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeOutQuad = progress * (2 - progress);
+            const currentValue = Math.floor(easeOutQuad * numericValue);
+
+            counter.textContent = currentValue + suffix;
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              counter.textContent = target;
+            }
+          };
+
+          requestAnimationFrame(animate);
+        });
+      }
+
+      handleClick(event) {
+        event.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+
+      disconnectedCallback() {
+        if (this.button) {
+          this.button.removeEventListener('click', this.handleClick);
+        }
+        if (this.observer) {
+          this.observer.disconnect();
+        }
+      }
+    }
+
+    customElements.define('sleep-stats-{{ ai_gen_id }}', SleepStats{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Why sleep matters",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Modern Life Makes Restful Sleep Harder Than Ever"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Supporting text",
+      "default": "Stress, screens, and constant stimulation make it harder to unwind and get quality sleep."
+    },
+    {
+      "type": "header",
+      "content": "Statistic 1"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_percentage",
+      "label": "Percentage",
+      "default": "74%"
+    },
+    {
+      "type": "textarea",
+      "id": "stat_1_description",
+      "label": "Description",
+      "default": "of adults say stress disrupts their sleep."
+    },
+    {
+      "type": "header",
+      "content": "Statistic 2"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_percentage",
+      "label": "Percentage",
+      "default": "72%"
+    },
+    {
+      "type": "textarea",
+      "id": "stat_2_description",
+      "label": "Description",
+      "default": "of adults experience daytime sleepiness linked to:\nMood Changes • Increased Stress • Lower Productivity"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA heading",
+      "default": "That's Why We Created Calm Nights."
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text",
+      "label": "CTA text",
+      "default": "Melatonin-free sleep support designed to quiet a racing mind and help you wake up feeling rested."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "SHOP Calm Nights"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Supporting text",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "color",
+      "id": "percentage_color",
+      "label": "Percentages",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Descriptions",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "color",
+      "id": "cta_heading_color",
+      "label": "CTA heading",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA text",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#5a1a9a"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "label": "Headline size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subtext_size",
+      "label": "Supporting text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "percentage_size",
+      "label": "Percentage size",
+      "min": 40,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "cta_heading_size",
+      "label": "CTA heading size",
+      "min": 18,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "cta_text_size",
+      "label": "CTA text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_image",
+      "label": "After image",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_headline",
+      "label": "After headline",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_subtext",
+      "label": "After supporting text",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_percentage",
+      "label": "After percentage",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "spacing_between_stats",
+      "label": "Between statistics",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_stats",
+      "label": "After statistics",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "spacing_before_cta",
+      "label": "Before CTA section",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_cta_heading",
+      "label": "After CTA heading",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "spacing_after_cta_text",
+      "label": "After CTA text",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Vertical padding",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 20,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why sleep matters"
+    }
+  ]
+}
 {% endschema %}
