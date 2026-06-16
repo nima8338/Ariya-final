@@ -1,6 +1,817 @@
+{% doc %}
+  @prompt
+    Create a new premium transparency/trust section for the Calm Nights product page.
+    
+    
+    
+    Goal:
+    Replace the current sleep-stat section with a short section that explains why Calm Nights is different.
+    
+    
+    
+    Add an image option at the top:
+    Allow us to upload or insert a picture at the top of the section. Keep it clean, premium, and mobile-friendly.
+    
+    
+    
+    Section copy:
+    
+    
+    
+    Headline:
+    Most Supplement Labels Don’t Tell The Full Story
+    
+    
+    
+    Main stat:
+    80%
+    
+    
+    
+    Stat sentence:
+    of herbal supplements tested were mislabeled.¹
+    
+    
+    
+    Make the “¹” a small clickable superscript source link. Do not add a separate source line.
+    
+    
+    
+    Supporting line:
+    Missing ingredients. Unlisted fillers. Labels that didn’t match.
+    
+    
+    
+    Turn:
+    Calm Nights was built for people who are done guessing.
+    
+    
+    
+    Proof line:
+    Every dose disclosed. Standardized extracts. No proprietary blends.
+    
+    
+    
+    CTA button:
+    Shop Calm Nights
+    
+    
+    
+    CTA behavior:
+    The button should scroll/take the customer back to the top product purchase section.
+    
+    
+    
+    Design:
+    Make the 80% the biggest visual element in the section. Use a clean white background, Ariya purple accents, centered layout, and mobile-first spacing. Keep the section short, premium, and conversion-focused. Do not over-explain the study, make the 80% have an animation of starting from 0% and reaching 80% when you scroll to it, get rid of this line completely, Every dose disclosed. Standardized extracts. No proprietary blends., could you make under calm nights was built for people who are done guessing, 3 check marks one on the left, one in the middle and one on the right with an option for me to insert text next to the checkmark
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-trust-section-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding_mobile }}px 20px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-trust-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding_desktop }}px 40px;
+    }
+  }
+
+  .ai-trust-section__container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .ai-trust-section__image-wrapper-{{ ai_gen_id }} {
+    margin-bottom: 32px;
+  }
+
+  .ai-trust-section__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-trust-section__headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size_mobile }}px;
+    line-height: 1.2;
+    color: {{ block.settings.headline_color }};
+    margin: 0 0 32px;
+    font-weight: 600;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-trust-section__headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size_desktop }}px;
+      margin-bottom: 40px;
+    }
+  }
+
+  .ai-trust-section__stat-container-{{ ai_gen_id }} {
+    margin-bottom: 12px;
+  }
+
+  .ai-trust-section__stat-{{ ai_gen_id }} {
+    font-size: {{ block.settings.stat_size_mobile }}px;
+    line-height: 1;
+    color: {{ block.settings.stat_color }};
+    font-weight: 700;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-trust-section__stat-{{ ai_gen_id }} {
+      font-size: {{ block.settings.stat_size_desktop }}px;
+    }
+  }
+
+  .ai-trust-section__stat-sentence-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size_mobile }}px;
+    line-height: 1.5;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 24px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-trust-section__stat-sentence-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size_desktop }}px;
+      margin-bottom: 32px;
+    }
+  }
+
+  .ai-trust-section__source-link-{{ ai_gen_id }} {
+    font-size: 12px;
+    vertical-align: super;
+    color: {{ block.settings.stat_color }};
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .ai-trust-section__source-link-{{ ai_gen_id }}:hover {
+    text-decoration: underline;
+  }
+
+  .ai-trust-section__supporting-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size_mobile }}px;
+    line-height: 1.5;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 24px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-trust-section__supporting-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size_desktop }}px;
+      margin-bottom: 32px;
+    }
+  }
+
+  .ai-trust-section__turn-{{ ai_gen_id }} {
+    font-size: {{ block.settings.turn_size_mobile }}px;
+    line-height: 1.4;
+    color: {{ block.settings.headline_color }};
+    margin: 0 0 24px;
+    font-weight: 600;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-trust-section__turn-{{ ai_gen_id }} {
+      font-size: {{ block.settings.turn_size_desktop }}px;
+      margin-bottom: 32px;
+    }
+  }
+
+  .ai-trust-section__checkmarks-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-trust-section__checkmarks-{{ ai_gen_id }} {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+  }
+
+  .ai-trust-section__checkmark-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-trust-section__checkmark-item-{{ ai_gen_id }} {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
+  .ai-trust-section__checkmark-icon-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: {{ block.settings.checkmark_size }}px;
+    height: {{ block.settings.checkmark_size }}px;
+    background-color: {{ block.settings.checkmark_bg_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-trust-section__checkmark-icon-{{ ai_gen_id }} svg {
+    width: calc({{ block.settings.checkmark_size }}px * 0.6);
+    height: calc({{ block.settings.checkmark_size }}px * 0.6);
+    stroke: {{ block.settings.checkmark_color }};
+  }
+
+  .ai-trust-section__checkmark-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.checkmark_text_size_mobile }}px;
+    line-height: 1.4;
+    color: {{ block.settings.text_color }};
+    text-align: left;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-trust-section__checkmark-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.checkmark_text_size_desktop }}px;
+      text-align: center;
+    }
+  }
+
+  .ai-trust-section__cta-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ai-trust-section__cta-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+    color: {{ block.settings.button_hover_text_color }};
+  }
+{% endstyle %}
+
+<trust-section-{{ ai_gen_id }} class="ai-trust-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-trust-section__container-{{ ai_gen_id }}">
+    {% if block.settings.image %}
+      <div class="ai-trust-section__image-wrapper-{{ ai_gen_id }}">
+        <img
+          src="{{ block.settings.image | image_url: width: 1200 }}"
+          alt="{{ block.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.image.width }}"
+          height="{{ block.settings.image.height }}"
+          class="ai-trust-section__image-{{ ai_gen_id }}"
+        >
+      </div>
+    {% endif %}
+
+    {% if block.settings.headline != blank %}
+      <h2 class="ai-trust-section__headline-{{ ai_gen_id }}">
+        {{ block.settings.headline }}
+      </h2>
+    {% endif %}
+
+    <div class="ai-trust-section__stat-container-{{ ai_gen_id }}">
+      <p class="ai-trust-section__stat-{{ ai_gen_id }}" data-target-value="{{ block.settings.stat_number }}">0%</p>
+    </div>
+
+    {% if block.settings.stat_sentence != blank %}
+      <p class="ai-trust-section__stat-sentence-{{ ai_gen_id }}">
+        {{ block.settings.stat_sentence }}{% if block.settings.source_url != blank %}<a href="{{ block.settings.source_url }}" class="ai-trust-section__source-link-{{ ai_gen_id }}" target="_blank" rel="noopener">¹</a>{% endif %}
+      </p>
+    {% endif %}
+
+    {% if block.settings.supporting_line != blank %}
+      <p class="ai-trust-section__supporting-{{ ai_gen_id }}">
+        {{ block.settings.supporting_line }}
+      </p>
+    {% endif %}
+
+    {% if block.settings.turn_line != blank %}
+      <p class="ai-trust-section__turn-{{ ai_gen_id }}">
+        {{ block.settings.turn_line }}
+      </p>
+    {% endif %}
+
+    <div class="ai-trust-section__checkmarks-{{ ai_gen_id }}">
+      {% if block.settings.checkmark_1_text != blank %}
+        <div class="ai-trust-section__checkmark-item-{{ ai_gen_id }}">
+          <div class="ai-trust-section__checkmark-icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <span class="ai-trust-section__checkmark-text-{{ ai_gen_id }}">{{ block.settings.checkmark_1_text }}</span>
+        </div>
+      {% endif %}
+
+      {% if block.settings.checkmark_2_text != blank %}
+        <div class="ai-trust-section__checkmark-item-{{ ai_gen_id }}">
+          <div class="ai-trust-section__checkmark-icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <span class="ai-trust-section__checkmark-text-{{ ai_gen_id }}">{{ block.settings.checkmark_2_text }}</span>
+        </div>
+      {% endif %}
+
+      {% if block.settings.checkmark_3_text != blank %}
+        <div class="ai-trust-section__checkmark-item-{{ ai_gen_id }}">
+          <div class="ai-trust-section__checkmark-icon-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <span class="ai-trust-section__checkmark-text-{{ ai_gen_id }}">{{ block.settings.checkmark_3_text }}</span>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if block.settings.cta_text != blank %}
+      <button
+        class="ai-trust-section__cta-{{ ai_gen_id }}"
+        data-scroll-target="{{ block.settings.scroll_target }}"
+      >
+        {{ block.settings.cta_text }}
+      </button>
+    {% endif %}
+  </div>
+</trust-section-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class TrustSection{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.hasAnimated = false;
+      }
+
+      connectedCallback() {
+        this.button = this.querySelector('.ai-trust-section__cta-{{ ai_gen_id }}');
+        this.statElement = this.querySelector('.ai-trust-section__stat-{{ ai_gen_id }}');
+        
+        if (this.button) {
+          this.button.addEventListener('click', this.handleClick.bind(this));
+        }
+
+        if (this.statElement) {
+          this.setupIntersectionObserver();
+        }
+      }
+
+      setupIntersectionObserver() {
+        const options = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.5
+        };
+
+        this.observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !this.hasAnimated) {
+              this.animateCounter();
+              this.hasAnimated = true;
+            }
+          });
+        }, options);
+
+        this.observer.observe(this.statElement);
+      }
+
+      animateCounter() {
+        const targetValue = this.statElement.getAttribute('data-target-value');
+        const numericValue = parseInt(targetValue);
+        const hasPercentSign = targetValue.includes('%');
+        const duration = 2000;
+        const startTime = performance.now();
+
+        const animate = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+          const currentValue = Math.floor(easeOutQuart * numericValue);
+          
+          if (hasPercentSign) {
+            this.statElement.textContent = currentValue + '%';
+          } else {
+            this.statElement.textContent = currentValue;
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            this.statElement.textContent = targetValue;
+          }
+        };
+
+        requestAnimationFrame(animate);
+      }
+
+      handleClick() {
+        const targetSelector = this.button.getAttribute('data-scroll-target');
+        if (!targetSelector) return;
+
+        const targetElement = document.querySelector(targetSelector);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+
+      disconnectedCallback() {
+        if (this.button) {
+          this.button.removeEventListener('click', this.handleClick.bind(this));
+        }
+        if (this.observer) {
+          this.observer.disconnect();
+        }
+      }
+    }
+
+    customElements.define('trust-section-{{ ai_gen_id }}', TrustSection{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Trust section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Most Supplement Labels Don't Tell The Full Story"
+    },
+    {
+      "type": "text",
+      "id": "stat_number",
+      "label": "Main stat",
+      "default": "80%"
+    },
+    {
+      "type": "text",
+      "id": "stat_sentence",
+      "label": "Stat sentence",
+      "default": "of herbal supplements tested were mislabeled."
+    },
+    {
+      "type": "url",
+      "id": "source_url",
+      "label": "Source link URL"
+    },
+    {
+      "type": "text",
+      "id": "supporting_line",
+      "label": "Supporting line",
+      "default": "Missing ingredients. Unlisted fillers. Labels that didn't match."
+    },
+    {
+      "type": "text",
+      "id": "turn_line",
+      "label": "Turn line",
+      "default": "Calm Nights was built for people who are done guessing."
+    },
+    {
+      "type": "header",
+      "content": "Checkmarks"
+    },
+    {
+      "type": "text",
+      "id": "checkmark_1_text",
+      "label": "Checkmark 1 text",
+      "default": "Every dose disclosed"
+    },
+    {
+      "type": "text",
+      "id": "checkmark_2_text",
+      "label": "Checkmark 2 text",
+      "default": "Standardized extracts"
+    },
+    {
+      "type": "text",
+      "id": "checkmark_3_text",
+      "label": "Checkmark 3 text",
+      "default": "No proprietary blends"
+    },
+    {
+      "type": "range",
+      "id": "checkmark_size",
+      "label": "Checkmark icon size",
+      "min": 24,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "checkmark_text_size_mobile",
+      "label": "Text size (mobile)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "checkmark_text_size_desktop",
+      "label": "Text size (desktop)",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "checkmark_bg_color",
+      "label": "Checkmark background",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "checkmark_color",
+      "label": "Checkmark icon",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "CTA button"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Shop Calm Nights"
+    },
+    {
+      "type": "text",
+      "id": "scroll_target",
+      "label": "Scroll target selector",
+      "default": ".product-form",
+      "info": "CSS selector for the element to scroll to (e.g., .product-form, #purchase-section)"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile",
+      "label": "Mobile padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop",
+      "label": "Desktop padding",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "stat_color",
+      "label": "Stat",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button hover background",
+      "default": "#5a1a9a"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "headline_size_mobile",
+      "label": "Headline size (mobile)",
+      "min": 18,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "headline_size_desktop",
+      "label": "Headline size (desktop)",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "stat_size_mobile",
+      "label": "Stat size (mobile)",
+      "min": 48,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "stat_size_desktop",
+      "label": "Stat size (desktop)",
+      "min": 64,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "turn_size_mobile",
+      "label": "Turn line size (mobile)",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "turn_size_desktop",
+      "label": "Turn line size (desktop)",
+      "min": 18,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text size (mobile)",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "label": "Text size (desktop)",
+      "min": 14,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Vertical padding",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 16,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust section"
+    }
+  ]
+}
 {% endschema %}
