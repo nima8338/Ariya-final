@@ -522,52 +522,6 @@
           },
           "blocks": {}
         },
-        "ai_gen_block_97546c4_N4FfKH": {
-          "type": "ai_gen_block_97546c4",
-          "settings": {
-            "image": "shopify://shop_images/Ariya_bottle_8.jpg",
-            "show_image_placeholder": false,
-            "image_border_radius": 12,
-            "headline": "Most Supplement Labels Don't Tell The Full Story",
-            "stat": "80%",
-            "stat_sentence": "of herbal supplements tested were mislabeled.",
-            "source_url": "https://www.pbs.org/newshour/show/store-bought-herbal-supplements-may-advertise",
-            "supporting_line": "Missing ingredients. Unlisted fillers. Labels that didn't match.",
-            "turn_line": "Calm Nights is for people who are done guessing.",
-            "checkmark_1_text": "Every dose disclosed",
-            "checkmark_2_text": "Standardized extracts",
-            "checkmark_3_text": "No proprietary blends",
-            "checkmark_size": 40,
-            "checkmark_text_size": 14,
-            "checkmark_background": "#e8d9f7",
-            "checkmark_color": "#3c0e66",
-            "cta_text": "Shop Calm Nights",
-            "max_width": 700,
-            "section_padding_mobile": 40,
-            "section_padding_desktop": 60,
-            "headline_size_mobile": 24,
-            "headline_size_desktop": 32,
-            "stat_size_mobile": 72,
-            "stat_size_desktop": 120,
-            "turn_size_mobile": 18,
-            "turn_size_desktop": 22,
-            "text_size_mobile": 16,
-            "text_size_desktop": 18,
-            "background_color": "#ffffff",
-            "headline_color": "#1a0a2e",
-            "stat_color": "#3c0e66",
-            "text_color": "#3c0e66",
-            "button_background": "#3c0e66",
-            "button_text_color": "#ffffff",
-            "button_hover_background": "#5a1a9a",
-            "button_hover_text_color": "#ffffff",
-            "button_text_size": 16,
-            "button_padding_vertical": 14,
-            "button_padding_horizontal": 32,
-            "button_border_radius": 8
-          },
-          "blocks": {}
-        },
         "ai_gen_block_8c1b4be_NJ8pxA": {
           "type": "ai_gen_block_8c1b4be",
           "settings": {
@@ -805,38 +759,6 @@
           },
           "blocks": {}
         },
-        "judge_me_reviews_videos_carousel_EJLLTA": {
-          "type": "shopify://apps/judge-me-reviews/blocks/videos_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "show_sample_reviews": true,
-            "reviews_selection": "all",
-            "products": [
-              "calm-nights"
-            ],
-            "star_rating": "all",
-            "review_type": "photo_and_video",
-            "max_reviews": 20,
-            "show_reviewer_name": true,
-            "stars_size": "medium",
-            "text_size": "medium",
-            "arrows_position": "bottom",
-            "max_width": 1100,
-            "corner_styling": "soft",
-            "header_text_color": "#3c0e66",
-            "card_color": "#3c0e66",
-            "stars_color": "#efcb21",
-            "text_color": "#ffffff",
-            "arrows_color": "#e8d9f7",
-            "show_drop_shadow": false,
-            "show_border": false,
-            "border_color": "#108474",
-            "autoplay_media": true,
-            "transition_speed": 5,
-            "carousel_style": "highlight",
-            "header_text": "Real customer stories",
-            "show_average_rating": true
-          }
-        },
         "judge_me_reviews_review_widget_xepgRK": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
@@ -889,12 +811,10 @@
       "block_order": [
         "ai_gen_block_9088aed_kKxLPJ",
         "ai_gen_block_cfd452c_W9C8A3",
-        "ai_gen_block_97546c4_N4FfKH",
         "ai_gen_block_8c1b4be_NJ8pxA",
         "ai_gen_block_f9a6918_TpaXeF",
         "ai_gen_block_13b5f83_tbnKyy",
         "ai_gen_block_115c375_rqyCrx",
-        "judge_me_reviews_videos_carousel_EJLLTA",
         "judge_me_reviews_review_widget_xepgRK",
         "judge_me_reviews_store_summary_VzgDAx",
         "payment_icons_xQk8yq"
