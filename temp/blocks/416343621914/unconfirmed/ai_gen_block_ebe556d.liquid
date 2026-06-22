@@ -1,6 +1,984 @@
+{% doc %}
+  @prompt
+    Create a clean, premium ingredient spotlight section for a sleep supplement brand called Ariya. The section should feel modern, soft, trustworthy, and science-backed, while still warm and easy to understand.
+    
+    Section goal
+    Show the ingredients inside Calm Nights in a visually appealing grid that highlights what each ingredient does. This section should communicate transparency, quality, and function.
+    
+    Brand style
+    Use Ariya brand colors only:
+    
+    Deep purple: #3C0E66
+    Gold: #EFCB21
+    Light purple: #C99CF1
+    Do not use navy blue or off-brand colors.
+    
+    Section header
+    Headline: Inside Calm Nights
+    Subheadline: Every ingredient was chosen for a reason. No proprietary blends. No hidden doses.
+    
+    Layout
+    Create a grid of ingredient cards
+    Desktop: 3 cards per row
+    Mobile: 2 cards per row
+    Keep spacing clean and balanced
+    Section background should be a very light soft gray or off-white
+    Cards should have a white background, soft rounded corners, subtle border or shadow, and a clean premium feel
+    Very important image instructions
+    The ingredient visuals should not look like flat square photos inside a frame.
+    
+    Instead:
+    
+    Each ingredient image should appear like a cut-out / isolated ingredient
+    It should look like the actual ingredient is floating naturally
+    Use transparent PNG-style presentation if possible
+    No circular crop
+    No icon badge style
+    No image inside a circle
+    No generic framed stock-photo look
+    The ingredient should be the main visual, centered near the top of each card, with breathing room around it
+    A subtle floating look is ideal
+    Card structure
+    Each ingredient card should include:
+    
+    Small rounded purple label/tag above the ingredient name
+    Ingredient name in bold
+    Short benefit description underneath
+    Ingredient cards content
+    1. Tag: CALM MIND
+    Ingredient: L-Theanine
+    Description: Supports relaxation and helps quiet racing thoughts before bed.
+    
+    2. Tag: STRESS RELIEF
+    Ingredient: Lemon Balm Extract
+    Description: Traditional botanical used to promote calmness and support relaxation.
+    
+    3. Tag: RELAXATION
+    Ingredient: Chamomile Extract
+    Description: Well-known herbal extract traditionally used to support restful sleep.
+    
+    4. Tag: DEEP CALM
+    Ingredient: Magnolia Bark Extract
+    Description: Supports relaxation and helps ease mental tension before bed.
+    
+    5. Tag: SLEEP SUPPORT
+    Ingredient: L-Tryptophan
+    Description: Amino acid that helps support your body’s natural melatonin and serotonin production.
+    
+    6. Tag: SLEEP PATHWAYS
+    Ingredient: Vitamin B6
+    Description: Supports neurotransmitter production involved in healthy sleep cycles.
+    
+    7. Tag: SLEEP QUALITY
+    Ingredient: Tart Cherry Extract
+    Description: Naturally contains compounds that support healthy sleep quality and recovery.
+    
+    Typography
+    Headline should feel strong and clean
+    Ingredient names should stand out clearly
+    Keep descriptions readable and slightly smaller
+    Make the purple category tags bold and easy to scan
+    Overall feel should be premium, minimal, and not cluttered
+    Design rules
+    Keep the design elegant and simple
+    Make it easy to skim
+    Use soft shadows and rounded corners
+    Make the cards feel polished and high-converting
+    Prioritize mobile responsiveness
+    Do not overcrowd the section
+    Keep visual emphasis on the ingredient cutout and benefit
+    Final instruction
+    Build this as a polished Shopify section that looks custom and premium, with ingredient images that feel like floating real ingredients, not boxed-in photos.
+    
+    One important note for you
+    If you want Shopify to actually make the images feel like floating ingredients, your best move is to upload transparent PNG cutouts of each ingredient.
+    Because if you upload normal square images, Shopify will usually just place them as square images., make the images float up and down , for the mobile version only, make the tart cherry box be center aligned instead of left aligned, now for the desktop version only not the mobile, can you have the first row have 4 boxes L-theanine, lemon balm, chamomile and magnolia bark then under that row the 3 remaining boxes , shift the all 3 boxes on the 2nd row a bit to the right
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-ingredient-spotlight-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.section_background }};
+    padding: {{ block.settings.section_padding_top }}px 20px {{ block.settings.section_padding_bottom }}px;
+  }
+
+  .ai-ingredient-spotlight__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-ingredient-spotlight__header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: {{ block.settings.header_spacing }}px;
+  }
+
+  .ai-ingredient-spotlight__headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.headline_color }};
+    margin: 0 0 12px;
+    line-height: 1.2;
+  }
+
+  .ai-ingredient-spotlight__subheadline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subheadline_size }}px;
+    color: {{ block.settings.subheadline_color }};
+    margin: 0;
+    line-height: 1.5;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ai-ingredient-spotlight__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: {{ block.settings.card_gap }}px;
+    margin-top: {{ block.settings.grid_top_spacing }}px;
+  }
+
+  .ai-ingredient-spotlight__card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: {{ block.settings.card_padding }}px;
+    text-align: center;
+    {% if block.settings.card_border_style == 'solid' %}
+      border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+    {% endif %}
+    {% if block.settings.card_shadow_enabled %}
+      box-shadow: 0 {{ block.settings.card_shadow_y }}px {{ block.settings.card_shadow_blur }}px {{ block.settings.card_shadow_spread }}px {{ block.settings.card_shadow_color }};
+    {% endif %}
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(n+5) {
+    grid-column: span 1;
+  }
+
+  .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(5) {
+    grid-column: 2 / 3;
+  }
+
+  .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(6) {
+    grid-column: 3 / 4;
+  }
+
+  .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(7) {
+    grid-column: 4 / 5;
+  }
+
+  .ai-ingredient-spotlight__card-{{ ai_gen_id }}:hover {
+    {% if block.settings.card_hover_lift %}
+      transform: translateY(-4px);
+    {% endif %}
+    {% if block.settings.card_shadow_enabled and block.settings.card_hover_lift %}
+      box-shadow: 0 {{ block.settings.card_shadow_y | plus: 4 }}px {{ block.settings.card_shadow_blur | plus: 4 }}px {{ block.settings.card_shadow_spread }}px {{ block.settings.card_shadow_color }};
+    {% endif %}
+  }
+
+  .ai-ingredient-spotlight__image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.image_height }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: {{ block.settings.image_bottom_spacing }}px;
+    position: relative;
+  }
+
+  .ai-ingredient-spotlight__image-{{ ai_gen_id }} {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    {% if block.settings.float_animation_enabled %}
+      animation: ai-ingredient-float-{{ ai_gen_id }} {{ block.settings.float_duration }}s ease-in-out infinite;
+    {% endif %}
+  }
+
+  .ai-ingredient-spotlight__placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+  }
+
+  .ai-ingredient-spotlight__placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  {% if block.settings.float_animation_enabled %}
+    @keyframes ai-ingredient-float-{{ ai_gen_id }} {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-{{ block.settings.float_distance }}px);
+      }
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(1) .ai-ingredient-spotlight__image-{{ ai_gen_id }} {
+      animation-delay: 0s;
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(2) .ai-ingredient-spotlight__image-{{ ai_gen_id }} {
+      animation-delay: 0.2s;
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(3) .ai-ingredient-spotlight__image-{{ ai_gen_id }} {
+      animation-delay: 0.4s;
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(4) .ai-ingredient-spotlight__image-{{ ai_gen_id }} {
+      animation-delay: 0.6s;
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(5) .ai-ingredient-spotlight__image-{{ ai_gen_id }} {
+      animation-delay: 0.8s;
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(6) .ai-ingredient-spotlight__image-{{ ai_gen_id }} {
+      animation-delay: 1s;
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(7) .ai-ingredient-spotlight__image-{{ ai_gen_id }} {
+      animation-delay: 1.2s;
+    }
+  {% endif %}
+
+  .ai-ingredient-spotlight__tag-{{ ai_gen_id }} {
+    display: inline-block;
+    background-color: {{ block.settings.tag_background }};
+    color: {{ block.settings.tag_text_color }};
+    font-size: {{ block.settings.tag_font_size }}px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: {{ block.settings.tag_padding_vertical }}px {{ block.settings.tag_padding_horizontal }}px;
+    border-radius: {{ block.settings.tag_border_radius }}px;
+    margin-bottom: {{ block.settings.tag_bottom_spacing }}px;
+  }
+
+  .ai-ingredient-spotlight__name-{{ ai_gen_id }} {
+    font-size: {{ block.settings.ingredient_name_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.ingredient_name_color }};
+    margin: 0 0 {{ block.settings.name_bottom_spacing }}px;
+    line-height: 1.3;
+  }
+
+  .ai-ingredient-spotlight__description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-ingredient-spotlight-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top | times: 0.7 }}px 16px {{ block.settings.section_padding_bottom | times: 0.7 }}px;
+    }
+
+    .ai-ingredient-spotlight__headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size | times: 0.7 }}px;
+    }
+
+    .ai-ingredient-spotlight__subheadline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subheadline_size | times: 0.9 }}px;
+    }
+
+    .ai-ingredient-spotlight__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(n+5) {
+      grid-column: span 1;
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(5) {
+      grid-column: auto;
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(6) {
+      grid-column: auto;
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }}:nth-child(7) {
+      grid-column: 1 / -1;
+      max-width: 50%;
+      margin: 0 auto;
+    }
+
+    .ai-ingredient-spotlight__card-{{ ai_gen_id }} {
+      padding: {{ block.settings.card_padding | times: 0.8 }}px;
+    }
+
+    .ai-ingredient-spotlight__image-wrapper-{{ ai_gen_id }} {
+      height: {{ block.settings.image_height | times: 0.8 }}px;
+    }
+
+    .ai-ingredient-spotlight__tag-{{ ai_gen_id }} {
+      font-size: {{ block.settings.tag_font_size | times: 0.9 }}px;
+    }
+
+    .ai-ingredient-spotlight__name-{{ ai_gen_id }} {
+      font-size: {{ block.settings.ingredient_name_size | times: 0.9 }}px;
+    }
+
+    .ai-ingredient-spotlight__description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size | times: 0.9 }}px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ai-ingredient-spotlight__image-{{ ai_gen_id }} {
+      animation: none;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-ingredient-spotlight-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-ingredient-spotlight__container-{{ ai_gen_id }}">
+    <div class="ai-ingredient-spotlight__header-{{ ai_gen_id }}">
+      <h2 class="ai-ingredient-spotlight__headline-{{ ai_gen_id }}">{{ block.settings.headline }}</h2>
+      <p class="ai-ingredient-spotlight__subheadline-{{ ai_gen_id }}">{{ block.settings.subheadline }}</p>
+    </div>
+
+    <div class="ai-ingredient-spotlight__grid-{{ ai_gen_id }}">
+      {% for i in (1..7) %}
+        {% liquid
+          assign tag_key = 'ingredient_' | append: i | append: '_tag'
+          assign name_key = 'ingredient_' | append: i | append: '_name'
+          assign description_key = 'ingredient_' | append: i | append: '_description'
+          assign image_key = 'ingredient_' | append: i | append: '_image'
+
+          assign tag = block.settings[tag_key]
+          assign name = block.settings[name_key]
+          assign description = block.settings[description_key]
+          assign image = block.settings[image_key]
+        %}
+
+        <div class="ai-ingredient-spotlight__card-{{ ai_gen_id }}">
+          <div class="ai-ingredient-spotlight__image-wrapper-{{ ai_gen_id }}">
+            {% if image %}
+              <img
+                src="{{ image | image_url: width: 400 }}"
+                alt="{{ name | escape }}"
+                loading="lazy"
+                width="400"
+                height="400"
+                class="ai-ingredient-spotlight__image-{{ ai_gen_id }}"
+              >
+            {% else %}
+              <div class="ai-ingredient-spotlight__placeholder-{{ ai_gen_id }}">
+                {{ 'product-1' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="ai-ingredient-spotlight__tag-{{ ai_gen_id }}">{{ tag }}</div>
+          <h3 class="ai-ingredient-spotlight__name-{{ ai_gen_id }}">{{ name }}</h3>
+          <p class="ai-ingredient-spotlight__description-{{ ai_gen_id }}">{{ description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Ingredient spotlight",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Inside Calm Nights"
+    },
+    {
+      "type": "textarea",
+      "id": "subheadline",
+      "label": "Subheadline",
+      "default": "Every ingredient was chosen for a reason. No proprietary blends. No hidden doses."
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "label": "Headline size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "subheadline_size",
+      "label": "Subheadline size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline color",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "subheadline_color",
+      "label": "Subheadline color",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "range",
+      "id": "header_spacing",
+      "label": "Header bottom spacing",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Background color",
+      "default": "#f9f6ff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Top padding",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Bottom padding",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "grid_top_spacing",
+      "label": "Grid top spacing",
+      "min": 20,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Card spacing",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Padding",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "card_border_style",
+      "label": "Border style",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "solid",
+          "label": "Solid"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "label": "Border width",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Border color",
+      "default": "#e8d9f7"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_shadow_enabled",
+      "label": "Enable shadow",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_y",
+      "label": "Shadow vertical offset",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_blur",
+      "label": "Shadow blur",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_spread",
+      "label": "Shadow spread",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "card_shadow_color",
+      "label": "Shadow color",
+      "default": "#3c0e6614"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_hover_lift",
+      "label": "Lift on hover",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Ingredient image"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Image height",
+      "min": 80,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "image_bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Float animation"
+    },
+    {
+      "type": "checkbox",
+      "id": "float_animation_enabled",
+      "label": "Enable float animation",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "float_distance",
+      "label": "Float distance",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "float_duration",
+      "label": "Animation duration",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "unit": "s",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Category tag"
+    },
+    {
+      "type": "color",
+      "id": "tag_background",
+      "label": "Background",
+      "default": "#c99cf1"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "Text color",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "range",
+      "id": "tag_font_size",
+      "label": "Font size",
+      "min": 9,
+      "max": 14,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "tag_padding_vertical",
+      "label": "Vertical padding",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "tag_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 6,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "tag_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "tag_bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 6,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Ingredient name"
+    },
+    {
+      "type": "range",
+      "id": "ingredient_name_size",
+      "label": "Font size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "ingredient_name_color",
+      "label": "Color",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "range",
+      "id": "name_bottom_spacing",
+      "label": "Bottom spacing",
+      "min": 6,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Color",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 1"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_1_tag",
+      "label": "Tag",
+      "default": "CALM MIND"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_1_name",
+      "label": "Name",
+      "default": "L-Theanine"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_1_description",
+      "label": "Description",
+      "default": "Supports relaxation and helps quiet racing thoughts before bed."
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 2"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_2_tag",
+      "label": "Tag",
+      "default": "STRESS RELIEF"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_2_name",
+      "label": "Name",
+      "default": "Lemon Balm Extract"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_2_description",
+      "label": "Description",
+      "default": "Traditional botanical used to promote calmness and support relaxation."
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 3"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_3_tag",
+      "label": "Tag",
+      "default": "RELAXATION"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_3_name",
+      "label": "Name",
+      "default": "Chamomile Extract"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_3_description",
+      "label": "Description",
+      "default": "Well-known herbal extract traditionally used to support restful sleep."
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 4"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_4_tag",
+      "label": "Tag",
+      "default": "DEEP CALM"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_4_name",
+      "label": "Name",
+      "default": "Magnolia Bark Extract"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_4_description",
+      "label": "Description",
+      "default": "Supports relaxation and helps ease mental tension before bed."
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 5"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_5_tag",
+      "label": "Tag",
+      "default": "SLEEP SUPPORT"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_5_name",
+      "label": "Name",
+      "default": "L-Tryptophan"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_5_description",
+      "label": "Description",
+      "default": "Amino acid that helps support your body's natural melatonin and serotonin production."
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 6"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_6_tag",
+      "label": "Tag",
+      "default": "SLEEP PATHWAYS"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_6_name",
+      "label": "Name",
+      "default": "Vitamin B6"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_6_description",
+      "label": "Description",
+      "default": "Supports neurotransmitter production involved in healthy sleep cycles."
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_6_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Ingredient 7"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_7_tag",
+      "label": "Tag",
+      "default": "SLEEP QUALITY"
+    },
+    {
+      "type": "text",
+      "id": "ingredient_7_name",
+      "label": "Name",
+      "default": "Tart Cherry Extract"
+    },
+    {
+      "type": "textarea",
+      "id": "ingredient_7_description",
+      "label": "Description",
+      "default": "Naturally contains compounds that support healthy sleep quality and recovery."
+    },
+    {
+      "type": "image_picker",
+      "id": "ingredient_7_image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredient spotlight"
+    }
+  ]
+}
 {% endschema %}
