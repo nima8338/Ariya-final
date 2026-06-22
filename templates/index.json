@@ -32,7 +32,7 @@
     "brand_story": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<div id=\"story\" class=\"ariya-section ariya-story\">\n    <div class=\"ariya-container\">                                                                      \n      <div class=\"ariya-grid-2\">                                                                       \n                                              \n        <div class=\"ariya-reveal-left\">                                                                \n          <img class=\"ariya-story__image\"\n  src=\"https://cdn.shopify.com/s/files/1/0989/3734/0186/files/IMG_6160.png?v=1776108326\" alt=\"Our      \n  Story\" style=\"aspect-ratio:4/5;border-radius:24px;width:100%;object-fit:cover;\">\n        </div>                                                                                         \n                                                                                                       \n        <div class=\"ariya-reveal-right\">\n          <p class=\"ariya-label\">Our Story</p>                                                         \n          <div class=\"ariya-divider\"></div>\n          <h2 class=\"ariya-heading ariya-heading--lg\">Built by customers who got frustrated.</h2>\n          <p class=\"ariya-body\">Like you, we started out as customers. We trusted the big names in the\n  industry and all we found were empty promises, hidden blends, and labels we couldn't trust.</p>\n          <p class=\"ariya-body\">We knew it didn't have to be this way. And we realized the same people\n  who fell for their promises had to be the ones to change it.</p>                                     \n          <p class=\"ariya-body\">That's why we built Ariya. Every product is non-GMO, tested for heavy  \n  metals and contaminations, and fully traceable so you never have to guess what you're putting into \n  your body.</p>                                                                                       \n          <p class=\"ariya-body\" style=\"margin-top:16px;\"><strong>Because transparency isn't a luxury.\n  It's a requirement.</strong></p>                                                                     \n        </div>                            \n                                                                                                       \n      </div>                                                                                           \n    </div>\n  </div>",
+        "custom_liquid": "<div id=\"story\" class=\"ariya-section ariya-story\">\n    <div class=\"ariya-container\">                                                                      \n      <div class=\"ariya-grid-2\">                                                                       \n                                              \n        <div class=\"ariya-reveal-left\">                                                                \n          <img class=\"ariya-story__image\"\n  src=\"https://cdn.shopify.com/s/files/1/0989/3734/0186/files/IMG_6160.png?v=1776108326\" alt=\"Our      \n  Story\" style=\"aspect-ratio:4/5;border-radius:24px;width:100%;object-fit:cover;\">\n        </div>                                                                                         \n                                                                                                       \n        <div class=\"ariya-reveal-right\">\n          <p class=\"ariya-label\">Our Story</p>                                                         \n          <div class=\"ariya-divider\"></div>\n          <h2 class=\"ariya-heading ariya-heading--lg\">Built by customers who got frustrated.</h2>\n          <p class=\"ariya-body\">Like you, we started out as customers. We trusted the big names in the\n  industry and all we found were empty promises, hidden blends, and labels we couldn't trust.</p>\n          <p class=\"ariya-body\">We knew it didn't have to be this way. And we realized the same people\n  who fell for their promises had to be the ones to change it.</p>                                     \n          <p class=\"ariya-body\">That's why we built Ariya. Every product is made with non-GMO ingredients, tested for heavy  \n  metals and contaminations, and fully traceable so you never have to guess what you're putting into \n  your body.</p>                                                                                       \n          <p class=\"ariya-body\" style=\"margin-top:16px;\"><strong>Because transparency isn't a luxury.\n  It's a requirement.</strong></p>                                                                     \n        </div>                            \n                                                                                                       \n      </div>                                                                                           \n    </div>\n  </div>",
         "color_scheme": "scheme-1",
         "section_width": "full-width",
         "padding-block-start": 0,
@@ -91,7 +91,8 @@
             "transition_speed": 5,
             "carousel_style": "highlight",
             "header_text": "See It For Yourself",
-            "show_average_rating": true
+            "show_average_rating": true,
+            "rating_display": "default"
           }
         }
       },
@@ -178,7 +179,8 @@
             "arrows_color": "#c99cf1",
             "transition_speed": 5,
             "header_text": "Real Results, Real People",
-            "show_average_rating": true
+            "show_average_rating": true,
+            "rating_display": "default"
           }
         }
       },
@@ -245,7 +247,8 @@
             "show_drop_shadow": false,
             "transition_speed": 5,
             "header_text": "Customers are saying",
-            "show_average_rating": true
+            "show_average_rating": true,
+            "rating_display": "default"
           }
         }
       },
