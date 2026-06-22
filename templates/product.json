@@ -147,7 +147,7 @@
                   "type": "text",
                   "name": "Product title",
                   "settings": {
-                    "text": "<p>Fall asleep naturally. No melatonin. No grogginess</p><p>✓  Falls asleep faster — no synthetic melatonin.</p><p>✓  Quiets racing thoughts. Your brain actually shuts off.</p><p>✓  Wake up clear — no grogginess, no dependency.</p><p>✓  Standardized extracts — no underdosed fillers.</p>",
+                    "text": "<p>✓  Falls asleep faster — no synthetic melatonin.</p><p>✓  Quiets racing thoughts. Your brain actually shuts off.</p><p>✓  Wake up clear — no grogginess, no dependency.</p><p>✓  Standardized extracts — no underdosed fillers.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
