@@ -145,30 +145,6 @@
     },
     "17833052064b76da4f": {
       "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_1135123_6Tmetm": {
-          "type": "ai_gen_block_1135123",
-          "settings": {
-            "button_text": "Shop Calm Nights",
-            "product_link": "shopify://products/calm-nights",
-            "button_background": "#3c0e66",
-            "button_text_color": "#ffffff",
-            "button_border_color": "#3c0e66",
-            "button_hover_background": "#5a1a9a",
-            "button_hover_text_color": "#ffffff",
-            "button_hover_border_color": "#5a1a9a",
-            "button_font_size": 16,
-            "button_padding": 14,
-            "button_border_radius": 8,
-            "button_border_width": 0,
-            "button_text_transform": "none"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_1135123_6Tmetm"
-      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
