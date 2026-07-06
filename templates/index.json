@@ -143,6 +143,60 @@
         "padding-block-end": 0
       }
     },
+    "17833052064b76da4f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1135123_6Tmetm": {
+          "type": "ai_gen_block_1135123",
+          "settings": {
+            "button_text": "Shop Calm Nights",
+            "product_link": "shopify://products/calm-nights",
+            "button_background": "#3c0e66",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#3c0e66",
+            "button_hover_background": "#5a1a9a",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#5a1a9a",
+            "button_font_size": 16,
+            "button_padding": 14,
+            "button_border_radius": 8,
+            "button_border_width": 0,
+            "button_text_transform": "none"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1135123_6Tmetm"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "1777666723a4daaec1": {
       "type": "_blocks",
       "blocks": {
@@ -375,6 +429,7 @@
     "brand_story",
     "quality_manufacturing",
     "team_section",
+    "17833052064b76da4f",
     "1777666723a4daaec1",
     "1777667170f7865615",
     "177766780220ea256f"
