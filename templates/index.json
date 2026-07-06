@@ -19,6 +19,89 @@
         "padding-block-end": 0
       }
     },
+    "178329844308966845": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_837a331_8U4D8C": {
+          "type": "ai_gen_block_837a331",
+          "settings": {
+            "product": "calm-nights",
+            "product_title": "Calm Nights",
+            "product_description": "Melatonin-free sleep support built with fully disclosed doses and standardized extracts.",
+            "show_badge": true,
+            "badge_text": "Melatonin-Free",
+            "badge_background": "#efcb21",
+            "badge_text_color": "#1a0a2e",
+            "badge_border_radius": 20,
+            "show_social_proof": true,
+            "review_text": "Genuinely the best, it soothed me straight to sleep... I also dreamt which I couldn't remember the last time I did.",
+            "reviewer_name": "Mia C.",
+            "star_color": "#efcb21",
+            "show_benefits": true,
+            "benefit_1": "Fall asleep faster",
+            "benefit_2": "Stay asleep longer",
+            "benefit_3": "Wake up refreshed, not groggy",
+            "benefit_4": "No proprietary blends",
+            "benefit_5": "Fully disclosed doses",
+            "subscription_price": "$29.75",
+            "value_line": "Just $0.99/night",
+            "serving_info": "60 capsules • 30 servings",
+            "shipping_text": "Free shipping",
+            "button_text": "Shop Calm Nights",
+            "max_width": 1200,
+            "section_padding": 60,
+            "column_gap": 60,
+            "image_border_radius": 24,
+            "button_border_radius": 24,
+            "background_color": "#f9f6ff",
+            "text_color": "#1a0a2e",
+            "accent_color": "#3c0e66",
+            "button_bg": "#3c0e66",
+            "button_text_color": "#ffffff",
+            "button_hover_bg": "#5a1a9a",
+            "title_size": 40,
+            "description_size": 16,
+            "benefit_size": 15,
+            "price_size": 32,
+            "meta_size": 14,
+            "review_size": 13,
+            "reviewer_size": 11,
+            "button_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_837a331_8U4D8C"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "calm_nights_feature": {
       "type": "custom-liquid",
       "settings": {
@@ -286,6 +369,7 @@
   },
   "order": [
     "hero_animated",
+    "178329844308966845",
     "calm_nights_feature",
     "brand_story",
     "quality_manufacturing",
