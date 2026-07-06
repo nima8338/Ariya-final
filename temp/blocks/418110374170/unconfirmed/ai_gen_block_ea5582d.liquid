@@ -1,6 +1,36 @@
+{% doc %}
+  @prompt
+    Add custom CSS to underline the "Source" footer link at the bottom of the Trust section block (section ID: template--26862959624474__17776601748cd480bc, block ID: template--26862959624474__17776601748cd480bc__ai_gen_block_cfd452c_W9C8A3). The link should have text-decoration: underline so users can clearly see it is clickable.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-trust-source-link-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  #shopify-section-template--26862959624474__17776601748cd480bc .ai-gen-block-cfd452cw9c8a3 a[href*="Source"],
+  #shopify-section-template--26862959624474__17776601748cd480bc .ai-gen-block-cfd452cw9c8a3 a:last-child {
+    text-decoration: underline !important;
+  }
+{% endstyle %}
+
+<div class="ai-trust-source-link-{{ ai_gen_id }}" {{ block.shopify_attributes }}></div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Trust source link style",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "This block adds custom CSS to underline the Source footer link in the Trust section block."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust source link style"
+    }
+  ]
+}
 {% endschema %}
