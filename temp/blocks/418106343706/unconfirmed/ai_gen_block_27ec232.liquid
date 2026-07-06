@@ -1,6 +1,171 @@
+{% doc %}
+  @prompt
+    just create a button that says shop calm nights and it leads to our proudct page when pressed, put the button in the middle and have it be horizontal instead of vertical, put the button in the middle and have it be horizontal instead of vertical, center align it instead of left align
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-shop-button-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  .ai-shop-button-link-{{ ai_gen_id }} {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: {{ block.settings.button_padding }}px {{ block.settings.button_padding | times: 2 }}px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    white-space: nowrap;
+    {% if block.settings.button_text_transform == 'uppercase' %}
+      text-transform: uppercase;
+    {% endif %}
+  }
+
+  .ai-shop-button-link-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_text_color }};
+    border-color: {{ block.settings.button_hover_border_color }};
+  }
+{% endstyle %}
+
+<div class="ai-shop-button-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <a href="{{ block.settings.product_link }}" class="ai-shop-button-link-{{ ai_gen_id }}">
+    {{ block.settings.button_text }}
+  </a>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Shop button",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Calm Nights"
+    },
+    {
+      "type": "url",
+      "id": "product_link",
+      "label": "Product link"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background color",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border color",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background color",
+      "default": "#5a1a9a"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Hover border color",
+      "default": "#5a1a9a"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding",
+      "label": "Padding",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "button_text_transform",
+      "label": "Text case",
+      "options": [
+        {
+          "value": "none",
+          "label": "Default"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        }
+      ],
+      "default": "none"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop button"
+    }
+  ]
+}
 {% endschema %}
