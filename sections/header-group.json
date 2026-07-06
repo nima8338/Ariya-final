@@ -17,7 +17,7 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "FREE SHIPPING • Melatonin Free • No Proprietary Blends • Manufactured in New York",
+            "text": "FREE SHIPPING • Melatonin Free • No Proprietary Blends",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
