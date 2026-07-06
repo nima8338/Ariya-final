@@ -1,6 +1,814 @@
+{% doc %}
+  @prompt
+    Create a premium featured product section for Ariya Supplements’ Calm Nights.
+    
+    Goal:
+    Recreate a clean, aesthetic product feature block with the product image on the left and product details on the right. Make it feel premium, calm, natural, and trustworthy.
+    
+    Layout:
+    Desktop: 2-column layout.
+    Left side: large rounded product image card.
+    Right side: product title, short description, benefit bullets, price, serving info, shipping line, Add to Cart button, and View Full Details button.
+    Mobile: stack image on top and product details underneath.
+    
+    Design Style:
+    Use a soft cream/off-white background.
+    Keep the section spacious with lots of white space.
+    Use rounded corners on the image.
+    Use Ariya purple for buttons, icons, and accents.
+    Use gold only for small badges or subtle highlights.
+    Make it elegant and minimal, not crowded.
+    Match the current Ariya website fonts and style.
+    
+    Top Badge:
+    Melatonin-Free
+    
+    Product Title:
+    Calm Nights
+    
+    Description:
+    A melatonin-free sleep support formula built with standardized extracts to help you unwind, sleep deeper, and wake up refreshed.
+    
+    Benefit Bullets:
+    ✓ Fall asleep faster and naturally
+    ✓ Wake up refreshed, not groggy
+    ✓ Supports natural sleep pathways
+    ✓ Helps calm nighttime stress
+    ✓ No proprietary blends
+    
+    Price:
+    $35.00
+    
+    Serving Info:
+    60 capsules • 30 servings
+    
+    Value Line:
+    $0.99/night with subscription
+    
+    Shipping Line:
+    Free shipping
+    
+    Buttons:
+    Primary button: Add to Cart
+    Secondary button: View Full Details
+    
+    Functionality:
+    Make the section connected to the Calm Nights product so the Add to Cart button adds the product directly to cart.
+    The View Full Details button should link to the Calm Nights product page.
+    
+    Image:
+    Add an editable image field so we can upload the Calm Nights bottle image.
+    The image should be large, aesthetic, rounded, and aligned nicely with the product text.
+    
+    Important:
+    Make the section look polished and premium on both desktop and mobile.
+    Do not make it look like a basic Shopify product block.
+    Keep the copy short and conversion-focused., move the melatonin free banner to the top left of the image , can you make the melatonin free banner a bit smaller, Update this featured Calm Nights product section to make it more premium, aesthetic, and conversion-focused.Keep the same basic layout:
+    Desktop: product image on the left, product details on the right.
+    Mobile: image on top, product details underneath.Design direction:
+    Make the section feel clean, calm, premium, and natural.
+    Use a soft cream/off-white background with lots of white space.
+    Use rounded corners on the product image.
+    Use Ariya purple for accents and the main button.
+    Use gold only for small badges or subtle highlights.
+    Match the current Ariya font style and overall website aesthetic.Product image:
+    Keep the large product image on the left.
+    Make it feel premium, balanced, and not too small.
+    Keep rounded corners.Badge:
+    Melatonin-FreeTitle:
+    Calm NightsDescription:
+    Melatonin-free sleep support built with fully disclosed doses and standardized extracts.Add social proof near the title:
+    ★★★★★
+    “Finally slept through the night.”Benefit bullets:
+    ✓ Fall asleep faster
+    ✓ Stay asleep longer
+    ✓ Wake up refreshed, not groggy
+    ✓ No proprietary blends
+    ✓ Fully disclosed dosesPricing:
+    Show the subscription price as the main price:
+    $29.75Value line:
+    Just $0.99/nightServing line:
+    60 capsules • 30 servingsShipping line:
+    Free shippingButton:
+    Only use one button.Button text:
+    Shop Calm NightsButton behavior:
+    The button should link to the Calm Nights product page or purchase section where customers can choose their purchase option.Remove the second button:
+    Do not include “View Full Details.”
+    Do not include a second CTA button.Important:
+    Do not show $0.99/night next to the $35 one-time price.
+    The $0.99/night value should be connected to the $29.75 subscription price.
+    Keep the copy short and clean.
+    Do not overcrowd the section.
+    Make it look more premium than a basic Shopify product block, the melatonin free banner move it to the top left of the picture and make it a bit smaller, move the melatonin free banner more to the top and left part of of the image, half of the banner should be in over the picture and the top half should be above the picture, make the melatonin free banner bit bigger, bring the melatonin free banner a bit bit lower
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-featured-product-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding }}px 20px;
+  }
+
+  .ai-featured-product-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ block.settings.column_gap }}px;
+    align-items: center;
+  }
+
+  .ai-featured-product-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    padding-top: 28px;
+  }
+
+  .ai-featured-product-badge-{{ ai_gen_id }} {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    background-color: {{ block.settings.badge_background }};
+    color: {{ block.settings.badge_text_color }};
+    padding: 6px 14px;
+    border-radius: {{ block.settings.badge_border_radius }}px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-featured-product-image-card-{{ ai_gen_id }} {
+    position: relative;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+    background-color: #ffffff;
+  }
+
+  .ai-featured-product-image-card-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-featured-product-content-{{ ai_gen_id }} {
+    padding: 0 20px;
+  }
+
+  .ai-featured-product-social-proof-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .ai-featured-product-stars-{{ ai_gen_id }} {
+    color: {{ block.settings.star_color }};
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  .ai-featured-product-review-{{ ai_gen_id }} {
+    font-size: {{ block.settings.review_size }}px;
+    color: {{ block.settings.text_color }};
+    font-style: italic;
+    opacity: 0.8;
+  }
+
+  .ai-featured-product-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+  }
+
+  .ai-featured-product-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.6;
+    margin: 0 0 24px 0;
+    opacity: 0.85;
+  }
+
+  .ai-featured-product-benefits-{{ ai_gen_id }} {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+  }
+
+  .ai-featured-product-benefit-{{ ai_gen_id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: {{ block.settings.benefit_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.5;
+  }
+
+  .ai-featured-product-benefit-icon-{{ ai_gen_id }} {
+    color: {{ block.settings.accent_color }};
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-weight: 700;
+  }
+
+  .ai-featured-product-price-section-{{ ai_gen_id }} {
+    margin-bottom: 24px;
+  }
+
+  .ai-featured-product-price-{{ ai_gen_id }} {
+    font-size: {{ block.settings.price_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 6px 0;
+  }
+
+  .ai-featured-product-value-{{ ai_gen_id }} {
+    font-size: {{ block.settings.meta_size }}px;
+    color: {{ block.settings.accent_color }};
+    font-weight: 600;
+    margin: 0 0 12px 0;
+  }
+
+  .ai-featured-product-serving-{{ ai_gen_id }} {
+    font-size: {{ block.settings.meta_size }}px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.7;
+    margin: 0 0 6px 0;
+  }
+
+  .ai-featured-product-shipping-{{ ai_gen_id }} {
+    font-size: {{ block.settings.meta_size }}px;
+    color: {{ block.settings.accent_color }};
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .ai-featured-product-button-{{ ai_gen_id }} {
+    width: 100%;
+    padding: 18px 40px;
+    background-color: {{ block.settings.button_bg }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_size }}px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .ai-featured-product-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg }};
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(60, 14, 102, 0.25);
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-featured-product-container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .ai-featured-product-content-{{ ai_gen_id }} {
+      padding: 0;
+    }
+
+    .ai-featured-product-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+    }
+
+    .ai-featured-product-price-{{ ai_gen_id }} {
+      font-size: {{ block.settings.price_size | times: 0.85 }}px;
+    }
+
+    .ai-featured-product-badge-{{ ai_gen_id }} {
+      font-size: 10px;
+      padding: 5px 12px;
+    }
+
+    .ai-featured-product-social-proof-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+  }
+{% endstyle %}
+
+<ariya-featured-product-{{ ai_gen_id }}
+  class="ai-featured-product-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+  data-product-url="{{ block.settings.product.url }}"
+>
+  <div class="ai-featured-product-container-{{ ai_gen_id }}">
+    <div class="ai-featured-product-image-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.show_badge and block.settings.badge_text != blank %}
+        <div class="ai-featured-product-badge-{{ ai_gen_id }}">
+          {{ block.settings.badge_text }}
+        </div>
+      {% endif %}
+      <div class="ai-featured-product-image-card-{{ ai_gen_id }}">
+        {% if block.settings.product_image %}
+          <img
+            src="{{ block.settings.product_image | image_url: width: 1200 }}"
+            alt="{{ block.settings.product_image.alt | default: block.settings.product.title | escape }}"
+            loading="lazy"
+            width="{{ block.settings.product_image.width }}"
+            height="{{ block.settings.product_image.height }}"
+          >
+        {% elsif block.settings.product.featured_image %}
+          <img
+            src="{{ block.settings.product.featured_image | image_url: width: 1200 }}"
+            alt="{{ block.settings.product.featured_image.alt | default: block.settings.product.title | escape }}"
+            loading="lazy"
+            width="{{ block.settings.product.featured_image.width }}"
+            height="{{ block.settings.product.featured_image.height }}"
+          >
+        {% else %}
+          <div style="background: #f9f6ff; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: {{ block.settings.image_border_radius }}px;">
+            {{ 'product-1' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="ai-featured-product-content-{{ ai_gen_id }}">
+      {% if block.settings.show_social_proof %}
+        <div class="ai-featured-product-social-proof-{{ ai_gen_id }}">
+          <div class="ai-featured-product-stars-{{ ai_gen_id }}">★★★★★</div>
+          {% if block.settings.review_text != blank %}
+            <div class="ai-featured-product-review-{{ ai_gen_id }}">
+              "{{ block.settings.review_text }}"
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.product_title != blank %}
+        <h2 class="ai-featured-product-title-{{ ai_gen_id }}">
+          {{ block.settings.product_title }}
+        </h2>
+      {% elsif block.settings.product %}
+        <h2 class="ai-featured-product-title-{{ ai_gen_id }}">
+          {{ block.settings.product.title }}
+        </h2>
+      {% endif %}
+
+      {% if block.settings.product_description != blank %}
+        <div class="ai-featured-product-description-{{ ai_gen_id }}">
+          {{ block.settings.product_description }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_benefits %}
+        <ul class="ai-featured-product-benefits-{{ ai_gen_id }}">
+          {% if block.settings.benefit_1 != blank %}
+            <li class="ai-featured-product-benefit-{{ ai_gen_id }}">
+              <span class="ai-featured-product-benefit-icon-{{ ai_gen_id }}">✓</span>
+              <span>{{ block.settings.benefit_1 }}</span>
+            </li>
+          {% endif %}
+          {% if block.settings.benefit_2 != blank %}
+            <li class="ai-featured-product-benefit-{{ ai_gen_id }}">
+              <span class="ai-featured-product-benefit-icon-{{ ai_gen_id }}">✓</span>
+              <span>{{ block.settings.benefit_2 }}</span>
+            </li>
+          {% endif %}
+          {% if block.settings.benefit_3 != blank %}
+            <li class="ai-featured-product-benefit-{{ ai_gen_id }}">
+              <span class="ai-featured-product-benefit-icon-{{ ai_gen_id }}">✓</span>
+              <span>{{ block.settings.benefit_3 }}</span>
+            </li>
+          {% endif %}
+          {% if block.settings.benefit_4 != blank %}
+            <li class="ai-featured-product-benefit-{{ ai_gen_id }}">
+              <span class="ai-featured-product-benefit-icon-{{ ai_gen_id }}">✓</span>
+              <span>{{ block.settings.benefit_4 }}</span>
+            </li>
+          {% endif %}
+          {% if block.settings.benefit_5 != blank %}
+            <li class="ai-featured-product-benefit-{{ ai_gen_id }}">
+              <span class="ai-featured-product-benefit-icon-{{ ai_gen_id }}">✓</span>
+              <span>{{ block.settings.benefit_5 }}</span>
+            </li>
+          {% endif %}
+        </ul>
+      {% endif %}
+
+      <div class="ai-featured-product-price-section-{{ ai_gen_id }}">
+        {% if block.settings.subscription_price != blank %}
+          <div class="ai-featured-product-price-{{ ai_gen_id }}">
+            {{ block.settings.subscription_price }}
+          </div>
+        {% elsif block.settings.product %}
+          <div class="ai-featured-product-price-{{ ai_gen_id }}">
+            {{ block.settings.product.price | money }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.value_line != blank %}
+          <div class="ai-featured-product-value-{{ ai_gen_id }}">
+            {{ block.settings.value_line }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.serving_info != blank %}
+          <div class="ai-featured-product-serving-{{ ai_gen_id }}">
+            {{ block.settings.serving_info }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.shipping_text != blank %}
+          <div class="ai-featured-product-shipping-{{ ai_gen_id }}">
+            {{ block.settings.shipping_text }}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if block.settings.product %}
+        <a
+          href="{{ block.settings.product.url }}"
+          class="ai-featured-product-button-{{ ai_gen_id }}"
+        >
+          {{ block.settings.button_text }}
+        </a>
+      {% else %}
+        <a
+          href="#"
+          class="ai-featured-product-button-{{ ai_gen_id }}"
+        >
+          {{ block.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</ariya-featured-product-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class AriyaFeaturedProduct{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('ariya-featured-product-{{ ai_gen_id }}', AriyaFeaturedProduct{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Featured product",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Custom product image"
+    },
+    {
+      "type": "text",
+      "id": "product_title",
+      "label": "Custom product title",
+      "default": "Calm Nights"
+    },
+    {
+      "type": "textarea",
+      "id": "product_description",
+      "label": "Description",
+      "default": "Melatonin-free sleep support built with fully disclosed doses and standardized extracts."
+    },
+    {
+      "type": "header",
+      "content": "Badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Melatonin-Free"
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Badge background",
+      "default": "#efcb21"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text color",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "label": "Badge border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Social proof"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_proof",
+      "label": "Show social proof",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "review_text",
+      "label": "Review text",
+      "default": "Finally slept through the night."
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#efcb21"
+    },
+    {
+      "type": "header",
+      "content": "Benefits"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefits",
+      "label": "Show benefits",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Benefit 1",
+      "default": "Fall asleep faster"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Benefit 2",
+      "default": "Stay asleep longer"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Benefit 3",
+      "default": "Wake up refreshed, not groggy"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4",
+      "label": "Benefit 4",
+      "default": "No proprietary blends"
+    },
+    {
+      "type": "text",
+      "id": "benefit_5",
+      "label": "Benefit 5",
+      "default": "Fully disclosed doses"
+    },
+    {
+      "type": "header",
+      "content": "Pricing"
+    },
+    {
+      "type": "text",
+      "id": "subscription_price",
+      "label": "Subscription price",
+      "default": "$29.75"
+    },
+    {
+      "type": "text",
+      "id": "value_line",
+      "label": "Value line",
+      "default": "Just $0.99/night"
+    },
+    {
+      "type": "text",
+      "id": "serving_info",
+      "label": "Serving info",
+      "default": "60 capsules • 30 servings"
+    },
+    {
+      "type": "text",
+      "id": "shipping_text",
+      "label": "Shipping text",
+      "default": "Free shipping"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Calm Nights"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 800,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f9f6ff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Button hover",
+      "default": "#5a1a9a"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "benefit_size",
+      "label": "Benefit size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "price_size",
+      "label": "Price size",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "meta_size",
+      "label": "Meta text size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "review_size",
+      "label": "Review text size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured product"
+    }
+  ]
+}
 {% endschema %}
