@@ -477,13 +477,14 @@
         },
         "ai_gen_block_ece5267_q7mTwf": {
           "type": "ai_gen_block_ece5267",
+          "disabled": true,
           "settings": {
             "title": "Real People. Real Results.",
             "subtitle": "Hear directly from people who have made Calm Nights part of their nightly routine.",
             "title_size": 40,
             "subtitle_size": 16,
             "scroll_speed": 100,
-            "mobile_scroll_speed": 70,
+            "mobile_scroll_speed": 30,
             "video_1": "shopify://files/videos/0c546a7a7af349a6ac6e564c14d824da.MOV",
             "poster_1": "shopify://shop_images/IMG_8244_1.png",
             "badge_1": "SLEEP QUALITY",
@@ -520,7 +521,7 @@
             "nav_button_hover": "#3c0e66",
             "nav_icon_color": "#3c0e66",
             "card_border_radius": 16,
-            "video_border_radius": 12
+            "video_border_radius": 8
           },
           "blocks": {}
         },
