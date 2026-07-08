@@ -599,11 +599,11 @@
         "ai_gen_block_bac8cf0_7Q4cB9": {
           "type": "ai_gen_block_bac8cf0",
           "settings": {
-            "title": "Real People. Real Results.",
+            "title": "Real People.   Real Results.",
             "subtitle": "Hear directly from people who have made Calm Nights part of their nightly routine.",
             "title_size": 48,
             "subtitle_size": 16,
-            "animation_speed": 30,
+            "animation_speed": 45,
             "video_1": "shopify://files/videos/Video Jun 03 2026, 11 15 37 AM.mov",
             "poster_1": "shopify://shop_images/IMG_7559.png",
             "badge_1": "SLEEP QUALITY",
@@ -628,7 +628,7 @@
             "name_4": "Swaroop Vunam",
             "review_4": "\"I usually wake up groggy and hit snooze but today I actually woke up on time and felt refreshed.\"",
             "show_stars_4": true,
-            "background_color": "#f9f6ff",
+            "background_color": "#F2F2F2",
             "text_color": "#1a0a2e",
             "card_background": "#ffffff",
             "badge_background": "#3c0e66",
