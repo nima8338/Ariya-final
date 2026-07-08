@@ -483,7 +483,7 @@
             "subtitle": "Hear directly from people who have made Calm Nights part of their nightly routine.",
             "title_size": 36,
             "subtitle_size": 16,
-            "animation_speed": 30,
+            "animation_speed": 50,
             "background_color": "#f2f2f2",
             "text_color": "#1a0a2e",
             "card_background": "#ffffff",
@@ -519,6 +519,7 @@
         },
         "ai_gen_block_25e255c_dcjBmG": {
           "type": "ai_gen_block_25e255c",
+          "disabled": true,
           "settings": {
             "title": "Real People. Real Results.",
             "title_size": 32,
@@ -557,6 +558,7 @@
         },
         "ai_gen_block_b64400e_CeR8FQ": {
           "type": "ai_gen_block_b64400e",
+          "disabled": true,
           "settings": {
             "title": "Real People. Real Results.",
             "subtitle": "Hear directly from people who have made Calm Nights part of their nightly routine.",
