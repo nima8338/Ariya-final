@@ -478,6 +478,7 @@
         },
         "ai_gen_block_68e9605_mMtGU8": {
           "type": "ai_gen_block_68e9605",
+          "disabled": true,
           "settings": {
             "title": "Real People. Real Results.",
             "subtitle": "Hear directly from people who have made Calm Nights part of their nightly routine.",
@@ -600,7 +601,7 @@
           "settings": {
             "title": "Real People. Real Results.",
             "subtitle": "Hear directly from people who have made Calm Nights part of their nightly routine.",
-            "title_size": 36,
+            "title_size": 48,
             "subtitle_size": 16,
             "animation_speed": 30,
             "video_1": "shopify://files/videos/Video Jun 03 2026, 11 15 37 AM.mov",
