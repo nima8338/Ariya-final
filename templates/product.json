@@ -255,12 +255,40 @@
                 },
                 "accelerated-checkout": {
                   "type": "accelerated-checkout",
+                  "disabled": true,
                   "static": true,
                   "settings": {},
                   "blocks": {}
                 }
               },
               "block_order": []
+            },
+            "ai_gen_block_ad6a54c_UBKy6t": {
+              "type": "ai_gen_block_ad6a54c",
+              "settings": {
+                "badge_1_icon": "shopify://shop_images/ChatGPT_Image_Jul_14_2026_05_22_12_PM.png",
+                "badge_1_text": "30-Day Money-Back Guarantee",
+                "badge_2_icon": "shopify://shop_images/ChatGPT_Image_Jul_14_2026_05_17_39_PM.png",
+                "badge_2_text": "Vegan & Non-GMO",
+                "badge_3_icon": "shopify://shop_images/ChatGPT_Image_Jul_14_2026_05_20_55_PM.png",
+                "badge_3_text": "Free Shipping",
+                "background_color": "#ffffff",
+                "icon_color": "#3c0e66",
+                "text_color": "#000000",
+                "icon_size": 32,
+                "text_size": 13,
+                "icon_text_gap": 8,
+                "gap": 16,
+                "padding_vertical": 20,
+                "padding_horizontal": 16,
+                "mobile_columns": "3",
+                "mobile_icon_size": 24,
+                "mobile_text_size": 11,
+                "mobile_gap": 8,
+                "icon_stroke_width": 1.5,
+                "text_weight": "500"
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -269,7 +297,8 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "judge_me_reviews_review_snippet_widget_Upy6V3",
-            "buy_buttons_eYQEYi"
+            "buy_buttons_eYQEYi",
+            "ai_gen_block_ad6a54c_UBKy6t"
           ]
         }
       },
