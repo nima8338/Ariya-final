@@ -1,6 +1,191 @@
+{% doc %}
+  @prompt
+    give me an option to insert a long horizontal image 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-horizontal-image-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .ai-horizontal-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-horizontal-image-wrapper-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-horizontal-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: {{ block.settings.aspect_ratio }};
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-horizontal-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-horizontal-image-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  {% if block.settings.link != blank %}
+    .ai-horizontal-image-link-{{ ai_gen_id }} {
+      display: block;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .ai-horizontal-image-link-{{ ai_gen_id }}:hover {
+      opacity: {{ block.settings.hover_opacity | divided_by: 100.0 }};
+    }
+  {% endif %}
+
+  @media screen and (max-width: 749px) {
+    .ai-horizontal-image-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-horizontal-image-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.link != blank %}
+    <a href="{{ block.settings.link }}" class="ai-horizontal-image-link-{{ ai_gen_id }}">
+  {% endif %}
+    <div class="ai-horizontal-image-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.image %}
+        <img
+          src="{{ block.settings.image | image_url: width: 2400 }}"
+          alt="{{ block.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.image.width }}"
+          height="{{ block.settings.image.height }}"
+        >
+      {% else %}
+        <div class="ai-horizontal-image-placeholder-{{ ai_gen_id }}">
+          {{ 'hero-apparel-1' | placeholder_svg_tag }}
+          <div class="ai-horizontal-image-empty-state-{{ ai_gen_id }}">
+            Add a horizontal image
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% if block.settings.link != blank %}
+    </a>
+  {% endif %}
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Horizontal image",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Aspect ratio",
+      "options": [
+        {
+          "value": "21 / 9",
+          "label": "21:9 (Ultra wide)"
+        },
+        {
+          "value": "16 / 9",
+          "label": "16:9 (Wide)"
+        },
+        {
+          "value": "3 / 1",
+          "label": "3:1 (Banner)"
+        },
+        {
+          "value": "4 / 1",
+          "label": "4:1 (Extra wide banner)"
+        }
+      ],
+      "default": "21 / 9",
+      "info": "Applies when no image is selected"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "hover_opacity",
+      "label": "Hover opacity",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 90,
+      "info": "Applies when a link is added"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Horizontal image"
+    }
+  ]
+}
 {% endschema %}
