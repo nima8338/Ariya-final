@@ -1,6 +1,213 @@
+{% doc %}
+  @prompt
+    give me an option to insert a long horizontal image , make it much smaller like a headline, make it smaller on the desktop version only
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-horizontal-image-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .ai-horizontal-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-horizontal-image-img-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.image_height }}px;
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-horizontal-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.image_height }}px;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-horizontal-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-horizontal-image-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  {% if block.settings.enable_link %}
+    .ai-horizontal-image-link-{{ ai_gen_id }} {
+      display: block;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .ai-horizontal-image-link-{{ ai_gen_id }}:hover {
+      opacity: {{ block.settings.hover_opacity | divided_by: 100.0 }};
+    }
+  {% endif %}
+
+  @media screen and (max-width: 749px) {
+    .ai-horizontal-image-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    .ai-horizontal-image-img-{{ ai_gen_id }},
+    .ai-horizontal-image-placeholder-{{ ai_gen_id }} {
+      height: {{ block.settings.mobile_image_height }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-horizontal-image-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.enable_link and block.settings.link != blank %}
+    <a href="{{ block.settings.link }}" class="ai-horizontal-image-link-{{ ai_gen_id }}">
+      <div class="ai-horizontal-image-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.image %}
+          <img
+            src="{{ block.settings.image | image_url: width: 2400 }}"
+            alt="{{ block.settings.image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.image.width }}"
+            height="{{ block.settings.image.height }}"
+            class="ai-horizontal-image-img-{{ ai_gen_id }}"
+          >
+        {% else %}
+          <div class="ai-horizontal-image-placeholder-{{ ai_gen_id }}">
+            {{ 'hero-apparel-1' | placeholder_svg_tag }}
+            <div class="ai-horizontal-image-empty-state-{{ ai_gen_id }}">
+              Add a horizontal image
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </a>
+  {% else %}
+    <div class="ai-horizontal-image-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.image %}
+        <img
+          src="{{ block.settings.image | image_url: width: 2400 }}"
+          alt="{{ block.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.image.width }}"
+          height="{{ block.settings.image.height }}"
+          class="ai-horizontal-image-img-{{ ai_gen_id }}"
+        >
+      {% else %}
+        <div class="ai-horizontal-image-placeholder-{{ ai_gen_id }}">
+          {{ 'hero-apparel-1' | placeholder_svg_tag }}
+          <div class="ai-horizontal-image-empty-state-{{ ai_gen_id }}">
+            Add a horizontal image
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Horizontal image",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Desktop height",
+      "min": 40,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "label": "Mobile height",
+      "min": 40,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_link",
+      "label": "Enable link",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link URL"
+    },
+    {
+      "type": "range",
+      "id": "hover_opacity",
+      "label": "Hover opacity",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 90
+    }
+  ],
+  "presets": [
+    {
+      "name": "Horizontal image"
+    }
+  ]
+}
 {% endschema %}
