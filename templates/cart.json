@@ -46,11 +46,11 @@
           "type": "ai_gen_block_07a557f",
           "settings": {
             "heading": "⭐⭐⭐⭐⭐ <strong>30+ 5-Star Ratings</strong>",
-            "heading_size": 24,
+            "heading_size": 20,
             "heading_color": "#000000",
             "text_uppercase": false,
             "letter_spacing": 0,
-            "horizontal_padding": 80,
+            "horizontal_padding": 100,
             "padding_top": 15,
             "padding_bottom": 15,
             "background_color": "#FFFFFF"
@@ -67,7 +67,7 @@
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
+        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 12,
         "section_width": "page-width",
