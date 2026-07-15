@@ -78,7 +78,7 @@
             "image": "shopify://shop_images/ChatGPT_Image_Jul_15_2026_04_35_58_PM.png",
             "aspect_ratio": "3 / 1",
             "link": "",
-            "desktop_width_percent": 100,
+            "desktop_width_percent": 50,
             "border_radius": 0,
             "hover_opacity": 50
           },
@@ -374,7 +374,7 @@
           "settings": {
             "image_top": "shopify://shop_images/ChatGPT_Image_Jul_15_2026_03_39_57_PM_1.png",
             "image_bottom": "shopify://shop_images/ChatGPT_Image_Jul_15_2026_04_24_33_PM.png",
-            "desktop_width_percent": 100,
+            "desktop_width_percent": 50,
             "spacing": 20,
             "spacing_mobile": 15,
             "aspect_ratio": "16/9",
@@ -392,7 +392,7 @@
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
+        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 12,
         "section_width": "page-width",
