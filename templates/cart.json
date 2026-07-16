@@ -211,45 +211,14 @@
     "1784157201434c1041": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_f3d2d87_rbtxmw": {
-          "type": "ai_gen_block_f3d2d87",
+        "ai_gen_block_13f4a71_xXVEFx": {
+          "type": "ai_gen_block_13f4a71",
           "settings": {
-            "subscription_selector": "input[value=\"subscription\"]",
-            "onetime_selector": "input[value=\"onetime\"]",
-            "subscription_badge_1_title": "Save 15%",
-            "subscription_badge_1_description": "Automatic savings on every order",
-            "subscription_badge_1_icon": "percent",
-            "subscription_badge_2_title": "Free shipping",
-            "subscription_badge_2_description": "On all subscription orders",
-            "subscription_badge_2_icon": "truck",
-            "subscription_badge_3_title": "Cancel anytime",
-            "subscription_badge_3_description": "Pause, skip, or cancel with ease",
-            "subscription_badge_3_icon": "refresh",
-            "onetime_badge_1_title": "Quality assured",
-            "onetime_badge_1_description": "Premium ingredients you can trust",
-            "onetime_badge_1_icon": "check",
-            "onetime_badge_2_title": "Fast delivery",
-            "onetime_badge_2_description": "Ships within 1-2 business days",
-            "onetime_badge_2_icon": "truck",
-            "onetime_badge_3_title": "Try risk-free",
-            "onetime_badge_3_description": "30-day money-back guarantee",
-            "onetime_badge_3_icon": "star",
-            "alignment": "center",
+            "subscription_image": "shopify://shop_images/ChatGPT_Image_Jul_16_2026_02_30_38_PM.png",
+            "onetime_image": "shopify://shop_images/ChatGPT_Image_Jul_16_2026_02_29_08_PM.png",
             "desktop_width_percent": 100,
-            "badge_gap": 16,
-            "badge_padding": 20,
-            "badge_background": "#f9f6ff",
-            "badge_border_color": "#e8d9f7",
-            "badge_border_width": 1,
-            "badge_border_radius": 8,
-            "icon_color": "#3c0e66",
-            "icon_size": 32,
-            "icon_spacing": 12,
-            "title_color": "#1a0a2e",
-            "title_size": 16,
-            "title_spacing": 8,
-            "description_color": "#6b5a85",
-            "description_size": 13
+            "max_height": 200,
+            "top_offset": 0
           },
           "blocks": {}
         },
@@ -269,7 +238,7 @@
         }
       },
       "block_order": [
-        "ai_gen_block_f3d2d87_rbtxmw",
+        "ai_gen_block_13f4a71_xXVEFx",
         "ai_gen_block_e35601e_riwHWc"
       ],
       "settings": {
