@@ -1,6 +1,670 @@
+{% doc %}
+  @prompt
+    create 2 horizontal 3 badges with a description, one needs to pop up when someone picked monthly subscription and the other needs to pop up when they picked a one time purchase
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-purchase-badges-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-purchase-badges__container-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.badge_gap }}px;
+    justify-content: {{ block.settings.alignment }};
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .ai-purchase-badges__badge-{{ ai_gen_id }} {
+    flex: 1;
+    min-width: 0;
+    max-width: calc(33.333% - {{ block.settings.badge_gap | times: 2 | divided_by: 3 }}px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: {{ block.settings.badge_padding }}px;
+    background-color: {{ block.settings.badge_background }};
+    border-radius: {{ block.settings.badge_border_radius }}px;
+    border: {{ block.settings.badge_border_width }}px solid {{ block.settings.badge_border_color }};
+  }
+
+  .ai-purchase-badges__icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    margin-bottom: {{ block.settings.icon_spacing }}px;
+    color: {{ block.settings.icon_color }};
+    flex-shrink: 0;
+  }
+
+  .ai-purchase-badges__icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .ai-purchase-badges__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 {{ block.settings.title_spacing }}px;
+  }
+
+  .ai-purchase-badges__description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .ai-purchase-badges__set-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .ai-purchase-badges__set-{{ ai_gen_id }}.active {
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-purchase-badges__container-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .ai-purchase-badges__badge-{{ ai_gen_id }} {
+      max-width: 100%;
+    }
+  }
+{% endstyle %}
+
+<purchase-type-badges-{{ ai_gen_id }}
+  class="ai-purchase-badges-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+  data-subscription-selector="{{ block.settings.subscription_selector }}"
+  data-onetime-selector="{{ block.settings.onetime_selector }}"
+>
+  <div class="ai-purchase-badges__set-{{ ai_gen_id }} ai-purchase-badges__set-subscription-{{ ai_gen_id }}">
+    <div class="ai-purchase-badges__container-{{ ai_gen_id }}">
+      {% for i in (1..3) %}
+        {% liquid
+          assign title_key = 'subscription_badge_' | append: i | append: '_title'
+          assign description_key = 'subscription_badge_' | append: i | append: '_description'
+          assign icon_key = 'subscription_badge_' | append: i | append: '_icon'
+
+          assign title = block.settings[title_key]
+          assign description = block.settings[description_key]
+          assign icon = block.settings[icon_key]
+        %}
+
+        <div class="ai-purchase-badges__badge-{{ ai_gen_id }}">
+          <div class="ai-purchase-badges__icon-{{ ai_gen_id }}">
+            {% case icon %}
+              {% when 'check' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              {% when 'star' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              {% when 'gift' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                  <rect x="2" y="7" width="20" height="5"></rect>
+                  <line x1="12" y1="22" x2="12" y2="7"></line>
+                  <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                  <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                </svg>
+              {% when 'truck' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="1" y="3" width="15" height="13"></rect>
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                  <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                  <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                </svg>
+              {% when 'refresh' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <polyline points="1 20 1 14 7 14"></polyline>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+              {% when 'percent' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="19" y1="5" x2="5" y2="19"></line>
+                  <circle cx="6.5" cy="6.5" r="2.5"></circle>
+                  <circle cx="17.5" cy="17.5" r="2.5"></circle>
+                </svg>
+            {% endcase %}
+          </div>
+          <h3 class="ai-purchase-badges__title-{{ ai_gen_id }}">{{ title }}</h3>
+          <p class="ai-purchase-badges__description-{{ ai_gen_id }}">{{ description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="ai-purchase-badges__set-{{ ai_gen_id }} ai-purchase-badges__set-onetime-{{ ai_gen_id }}">
+    <div class="ai-purchase-badges__container-{{ ai_gen_id }}">
+      {% for i in (1..3) %}
+        {% liquid
+          assign title_key = 'onetime_badge_' | append: i | append: '_title'
+          assign description_key = 'onetime_badge_' | append: i | append: '_description'
+          assign icon_key = 'onetime_badge_' | append: i | append: '_icon'
+
+          assign title = block.settings[title_key]
+          assign description = block.settings[description_key]
+          assign icon = block.settings[icon_key]
+        %}
+
+        <div class="ai-purchase-badges__badge-{{ ai_gen_id }}">
+          <div class="ai-purchase-badges__icon-{{ ai_gen_id }}">
+            {% case icon %}
+              {% when 'check' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              {% when 'star' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              {% when 'gift' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                  <rect x="2" y="7" width="20" height="5"></rect>
+                  <line x1="12" y1="22" x2="12" y2="7"></line>
+                  <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                  <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                </svg>
+              {% when 'truck' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="1" y="3" width="15" height="13"></rect>
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                  <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                  <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                </svg>
+              {% when 'refresh' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <polyline points="1 20 1 14 7 14"></polyline>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+              {% when 'percent' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="19" y1="5" x2="5" y2="19"></line>
+                  <circle cx="6.5" cy="6.5" r="2.5"></circle>
+                  <circle cx="17.5" cy="17.5" r="2.5"></circle>
+                </svg>
+            {% endcase %}
+          </div>
+          <h3 class="ai-purchase-badges__title-{{ ai_gen_id }}">{{ title }}</h3>
+          <p class="ai-purchase-badges__description-{{ ai_gen_id }}">{{ description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</purchase-type-badges-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PurchaseTypeBadges{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.subscriptionSelector = this.dataset.subscriptionSelector;
+        this.onetimeSelector = this.dataset.onetimeSelector;
+        this.subscriptionSet = this.querySelector('.ai-purchase-badges__set-subscription-{{ ai_gen_id }}');
+        this.onetimeSet = this.querySelector('.ai-purchase-badges__set-onetime-{{ ai_gen_id }}');
+      }
+
+      connectedCallback() {
+        this.checkPurchaseType();
+        this.setupObserver();
+        this.setupEventListeners();
+      }
+
+      checkPurchaseType() {
+        let isSubscription = false;
+
+        if (this.subscriptionSelector) {
+          const subscriptionElement = document.querySelector(this.subscriptionSelector);
+          if (subscriptionElement) {
+            if (subscriptionElement.type === 'radio' || subscriptionElement.type === 'checkbox') {
+              isSubscription = subscriptionElement.checked;
+            } else if (subscriptionElement.tagName === 'SELECT') {
+              isSubscription = subscriptionElement.value === 'subscription' || subscriptionElement.selectedOptions[0]?.dataset?.subscription === 'true';
+            } else {
+              isSubscription = subscriptionElement.classList.contains('active') || subscriptionElement.getAttribute('aria-selected') === 'true';
+            }
+          }
+        }
+
+        if (this.onetimeSelector && !isSubscription) {
+          const onetimeElement = document.querySelector(this.onetimeSelector);
+          if (onetimeElement) {
+            if (onetimeElement.type === 'radio' || onetimeElement.type === 'checkbox') {
+              isSubscription = !onetimeElement.checked;
+            } else if (onetimeElement.tagName === 'SELECT') {
+              isSubscription = onetimeElement.value !== 'onetime' && onetimeElement.selectedOptions[0]?.dataset?.subscription !== 'false';
+            } else {
+              isSubscription = !(onetimeElement.classList.contains('active') || onetimeElement.getAttribute('aria-selected') === 'true');
+            }
+          }
+        }
+
+        this.updateDisplay(isSubscription);
+      }
+
+      updateDisplay(isSubscription) {
+        if (isSubscription) {
+          this.subscriptionSet.classList.add('active');
+          this.onetimeSet.classList.remove('active');
+        } else {
+          this.subscriptionSet.classList.remove('active');
+          this.onetimeSet.classList.add('active');
+        }
+      }
+
+      setupObserver() {
+        const observer = new MutationObserver(() => {
+          this.checkPurchaseType();
+        });
+
+        const observeElement = (selector) => {
+          const element = document.querySelector(selector);
+          if (element) {
+            observer.observe(element, {
+              attributes: true,
+              attributeFilter: ['class', 'aria-selected', 'checked']
+            });
+          }
+        };
+
+        if (this.subscriptionSelector) {
+          observeElement(this.subscriptionSelector);
+        }
+        if (this.onetimeSelector) {
+          observeElement(this.onetimeSelector);
+        }
+      }
+
+      setupEventListeners() {
+        const addListener = (selector) => {
+          const element = document.querySelector(selector);
+          if (element) {
+            element.addEventListener('change', () => {
+              this.checkPurchaseType();
+            });
+            element.addEventListener('click', () => {
+              setTimeout(() => this.checkPurchaseType(), 100);
+            });
+          }
+        };
+
+        if (this.subscriptionSelector) {
+          addListener(this.subscriptionSelector);
+        }
+        if (this.onetimeSelector) {
+          addListener(this.onetimeSelector);
+        }
+      }
+    }
+
+    customElements.define('purchase-type-badges-{{ ai_gen_id }}', PurchaseTypeBadges{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Purchase type badges",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Selectors"
+    },
+    {
+      "type": "paragraph",
+      "content": "Enter CSS selectors for your subscription and one-time purchase options. Examples: input[name=\"purchase_option\"][value=\"subscription\"], .subscription-radio, #subscription-option"
+    },
+    {
+      "type": "text",
+      "id": "subscription_selector",
+      "label": "Subscription selector",
+      "default": "input[value=\"subscription\"]"
+    },
+    {
+      "type": "text",
+      "id": "onetime_selector",
+      "label": "One-time purchase selector",
+      "default": "input[value=\"onetime\"]"
+    },
+    {
+      "type": "header",
+      "content": "Subscription badges"
+    },
+    {
+      "type": "text",
+      "id": "subscription_badge_1_title",
+      "label": "Badge 1 title",
+      "default": "Save 15%"
+    },
+    {
+      "type": "textarea",
+      "id": "subscription_badge_1_description",
+      "label": "Badge 1 description",
+      "default": "Automatic savings on every order"
+    },
+    {
+      "type": "select",
+      "id": "subscription_badge_1_icon",
+      "label": "Badge 1 icon",
+      "options": [
+        { "value": "percent", "label": "Percent" },
+        { "value": "check", "label": "Check" },
+        { "value": "star", "label": "Star" },
+        { "value": "gift", "label": "Gift" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "refresh", "label": "Refresh" }
+      ],
+      "default": "percent"
+    },
+    {
+      "type": "text",
+      "id": "subscription_badge_2_title",
+      "label": "Badge 2 title",
+      "default": "Free shipping"
+    },
+    {
+      "type": "textarea",
+      "id": "subscription_badge_2_description",
+      "label": "Badge 2 description",
+      "default": "On all subscription orders"
+    },
+    {
+      "type": "select",
+      "id": "subscription_badge_2_icon",
+      "label": "Badge 2 icon",
+      "options": [
+        { "value": "truck", "label": "Truck" },
+        { "value": "check", "label": "Check" },
+        { "value": "star", "label": "Star" },
+        { "value": "gift", "label": "Gift" },
+        { "value": "refresh", "label": "Refresh" },
+        { "value": "percent", "label": "Percent" }
+      ],
+      "default": "truck"
+    },
+    {
+      "type": "text",
+      "id": "subscription_badge_3_title",
+      "label": "Badge 3 title",
+      "default": "Cancel anytime"
+    },
+    {
+      "type": "textarea",
+      "id": "subscription_badge_3_description",
+      "label": "Badge 3 description",
+      "default": "Pause, skip, or cancel with ease"
+    },
+    {
+      "type": "select",
+      "id": "subscription_badge_3_icon",
+      "label": "Badge 3 icon",
+      "options": [
+        { "value": "refresh", "label": "Refresh" },
+        { "value": "check", "label": "Check" },
+        { "value": "star", "label": "Star" },
+        { "value": "gift", "label": "Gift" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "percent", "label": "Percent" }
+      ],
+      "default": "refresh"
+    },
+    {
+      "type": "header",
+      "content": "One-time purchase badges"
+    },
+    {
+      "type": "text",
+      "id": "onetime_badge_1_title",
+      "label": "Badge 1 title",
+      "default": "Quality assured"
+    },
+    {
+      "type": "textarea",
+      "id": "onetime_badge_1_description",
+      "label": "Badge 1 description",
+      "default": "Premium ingredients you can trust"
+    },
+    {
+      "type": "select",
+      "id": "onetime_badge_1_icon",
+      "label": "Badge 1 icon",
+      "options": [
+        { "value": "check", "label": "Check" },
+        { "value": "star", "label": "Star" },
+        { "value": "gift", "label": "Gift" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "refresh", "label": "Refresh" },
+        { "value": "percent", "label": "Percent" }
+      ],
+      "default": "check"
+    },
+    {
+      "type": "text",
+      "id": "onetime_badge_2_title",
+      "label": "Badge 2 title",
+      "default": "Fast delivery"
+    },
+    {
+      "type": "textarea",
+      "id": "onetime_badge_2_description",
+      "label": "Badge 2 description",
+      "default": "Ships within 1-2 business days"
+    },
+    {
+      "type": "select",
+      "id": "onetime_badge_2_icon",
+      "label": "Badge 2 icon",
+      "options": [
+        { "value": "truck", "label": "Truck" },
+        { "value": "check", "label": "Check" },
+        { "value": "star", "label": "Star" },
+        { "value": "gift", "label": "Gift" },
+        { "value": "refresh", "label": "Refresh" },
+        { "value": "percent", "label": "Percent" }
+      ],
+      "default": "truck"
+    },
+    {
+      "type": "text",
+      "id": "onetime_badge_3_title",
+      "label": "Badge 3 title",
+      "default": "Try risk-free"
+    },
+    {
+      "type": "textarea",
+      "id": "onetime_badge_3_description",
+      "label": "Badge 3 description",
+      "default": "30-day money-back guarantee"
+    },
+    {
+      "type": "select",
+      "id": "onetime_badge_3_icon",
+      "label": "Badge 3 icon",
+      "options": [
+        { "value": "star", "label": "Star" },
+        { "value": "check", "label": "Check" },
+        { "value": "gift", "label": "Gift" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "refresh", "label": "Refresh" },
+        { "value": "percent", "label": "Percent" }
+      ],
+      "default": "star"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "badge_gap",
+      "label": "Gap between badges",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "badge_padding",
+      "label": "Badge padding",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Badge style"
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Background",
+      "default": "#f9f6ff"
+    },
+    {
+      "type": "color",
+      "id": "badge_border_color",
+      "label": "Border color",
+      "default": "#e8d9f7"
+    },
+    {
+      "type": "range",
+      "id": "badge_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Color",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Size",
+      "min": 20,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "Spacing below icon",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#1a0a2e"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "label": "Spacing below title",
+      "min": 4,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#6b5a85"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purchase type badges"
+    }
+  ]
+}
 {% endschema %}
