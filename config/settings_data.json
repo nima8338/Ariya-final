@@ -10,6 +10,8 @@
 {
   "current": {
     "logo": "shopify://shop_images/4k_logo_white.png",
+    "show_installments": false,
+    "show_accelerated_checkout_buttons": false,
     "content_for_index": [],
     "blocks": {
       "855628211100114053": {
