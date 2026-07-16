@@ -211,6 +211,16 @@
     "1784157201434c1041": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_2ff677c_LLACJ9": {
+          "type": "ai_gen_block_2ff677c",
+          "settings": {
+            "one_time_image": "shopify://shop_images/ChatGPT_Image_Jul_16_2026_02_29_08_PM.png",
+            "subscription_image": "shopify://shop_images/ChatGPT_Image_Jul_16_2026_02_30_38_PM.png",
+            "desktop_width_percent": 50,
+            "border_radius": 8
+          },
+          "blocks": {}
+        },
         "ai_gen_block_13f4a71_xXVEFx": {
           "type": "ai_gen_block_13f4a71",
           "settings": {
@@ -238,6 +248,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_2ff677c_LLACJ9",
         "ai_gen_block_13f4a71_xXVEFx",
         "ai_gen_block_e35601e_riwHWc"
       ],
