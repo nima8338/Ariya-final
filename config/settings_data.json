@@ -10,8 +10,14 @@
 {
   "current": {
     "logo": "shopify://shop_images/4k_logo_white.png",
+    "type_body_font": "libre_baskerville_n4",
+    "type_subheading_font": "libre_baskerville_n4",
+    "type_heading_font": "libre_baskerville_n4",
+    "type_accent_font": "libre_baskerville_n4",
+    "type_font_button_primary": "accent",
     "show_installments": false,
     "show_accelerated_checkout_buttons": false,
+    "icon_stroke": "heavy",
     "content_for_index": [],
     "blocks": {
       "855628211100114053": {
@@ -63,7 +69,7 @@
       "scheme-1": {
         "settings": {
           "background": "#ffffff",
-          "foreground_heading": "#1a0a2e",
+          "foreground_heading": "#000000",
           "foreground": "#3c0e66",
           "primary": "#3c0e66",
           "primary_hover": "#5a1a9a",
