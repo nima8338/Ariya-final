@@ -276,7 +276,7 @@
               "settings": {
                 "button_text": "Start Now",
                 "sold_out_text": "Sold Out",
-                "button_color": "#D1AEFC",
+                "button_color": "#9370DB",
                 "button_text_color": "#ffffff",
                 "button_border_color": "#3c0e66",
                 "button_hover_color": "#5a1a9a",
