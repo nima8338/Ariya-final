@@ -121,7 +121,7 @@
                   "type": "text",
                   "name": "Product title",
                   "settings": {
-                    "text": "<h1>{{ closest.product.title }}</h1><p></p>",
+                    "text": "<h1><strong>{{ closest.product.title }}</strong></h1><p></p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -132,7 +132,7 @@
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
-                    "color": "",
+                    "color": "var(--color-foreground-heading)",
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,
