@@ -117,29 +117,16 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "text_xrnftG": {
-                  "type": "text",
-                  "name": "Product title",
+                "ai_gen_block_51c27a2_RHke9h": {
+                  "type": "ai_gen_block_51c27a2",
                   "settings": {
-                    "text": "<h1><strong>{{ closest.product.title }}</strong></h1><p></p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-primary--family)",
-                    "font_size": "",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-primary)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "headline_text": "Calm Nights",
+                    "font_family": "libre_baskerville_n4",
+                    "font_size": 56,
+                    "text_alignment": "left",
+                    "gradient_top_color": "#501982",
+                    "gradient_bottom_color": "#F19CE4",
+                    "desktop_width_percent": 100
                   },
                   "blocks": {}
                 },
@@ -193,7 +180,7 @@
                 }
               },
               "block_order": [
-                "text_xrnftG",
+                "ai_gen_block_51c27a2_RHke9h",
                 "text_WEfant",
                 "price_tVjtKg"
               ]
