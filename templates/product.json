@@ -134,7 +134,7 @@
                   "type": "text",
                   "name": "Product title",
                   "settings": {
-                    "text": "<p>✓  Falls asleep faster — no synthetic melatonin.</p><p>✓  Quiets racing thoughts. Your brain actually shuts off.</p><p>✓  Wake up clear — no grogginess, no dependency.</p><p>✓  Standardized extracts — no underdosed fillers.</p>",
+                    "text": "<p><br/>A melatonin-free formula that quiets racing thoughts, supports deeper sleep, and helps you wake up clear.<br/><br/></p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
