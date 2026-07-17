@@ -1,6 +1,191 @@
+{% doc %}
+  @prompt
+    create a 5 star rating it should say the stars then after put 50+ Reviews, its suppose to be 4.9 stars out of 5 so empty out that last star a little bit close to halfway, make the star closest to the number 50 75% gold 25% white, make it more 65% to 35%
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-star-rating-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.gap }}px;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-star-rating__stars-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.star_spacing }}px;
+  }
+
+  .ai-star-rating__star-{{ ai_gen_id }} {
+    width: {{ block.settings.star_size }}px;
+    height: {{ block.settings.star_size }}px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .ai-star-rating__star-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .ai-star-rating__star-full-{{ ai_gen_id }} {
+    fill: {{ block.settings.star_color }};
+  }
+
+  .ai-star-rating__star-empty-{{ ai_gen_id }} {
+    fill: {{ block.settings.empty_star_color }};
+  }
+
+  .ai-star-rating__star-partial-{{ ai_gen_id }} {
+    position: relative;
+  }
+
+  .ai-star-rating__star-partial-{{ ai_gen_id }} .ai-star-rating__star-bg-{{ ai_gen_id }} {
+    fill: {{ block.settings.empty_star_color }};
+  }
+
+  .ai-star-rating__star-partial-{{ ai_gen_id }} .ai-star-rating__star-fg-{{ ai_gen_id }} {
+    fill: {{ block.settings.star_color }};
+    clip-path: inset(0 35% 0 0);
+  }
+
+  .ai-star-rating__text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-star-rating__star-{{ ai_gen_id }} {
+      width: {{ block.settings.star_size | times: 0.8 }}px;
+      height: {{ block.settings.star_size | times: 0.8 }}px;
+    }
+
+    .ai-star-rating__text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-star-rating-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-star-rating__stars-{{ ai_gen_id }}">
+    {% for i in (1..4) %}
+      <span class="ai-star-rating__star-{{ ai_gen_id }}">
+        <svg class="ai-star-rating__star-full-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+      </span>
+    {% endfor %}
+    <span class="ai-star-rating__star-{{ ai_gen_id }} ai-star-rating__star-partial-{{ ai_gen_id }}">
+      <svg class="ai-star-rating__star-bg-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+      <svg class="ai-star-rating__star-fg-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="position: absolute; top: 0; left: 0;">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+    </span>
+  </div>
+  <span class="ai-star-rating__text-{{ ai_gen_id }}">{{ block.settings.review_text }}</span>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Star rating",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Stars"
+    },
+    {
+      "type": "range",
+      "id": "star_size",
+      "label": "Star size",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "star_spacing",
+      "label": "Star spacing",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#efcb21"
+    },
+    {
+      "type": "color",
+      "id": "empty_star_color",
+      "label": "Empty star color",
+      "default": "#e8d9f7"
+    },
+    {
+      "type": "header",
+      "content": "Review text"
+    },
+    {
+      "type": "text",
+      "id": "review_text",
+      "label": "Review text",
+      "default": "50+ Reviews"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between stars and text",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Star rating"
+    }
+  ]
+}
 {% endschema %}
