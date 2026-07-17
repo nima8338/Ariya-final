@@ -73,21 +73,6 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "ai_gen_block_fe00668_Efrt8H": {
-              "type": "ai_gen_block_fe00668",
-              "settings": {
-                "star_size": 20,
-                "star_spacing": 2,
-                "star_color": "#efcb21",
-                "empty_star_color": "#e8d9f7",
-                "review_text": "50+ Reviews",
-                "text_size": 14,
-                "text_color": "#3c0e66",
-                "gap": 8,
-                "desktop_width_percent": 100
-              },
-              "blocks": {}
-            },
             "group_icgrde": {
               "type": "group",
               "name": "Header",
@@ -146,6 +131,21 @@
                   },
                   "blocks": {}
                 },
+                "ai_gen_block_fe00668_tCaTx6": {
+                  "type": "ai_gen_block_fe00668",
+                  "settings": {
+                    "star_size": 20,
+                    "star_spacing": 2,
+                    "star_color": "#efcb21",
+                    "empty_star_color": "#e8d9f7",
+                    "review_text": "50+ Reviews",
+                    "text_size": 14,
+                    "text_color": "#3c0e66",
+                    "gap": 8,
+                    "desktop_width_percent": 100
+                  },
+                  "blocks": {}
+                },
                 "text_WEfant": {
                   "type": "text",
                   "name": "Product title",
@@ -198,6 +198,7 @@
               "block_order": [
                 "judge_me_reviews_preview_badge_zJwRdh",
                 "ai_gen_block_51c27a2_RHke9h",
+                "ai_gen_block_fe00668_tCaTx6",
                 "text_WEfant",
                 "price_tVjtKg"
               ]
@@ -317,7 +318,6 @@
             }
           },
           "block_order": [
-            "ai_gen_block_fe00668_Efrt8H",
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
