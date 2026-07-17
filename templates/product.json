@@ -134,7 +134,7 @@
                 "ai_gen_block_fe00668_tCaTx6": {
                   "type": "ai_gen_block_fe00668",
                   "settings": {
-                    "star_size": 20,
+                    "star_size": 24,
                     "star_spacing": 2,
                     "star_color": "#efcb21",
                     "empty_star_color": "#e8d9f7",
