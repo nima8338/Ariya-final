@@ -70,7 +70,7 @@
         "settings": {
           "background": "#ffffff",
           "foreground_heading": "#000000",
-          "foreground": "#3c0e66",
+          "foreground": "#000000",
           "primary": "#3c0e66",
           "primary_hover": "#5a1a9a",
           "border": "#e8d9f7",
