@@ -1,6 +1,667 @@
+{% doc %}
+  @prompt
+    Create a new premium section for our product page focused on transparency.
+    
+    Use a clean, modern design with a white background, black text, and our brand purple (#7D45C6) for accents and buttons. Make it mobile-first with plenty of spacing and rounded corners.
+    
+    The section should include:
+    
+    Small eyebrow text: WHY TRANSPARENCY MATTERS
+    Large headline: Most Supplement Labels Don't Tell The Full Story
+    Large 80% statistic
+    Small text below: of herbal supplements tested in one investigation were found to be mislabeled.
+    A short paragraph: Wrong ingredients. Unlisted fillers. Labels that didn't match. Calm Nights was built for people who are done guessing.
+    
+    Below that, add a large video that supports uploading a Shopify video. The video should have a play button and rounded corners. This video will show someone scanning the QR code on our bottle and opening our ingredient transparency page.
+    
+    Under the video, add these three trust points with small purple checkmarks:
+    
+    Every dose disclosed
+    Standardized extracts
+    No proprietary blends
+    
+    Then add one purple button that says:
+    
+    Explore Every Ingredient
+    
+    Below the button, add a small source citation for the 80% statistic.
+    
+    The overall goal is to show customers that they can verify everything in our formula themselves, making this section feel clean, premium, and trustworthy rather than sales-focused., get rid of why transparency matters, make the headline most supplement labels dont tell the full story smaller , the 3 check marks are not aligned under each other fix that, on the mobile version could you make the video box smaller
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-transparency-section-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: 60px 20px;
+  }
+
+  .ai-transparency-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ai-transparency-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size }}px;
+    color: {{ block.settings.text_color }};
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 40px;
+    max-width: 800px;
+  }
+
+  .ai-transparency-stat-wrapper-{{ ai_gen_id }} {
+    margin-bottom: 12px;
+  }
+
+  .ai-transparency-stat-{{ ai_gen_id }} {
+    font-size: {{ block.settings.stat_size }}px;
+    color: {{ block.settings.accent_color }};
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .ai-transparency-stat-caption-{{ ai_gen_id }} {
+    font-size: {{ block.settings.caption_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.5;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+
+  .ai-transparency-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 700px;
+  }
+
+  .ai-transparency-video-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    margin-bottom: 40px;
+    border-radius: {{ block.settings.video_border_radius }}px;
+    overflow: hidden;
+    background-color: #000;
+  }
+
+  .ai-transparency-video-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-transparency-video-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-transparency-video-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-transparency-play-button-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background-color: {{ block.settings.accent_color }};
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 2;
+  }
+
+  .ai-transparency-play-button-{{ ai_gen_id }}:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .ai-transparency-play-button-{{ ai_gen_id }}.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .ai-transparency-play-icon-{{ ai_gen_id }} {
+    width: 0;
+    height: 0;
+    border-left: 24px solid #ffffff;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    margin-left: 6px;
+  }
+
+  .ai-transparency-trust-points-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .ai-transparency-trust-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .ai-transparency-checkmark-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .ai-transparency-trust-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.trust_text_size }}px;
+    color: {{ block.settings.text_color }};
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .ai-transparency-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 16px 40px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    font-size: {{ block.settings.button_size }}px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 24px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ai-transparency-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    transform: translateY(-2px);
+  }
+
+  .ai-transparency-source-{{ ai_gen_id }} {
+    font-size: {{ block.settings.source_size }}px;
+    color: #666;
+    font-style: italic;
+    max-width: 700px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-transparency-section-{{ ai_gen_id }} {
+      padding: 80px 40px;
+    }
+
+    .ai-transparency-video-wrapper-{{ ai_gen_id }} {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .ai-transparency-trust-points-{{ ai_gen_id }} {
+      flex-direction: row;
+      gap: 40px;
+      max-width: none;
+      justify-content: center;
+    }
+
+    .ai-transparency-trust-item-{{ ai_gen_id }} {
+      width: auto;
+    }
+
+    .ai-transparency-trust-text-{{ ai_gen_id }} {
+      text-align: center;
+    }
+  }
+{% endstyle %}
+
+<ai-transparency-section-{{ ai_gen_id }}
+  class="ai-transparency-section-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-transparency-container-{{ ai_gen_id }}">
+    {% if block.settings.headline != blank %}
+      <h2 class="ai-transparency-headline-{{ ai_gen_id }}">
+        {{ block.settings.headline }}
+      </h2>
+    {% endif %}
+
+    <div class="ai-transparency-stat-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.stat_number != blank %}
+        <div class="ai-transparency-stat-{{ ai_gen_id }}">
+          {{ block.settings.stat_number }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.stat_caption != blank %}
+        <div class="ai-transparency-stat-caption-{{ ai_gen_id }}">
+          {{ block.settings.stat_caption }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if block.settings.description != blank %}
+      <div class="ai-transparency-description-{{ ai_gen_id }}">
+        {{ block.settings.description }}
+      </div>
+    {% endif %}
+
+    <div class="ai-transparency-video-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.video %}
+        <video
+          class="ai-transparency-video-{{ ai_gen_id }}"
+          src="{{ block.settings.video.sources[1].url }}"
+          playsinline
+          preload="metadata"
+        ></video>
+        <button
+          class="ai-transparency-play-button-{{ ai_gen_id }}"
+          aria-label="Play video"
+        >
+          <div class="ai-transparency-play-icon-{{ ai_gen_id }}"></div>
+        </button>
+      {% else %}
+        <div class="ai-transparency-video-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-transparency-trust-points-{{ ai_gen_id }}">
+      {% if block.settings.trust_point_1 != blank %}
+        <div class="ai-transparency-trust-item-{{ ai_gen_id }}">
+          <svg
+            class="ai-transparency-checkmark-{{ ai_gen_id }}"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="12" cy="12" r="12" fill="{{ block.settings.accent_color }}"/>
+            <path
+              d="M7 12L10.5 15.5L17 9"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="ai-transparency-trust-text-{{ ai_gen_id }}">
+            {{ block.settings.trust_point_1 }}
+          </span>
+        </div>
+      {% endif %}
+
+      {% if block.settings.trust_point_2 != blank %}
+        <div class="ai-transparency-trust-item-{{ ai_gen_id }}">
+          <svg
+            class="ai-transparency-checkmark-{{ ai_gen_id }}"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="12" cy="12" r="12" fill="{{ block.settings.accent_color }}"/>
+            <path
+              d="M7 12L10.5 15.5L17 9"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="ai-transparency-trust-text-{{ ai_gen_id }}">
+            {{ block.settings.trust_point_2 }}
+          </span>
+        </div>
+      {% endif %}
+
+      {% if block.settings.trust_point_3 != blank %}
+        <div class="ai-transparency-trust-item-{{ ai_gen_id }}">
+          <svg
+            class="ai-transparency-checkmark-{{ ai_gen_id }}"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="12" cy="12" r="12" fill="{{ block.settings.accent_color }}"/>
+            <path
+              d="M7 12L10.5 15.5L17 9"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="ai-transparency-trust-text-{{ ai_gen_id }}">
+            {{ block.settings.trust_point_3 }}
+          </span>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if block.settings.button_text != blank %}
+      <a
+        href="{{ block.settings.button_link }}"
+        class="ai-transparency-button-{{ ai_gen_id }}"
+      >
+        {{ block.settings.button_text }}
+      </a>
+    {% endif %}
+
+    {% if block.settings.source_citation != blank %}
+      <div class="ai-transparency-source-{{ ai_gen_id }}">
+        {{ block.settings.source_citation }}
+      </div>
+    {% endif %}
+  </div>
+</ai-transparency-section-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class AiTransparencySection{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.video = this.querySelector('.ai-transparency-video-{{ ai_gen_id }}');
+        this.playButton = this.querySelector('.ai-transparency-play-button-{{ ai_gen_id }}');
+
+        if (this.video && this.playButton) {
+          this.setupVideoPlayer();
+        }
+      }
+
+      setupVideoPlayer() {
+        this.playButton.addEventListener('click', () => {
+          this.video.play();
+          this.playButton.classList.add('hidden');
+        });
+
+        this.video.addEventListener('pause', () => {
+          this.playButton.classList.remove('hidden');
+        });
+
+        this.video.addEventListener('ended', () => {
+          this.playButton.classList.remove('hidden');
+        });
+
+        this.video.addEventListener('click', () => {
+          if (this.video.paused) {
+            this.video.play();
+            this.playButton.classList.add('hidden');
+          } else {
+            this.video.pause();
+            this.playButton.classList.remove('hidden');
+          }
+        });
+      }
+    }
+
+    customElements.define('ai-transparency-section-{{ ai_gen_id }}', AiTransparencySection{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Transparency section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Most supplement labels don't tell the full story"
+    },
+    {
+      "type": "text",
+      "id": "stat_number",
+      "label": "Statistic",
+      "default": "80%"
+    },
+    {
+      "type": "text",
+      "id": "stat_caption",
+      "label": "Statistic caption",
+      "default": "of herbal supplements tested in one investigation were found to be mislabeled."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Wrong ingredients. Unlisted fillers. Labels that didn't match. Calm Nights was built for people who are done guessing."
+    },
+    {
+      "type": "header",
+      "content": "Video"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "header",
+      "content": "Trust points"
+    },
+    {
+      "type": "text",
+      "id": "trust_point_1",
+      "label": "Trust point 1",
+      "default": "Every dose disclosed"
+    },
+    {
+      "type": "text",
+      "id": "trust_point_2",
+      "label": "Trust point 2",
+      "default": "Standardized extracts"
+    },
+    {
+      "type": "text",
+      "id": "trust_point_3",
+      "label": "Trust point 3",
+      "default": "No proprietary blends"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Explore Every Ingredient"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Source"
+    },
+    {
+      "type": "textarea",
+      "id": "source_citation",
+      "label": "Source citation",
+      "default": "Source: New York State Attorney General's Office, 2015"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#7D45C6"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button background",
+      "default": "#7D45C6"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover background",
+      "default": "#6A3AB0"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "label": "Headline size",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "stat_size",
+      "label": "Statistic size",
+      "min": 40,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "caption_size",
+      "label": "Caption size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "trust_text_size",
+      "label": "Trust point size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button size",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "source_size",
+      "label": "Source size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 800,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "video_border_radius",
+      "label": "Video border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Transparency section"
+    }
+  ]
+}
 {% endschema %}
