@@ -742,6 +742,7 @@
         },
         "ai_gen_block_8606711_pQxDYk": {
           "type": "ai_gen_block_8606711",
+          "disabled": true,
           "settings": {
             "stat_number": "80%",
             "stat_caption": "of herbal supplements tested were mislabeled.",
