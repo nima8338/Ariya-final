@@ -740,6 +740,39 @@
           },
           "blocks": {}
         },
+        "ai_gen_block_8606711_pQxDYk": {
+          "type": "ai_gen_block_8606711",
+          "settings": {
+            "stat_number": "80%",
+            "stat_caption": "of herbal supplements tested were mislabeled.",
+            "description": "Missing ingredients. Unlisted fillers. Labels that didn't match.",
+            "video": "shopify://files/videos/A6FD5A80-79EE-4F4B-9935-840052376C07.mp4",
+            "video_cover": "shopify://shop_images/ChatGPT_Image_Jul_18_2026_07_21_23_PM.png",
+            "description_2": "Calm Nights was built for people who are done guessing.",
+            "trust_point_1": "Every dose disclosed",
+            "trust_point_2": "Standardized extracts",
+            "trust_point_3": "No proprietary blends",
+            "button_text": "Explore Every Ingredient",
+            "button_link": "",
+            "source_citation": "Source: New York State Attorney General's Office, 2015",
+            "background_color": "#ffffff",
+            "text_color": "#000000",
+            "accent_color": "#7D45C6",
+            "button_color": "#7D45C6",
+            "button_text_color": "#ffffff",
+            "button_hover_color": "#6A3AB0",
+            "stat_size": 80,
+            "caption_size": 16,
+            "description_size": 18,
+            "trust_text_size": 16,
+            "button_size": 16,
+            "source_size": 12,
+            "max_width": 1200,
+            "video_border_radius": 16,
+            "button_border_radius": 8
+          },
+          "blocks": {}
+        },
         "ai_gen_block_cfd452c_W9C8A3": {
           "type": "ai_gen_block_cfd452c",
           "settings": {
@@ -1083,6 +1116,7 @@
         "ai_gen_block_b64400e_CeR8FQ",
         "ai_gen_block_bac8cf0_7Q4cB9",
         "ai_gen_block_2020327_CxaaNA",
+        "ai_gen_block_8606711_pQxDYk",
         "ai_gen_block_cfd452c_W9C8A3",
         "ai_gen_block_8c1b4be_NJ8pxA",
         "ai_gen_block_8790b75_nLzrTb",
