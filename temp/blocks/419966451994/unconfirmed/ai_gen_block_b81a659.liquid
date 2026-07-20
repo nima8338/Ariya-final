@@ -1,6 +1,610 @@
+{% doc %}
+  @prompt
+    Create a new mobile-first accordion section for the Calm Nights product page.
+    
+    Use a light gray background, white accordion cards, black text, and purple accents using #7D45C6. Keep the design clean, premium, compact, and easy to scan on mobile.
+    
+    Headline:
+    
+    Why Calm Nights Feels Different
+    
+    Subtitle:
+    
+    Every ingredient was chosen to help calm your mind, support restful sleep, and help you wake up refreshed.
+    
+    Create 4 accordion cards:
+    
+    Quiets Racing Thoughts
+    L-Theanine + Lemon Balm + Magnolia Bark
+    
+    Expanded text:
+    Supports a calmer mind at night and helps ease racing thoughts before bed.
+    
+    Helps You Fall Asleep Naturally
+    L-Tryptophan + Vitamin B6
+    
+    Expanded text:
+    Supports the body’s natural sleep pathways without relying on synthetic melatonin.
+    
+    Supports Restful Sleep Through the Night
+    Multi-Pathway Formula
+    
+    Expanded text:
+    Multiple ingredients work together to support more complete and restful sleep.
+    
+    Helps You Wake Up Refreshed
+    Melatonin-Free Formula
+    
+    Expanded text:
+    Designed to support sleep without the next-morning grogginess commonly associated with melatonin.
+    
+    Use small purple icons, rounded cards, and simple dropdown arrows. Keep each description short and do not make the section too tall.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-accordion-section-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding_mobile }}px 16px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-accordion-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_desktop }}px 40px;
+      width: {{ block.settings.desktop_width_percent }}%;
+      margin: 0 auto;
+    }
+  }
+
+  .ai-accordion-container-{{ ai_gen_id }} {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .ai-accordion-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: {{ block.settings.header_spacing }}px;
+  }
+
+  .ai-accordion-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size_mobile }}px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-accordion-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size_desktop }}px;
+    }
+  }
+
+  .ai-accordion-subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ai-accordion-list-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.card_spacing }}px;
+  }
+
+  .ai-accordion-item-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-accordion-trigger-{{ ai_gen_id }} {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: {{ block.settings.card_padding }}px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s ease;
+  }
+
+  .ai-accordion-trigger-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.card_hover_background }};
+  }
+
+  .ai-accordion-icon-wrapper-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: {{ block.settings.icon_background }};
+    border-radius: 50%;
+  }
+
+  .ai-accordion-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size | times: 0.5 }}px;
+    height: {{ block.settings.icon_size | times: 0.5 }}px;
+    color: {{ block.settings.accent_color }};
+  }
+
+  .ai-accordion-title-wrapper-{{ ai_gen_id }} {
+    flex-grow: 1;
+  }
+
+  .ai-accordion-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 2px 0;
+    line-height: 1.3;
+  }
+
+  .ai-accordion-ingredients-{{ ai_gen_id }} {
+    font-size: {{ block.settings.ingredients_size }}px;
+    color: {{ block.settings.accent_color }};
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .ai-accordion-arrow-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: {{ block.settings.text_color }};
+    transition: transform 0.3s ease;
+  }
+
+  .ai-accordion-item-{{ ai_gen_id }}.active .ai-accordion-arrow-{{ ai_gen_id }} {
+    transform: rotate(180deg);
+  }
+
+  .ai-accordion-content-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .ai-accordion-content-inner-{{ ai_gen_id }} {
+    padding: 0 {{ block.settings.card_padding }}px {{ block.settings.card_padding }}px;
+    padding-left: calc({{ block.settings.card_padding }}px + {{ block.settings.icon_size }}px + 12px);
+  }
+
+  .ai-accordion-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    margin: 0;
+    line-height: 1.6;
+  }
+{% endstyle %}
+
+<calm-nights-accordion-{{ ai_gen_id }} class="ai-accordion-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-accordion-container-{{ ai_gen_id }}">
+    <div class="ai-accordion-header-{{ ai_gen_id }}">
+      {% if block.settings.headline != blank %}
+        <h2 class="ai-accordion-headline-{{ ai_gen_id }}">{{ block.settings.headline }}</h2>
+      {% endif %}
+      {% if block.settings.subtitle != blank %}
+        <p class="ai-accordion-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ai-accordion-list-{{ ai_gen_id }}">
+      {% for i in (1..4) %}
+        {% liquid
+          assign title_key = 'accordion_' | append: i | append: '_title'
+          assign ingredients_key = 'accordion_' | append: i | append: '_ingredients'
+          assign description_key = 'accordion_' | append: i | append: '_description'
+          
+          assign title = block.settings[title_key]
+          assign ingredients = block.settings[ingredients_key]
+          assign description = block.settings[description_key]
+        %}
+
+        {% if title != blank %}
+          <div class="ai-accordion-item-{{ ai_gen_id }}" data-accordion-item="{{ i }}">
+            <button class="ai-accordion-trigger-{{ ai_gen_id }}" aria-expanded="false">
+              <div class="ai-accordion-icon-wrapper-{{ ai_gen_id }}">
+                <svg class="ai-accordion-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+              <div class="ai-accordion-title-wrapper-{{ ai_gen_id }}">
+                <h3 class="ai-accordion-title-{{ ai_gen_id }}">{{ title }}</h3>
+                {% if ingredients != blank %}
+                  <p class="ai-accordion-ingredients-{{ ai_gen_id }}">{{ ingredients }}</p>
+                {% endif %}
+              </div>
+              <svg class="ai-accordion-arrow-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="ai-accordion-content-{{ ai_gen_id }}">
+              <div class="ai-accordion-content-inner-{{ ai_gen_id }}">
+                {% if description != blank %}
+                  <p class="ai-accordion-description-{{ ai_gen_id }}">{{ description }}</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</calm-nights-accordion-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CalmNightsAccordion{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.items = this.querySelectorAll('.ai-accordion-item-{{ ai_gen_id }}');
+        this.setupAccordion();
+      }
+
+      setupAccordion() {
+        this.items.forEach((item) => {
+          const trigger = item.querySelector('.ai-accordion-trigger-{{ ai_gen_id }}');
+          const content = item.querySelector('.ai-accordion-content-{{ ai_gen_id }}');
+          const contentInner = item.querySelector('.ai-accordion-content-inner-{{ ai_gen_id }}');
+
+          trigger.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            this.items.forEach((otherItem) => {
+              if (otherItem !== item) {
+                otherItem.classList.remove('active');
+                const otherContent = otherItem.querySelector('.ai-accordion-content-{{ ai_gen_id }}');
+                const otherTrigger = otherItem.querySelector('.ai-accordion-trigger-{{ ai_gen_id }}');
+                otherContent.style.maxHeight = null;
+                otherTrigger.setAttribute('aria-expanded', 'false');
+              }
+            });
+
+            if (isActive) {
+              item.classList.remove('active');
+              content.style.maxHeight = null;
+              trigger.setAttribute('aria-expanded', 'false');
+            } else {
+              item.classList.add('active');
+              content.style.maxHeight = contentInner.scrollHeight + 'px';
+              trigger.setAttribute('aria-expanded', 'true');
+            }
+          });
+        });
+      }
+    }
+
+    customElements.define('calm-nights-accordion-{{ ai_gen_id }}', CalmNightsAccordion{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Calm Nights accordion",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Why Calm Nights Feels Different"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Every ingredient was chosen to help calm your mind, support restful sleep, and help you wake up refreshed."
+    },
+    {
+      "type": "header",
+      "content": "Accordion 1"
+    },
+    {
+      "type": "text",
+      "id": "accordion_1_title",
+      "label": "Title",
+      "default": "Quiets Racing Thoughts"
+    },
+    {
+      "type": "text",
+      "id": "accordion_1_ingredients",
+      "label": "Ingredients",
+      "default": "L-Theanine + Lemon Balm + Magnolia Bark"
+    },
+    {
+      "type": "textarea",
+      "id": "accordion_1_description",
+      "label": "Description",
+      "default": "Supports a calmer mind at night and helps ease racing thoughts before bed."
+    },
+    {
+      "type": "header",
+      "content": "Accordion 2"
+    },
+    {
+      "type": "text",
+      "id": "accordion_2_title",
+      "label": "Title",
+      "default": "Helps You Fall Asleep Naturally"
+    },
+    {
+      "type": "text",
+      "id": "accordion_2_ingredients",
+      "label": "Ingredients",
+      "default": "L-Tryptophan + Vitamin B6"
+    },
+    {
+      "type": "textarea",
+      "id": "accordion_2_description",
+      "label": "Description",
+      "default": "Supports the body's natural sleep pathways without relying on synthetic melatonin."
+    },
+    {
+      "type": "header",
+      "content": "Accordion 3"
+    },
+    {
+      "type": "text",
+      "id": "accordion_3_title",
+      "label": "Title",
+      "default": "Supports Restful Sleep Through the Night"
+    },
+    {
+      "type": "text",
+      "id": "accordion_3_ingredients",
+      "label": "Ingredients",
+      "default": "Multi-Pathway Formula"
+    },
+    {
+      "type": "textarea",
+      "id": "accordion_3_description",
+      "label": "Description",
+      "default": "Multiple ingredients work together to support more complete and restful sleep."
+    },
+    {
+      "type": "header",
+      "content": "Accordion 4"
+    },
+    {
+      "type": "text",
+      "id": "accordion_4_title",
+      "label": "Title",
+      "default": "Helps You Wake Up Refreshed"
+    },
+    {
+      "type": "text",
+      "id": "accordion_4_ingredients",
+      "label": "Ingredients",
+      "default": "Melatonin-Free Formula"
+    },
+    {
+      "type": "textarea",
+      "id": "accordion_4_description",
+      "label": "Description",
+      "default": "Designed to support sleep without the next-morning grogginess commonly associated with melatonin."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "section_padding_mobile",
+      "label": "Mobile padding",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "section_padding_desktop",
+      "label": "Desktop padding",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "header_spacing",
+      "label": "Header spacing",
+      "min": 15,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "card_spacing",
+      "label": "Card spacing",
+      "min": 8,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card padding",
+      "min": 12,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card border radius",
+      "min": 8,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_background",
+      "label": "Card hover background",
+      "default": "#fafafa"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#7D45C6"
+    },
+    {
+      "type": "color",
+      "id": "icon_background",
+      "label": "Icon background",
+      "default": "#f3e8ff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "headline_size_mobile",
+      "label": "Headline size (mobile)",
+      "min": 20,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "headline_size_desktop",
+      "label": "Headline size (desktop)",
+      "min": 24,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "label": "Subtitle size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Card title size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "ingredients_size",
+      "label": "Ingredients size",
+      "min": 11,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 28,
+      "max": 44,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Calm Nights accordion"
+    }
+  ]
+}
 {% endschema %}
