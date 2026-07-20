@@ -1,6 +1,615 @@
+{% doc %}
+  @prompt
+    Create a new mobile-first transparency section for our product page.
+    
+    Use a clean white background, black text, and our purple color #7D45C6.
+    
+    Include:
+    
+    Small text: WHY TRANSPARENCY MATTERS
+    
+    Headline: Most Supplement Labels Don’t Tell the Full Story
+    
+    Large statistic: 80%
+    
+    Text below it: of herbal supplements tested in one investigation were found to be mislabeled.
+    
+    Add this short paragraph:
+    
+    Wrong ingredients. Unlisted fillers. Labels that didn’t match. Calm Nights was built for people who are done guessing.
+    
+    Below the text, add a large vertical video area with rounded corners.
+    
+    The video thumbnail should show:
+    
+    The Calm Nights bottle in the center
+    The QR code on the bottle clearly visible
+    A phone coming in from the side as if it is scanning the QR code
+    A large play button in the center
+    Small text that says: Scan to see every ingredient
+    
+    Do not use the moon and QR graphic as the main image.
+    
+    Below the video, add three small trust points:
+    
+    Every dose disclosed
+    Standardized extracts
+    No proprietary blends
+    
+    Then add one purple button:
+    
+    Explore Every Ingredient
+    
+    Keep the section clean, compact, premium, and easy to understand on mobile.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-transparency-section-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding_mobile }}px 20px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-transparency-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding_desktop }}px 40px;
+      width: {{ block.settings.desktop_width_percent }}%;
+      margin: 0 auto;
+    }
+  }
+
+  .ai-transparency-container-{{ ai_gen_id }} {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .ai-transparency-eyebrow-{{ ai_gen_id }} {
+    font-size: {{ block.settings.eyebrow_size }}px;
+    color: {{ block.settings.text_color }};
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .ai-transparency-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size_mobile }}px;
+    line-height: 1.2;
+    color: {{ block.settings.text_color }};
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-transparency-headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size_desktop }}px;
+    }
+  }
+
+  .ai-transparency-stat-wrapper-{{ ai_gen_id }} {
+    margin-bottom: 16px;
+  }
+
+  .ai-transparency-stat-{{ ai_gen_id }} {
+    font-size: {{ block.settings.stat_size_mobile }}px;
+    line-height: 1;
+    color: {{ block.settings.purple_color }};
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-transparency-stat-{{ ai_gen_id }} {
+      font-size: {{ block.settings.stat_size_desktop }}px;
+    }
+  }
+
+  .ai-transparency-stat-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.body_size }}px;
+    line-height: 1.5;
+    color: {{ block.settings.text_color }};
+    margin-bottom: 20px;
+  }
+
+  .ai-transparency-body-{{ ai_gen_id }} {
+    font-size: {{ block.settings.body_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.text_color }};
+    margin-bottom: 24px;
+  }
+
+  .ai-transparency-video-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border-radius: {{ block.settings.video_border_radius }}px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    background-color: #f4f4f4;
+  }
+
+  .ai-transparency-video-thumbnail-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-transparency-video-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f9f6ff 0%, #e8d9f7 100%);
+    position: relative;
+  }
+
+  .ai-transparency-video-placeholder-{{ ai_gen_id }} svg {
+    width: 80%;
+    height: 80%;
+    max-width: 300px;
+    max-height: 300px;
+    opacity: 0.3;
+  }
+
+  .ai-transparency-play-button-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: {{ block.settings.play_button_size }}px;
+    height: {{ block.settings.play_button_size }}px;
+    background-color: {{ block.settings.purple_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border: none;
+    z-index: 2;
+  }
+
+  .ai-transparency-play-button-{{ ai_gen_id }}:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    background-color: {{ block.settings.purple_hover_color }};
+  }
+
+  .ai-transparency-play-icon-{{ ai_gen_id }} {
+    width: 0;
+    height: 0;
+    border-left: 20px solid #ffffff;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    margin-left: 4px;
+  }
+
+  .ai-transparency-video-caption-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: {{ block.settings.text_color }};
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 6px 12px;
+    border-radius: 20px;
+    z-index: 2;
+  }
+
+  .ai-transparency-trust-points-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .ai-transparency-trust-point-{{ ai_gen_id }} {
+    flex: 1;
+    text-align: center;
+    font-size: {{ block.settings.trust_point_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.4;
+  }
+
+  .ai-transparency-button-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    background-color: {{ block.settings.purple_color }};
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_size }}px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ai-transparency-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.purple_hover_color }};
+    transform: translateY(-2px);
+  }
+{% endstyle %}
+
+<div class="ai-transparency-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-transparency-container-{{ ai_gen_id }}">
+    {% if block.settings.eyebrow_text != blank %}
+      <div class="ai-transparency-eyebrow-{{ ai_gen_id }}">
+        {{ block.settings.eyebrow_text }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.headline != blank %}
+      <h2 class="ai-transparency-headline-{{ ai_gen_id }}">
+        {{ block.settings.headline }}
+      </h2>
+    {% endif %}
+
+    <div class="ai-transparency-stat-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.stat_number != blank %}
+        <div class="ai-transparency-stat-{{ ai_gen_id }}">
+          {{ block.settings.stat_number }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.stat_description != blank %}
+        <div class="ai-transparency-stat-text-{{ ai_gen_id }}">
+          {{ block.settings.stat_description }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if block.settings.body_text != blank %}
+      <div class="ai-transparency-body-{{ ai_gen_id }}">
+        {{ block.settings.body_text }}
+      </div>
+    {% endif %}
+
+    <div class="ai-transparency-video-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.video_thumbnail %}
+        <img
+          src="{{ block.settings.video_thumbnail | image_url: width: 800 }}"
+          alt="{{ block.settings.video_thumbnail.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.video_thumbnail.width }}"
+          height="{{ block.settings.video_thumbnail.height }}"
+          class="ai-transparency-video-thumbnail-{{ ai_gen_id }}"
+        >
+      {% else %}
+        <div class="ai-transparency-video-placeholder-{{ ai_gen_id }}">
+          {{ 'product-1' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.video_url != blank %}
+        <button
+          class="ai-transparency-play-button-{{ ai_gen_id }}"
+          aria-label="Play video"
+          onclick="window.open('{{ block.settings.video_url }}', '_blank')"
+        >
+          <div class="ai-transparency-play-icon-{{ ai_gen_id }}"></div>
+        </button>
+      {% endif %}
+
+      {% if block.settings.video_caption != blank %}
+        <div class="ai-transparency-video-caption-{{ ai_gen_id }}">
+          {{ block.settings.video_caption }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-transparency-trust-points-{{ ai_gen_id }}">
+      {% if block.settings.trust_point_1 != blank %}
+        <div class="ai-transparency-trust-point-{{ ai_gen_id }}">
+          {{ block.settings.trust_point_1 }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.trust_point_2 != blank %}
+        <div class="ai-transparency-trust-point-{{ ai_gen_id }}">
+          {{ block.settings.trust_point_2 }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.trust_point_3 != blank %}
+        <div class="ai-transparency-trust-point-{{ ai_gen_id }}">
+          {{ block.settings.trust_point_3 }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if block.settings.button_url != blank %}
+      <a
+        href="{{ block.settings.button_url }}"
+        class="ai-transparency-button-{{ ai_gen_id }}"
+      >
+        {{ block.settings.button_text }}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Transparency section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile",
+      "label": "Mobile padding",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop",
+      "label": "Desktop padding",
+      "min": 30,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow text",
+      "default": "WHY TRANSPARENCY MATTERS"
+    },
+    {
+      "type": "textarea",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Most Supplement Labels Don't Tell the Full Story"
+    },
+    {
+      "type": "text",
+      "id": "stat_number",
+      "label": "Statistic",
+      "default": "80%"
+    },
+    {
+      "type": "textarea",
+      "id": "stat_description",
+      "label": "Statistic description",
+      "default": "of herbal supplements tested in one investigation were found to be mislabeled."
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "Wrong ingredients. Unlisted fillers. Labels that didn't match. Calm Nights was built for people who are done guessing."
+    },
+    {
+      "type": "header",
+      "content": "Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_thumbnail",
+      "label": "Video thumbnail"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video URL"
+    },
+    {
+      "type": "text",
+      "id": "video_caption",
+      "label": "Video caption",
+      "default": "Scan to see every ingredient"
+    },
+    {
+      "type": "range",
+      "id": "video_border_radius",
+      "label": "Video border radius",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "play_button_size",
+      "label": "Play button size",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "Trust points"
+    },
+    {
+      "type": "text",
+      "id": "trust_point_1",
+      "label": "Trust point 1",
+      "default": "Every dose disclosed"
+    },
+    {
+      "type": "text",
+      "id": "trust_point_2",
+      "label": "Trust point 2",
+      "default": "Standardized extracts"
+    },
+    {
+      "type": "text",
+      "id": "trust_point_3",
+      "label": "Trust point 3",
+      "default": "No proprietary blends"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Explore Every Ingredient"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "purple_color",
+      "label": "Purple accent",
+      "default": "#7D45C6"
+    },
+    {
+      "type": "color",
+      "id": "purple_hover_color",
+      "label": "Purple hover",
+      "default": "#5a1a9a"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "headline_size_mobile",
+      "label": "Headline size (mobile)",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "headline_size_desktop",
+      "label": "Headline size (desktop)",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "stat_size_mobile",
+      "label": "Statistic size (mobile)",
+      "min": 40,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "stat_size_desktop",
+      "label": "Statistic size (desktop)",
+      "min": 60,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body text size",
+      "min": 13,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "trust_point_size",
+      "label": "Trust point size",
+      "min": 11,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button text size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Transparency section"
+    }
+  ]
+}
 {% endschema %}
