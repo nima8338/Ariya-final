@@ -817,6 +817,7 @@
         },
         "ai_gen_block_cfd452c_W9C8A3": {
           "type": "ai_gen_block_cfd452c",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Ariya_bottle_8.jpg",
             "image_border_radius": 8,
