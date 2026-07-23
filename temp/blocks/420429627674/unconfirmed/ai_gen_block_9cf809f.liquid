@@ -1,6 +1,582 @@
+{% doc %}
+  @prompt
+    Create a Customizable Founder Support & Trust Badge Block
+    
+    Create a custom Shopify section that sits directly below the Start Now / Add to Cart button on the Calm Nights product page.
+    
+    The section should contain two parts:
+    
+    Founder Support
+    
+    Place this at the top of the section.
+    
+    Display exactly:
+    
+    Line 1:
+    Questions before ordering?
+    
+    Line 2:
+    (720) 590-7295
+    
+    Founder Support Styling
+    Center align everything.
+    Make both lines bold and easy to read.
+    Use black for Line 1.
+    Use Ariya Purple #7D45C6 for the phone number.
+    Make the phone number clickable.
+    Clicking it should open:
+    tel:[BUSINESS PHONE NUMBER] on desktop/mobile.
+    Add a setting that lets me underline the first line.
+    Add a separate setting that lets me underline the phone number.
+    Add a slider to control the phone number font size independently from the first line.
+    Add a slider for the first line font size.
+    Add a setting to adjust the spacing between the founder support text and the trust badges.
+    Do not use a button.
+    Do not use a colored background.
+    Do not use a border.
+    Keep the design minimal and clean.
+    Trust Badge Row
+    
+    Place this directly underneath the founder support text.
+    
+    Create three equal-width columns.
+    
+    Each column should contain:
+    
+    Custom uploaded image
+    Badge text underneath
+    
+    I want to upload my own icons/images instead of using built-in icons.
+    
+    The three default badge texts should be:
+    
+    30-Day Money-Back Guarantee
+    Vegan & Non-GMO
+    Free Shipping
+    Trust Badge Requirements
+    Center align each badge.
+    Display the uploaded image above the text.
+    Make all uploaded images the same size.
+    Keep the images noticeably large and easy to see.
+    Keep all three badges evenly spaced.
+    Use Ariya Purple #7D45C6 for the badge text.
+    Prevent badge text from wrapping whenever possible so each badge stays on a single line.
+    The entire row should remain responsive on desktop and mobile.
+    Section Customization Options
+    Founder Support
+    First line text
+    Phone number
+    First line font size (desktop)
+    First line font size (mobile)
+    Phone number font size (desktop)
+    Phone number font size (mobile)
+    First line font weight
+    Phone number font weight
+    Underline first line (toggle)
+    Underline phone number (toggle)
+    Text color (first line)
+    Phone number color
+    Space below founder support
+    Badge Settings
+    Badge 1 image upload
+    Badge 1 text
+    Badge 2 image upload
+    Badge 2 text
+    Badge 3 image upload
+    Badge 3 text
+    Badge Design Settings
+    Text size (desktop)
+    Text size (mobile)
+    Badge font weight
+    Icon size (desktop)
+    Icon size (mobile)
+    Icon to text spacing
+    Badge spacing (desktop)
+    Badge spacing (mobile)
+    Background color
+    Top padding
+    Bottom padding
+    Side padding
+    Desktop width
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-founder-trust-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.top_padding }}px {{ block.settings.side_padding }}px {{ block.settings.bottom_padding }}px;
+  }
+
+  .ai-founder-trust__founder-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: {{ block.settings.founder_spacing }}px;
+  }
+
+  .ai-founder-trust__question-{{ ai_gen_id }} {
+    font-size: {{ block.settings.question_font_size_desktop }}px;
+    font-weight: {{ block.settings.question_font_weight }};
+    color: {{ block.settings.question_color }};
+    margin: 0 0 8px 0;
+    {% if block.settings.question_underline %}
+      text-decoration: underline;
+    {% endif %}
+  }
+
+  .ai-founder-trust__phone-link-{{ ai_gen_id }} {
+    display: inline-block;
+    font-size: {{ block.settings.phone_font_size_desktop }}px;
+    font-weight: {{ block.settings.phone_font_weight }};
+    color: {{ block.settings.phone_color }};
+    text-decoration: none;
+    {% if block.settings.phone_underline %}
+      text-decoration: underline;
+    {% endif %}
+  }
+
+  .ai-founder-trust__phone-link-{{ ai_gen_id }}:hover {
+    opacity: 0.8;
+  }
+
+  .ai-founder-trust__badges-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: {{ block.settings.badge_spacing_desktop }}px;
+    align-items: start;
+  }
+
+  .ai-founder-trust__badge-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ai-founder-trust__badge-image-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size_desktop }}px;
+    height: {{ block.settings.icon_size_desktop }}px;
+    margin-bottom: {{ block.settings.icon_text_spacing }}px;
+    object-fit: contain;
+  }
+
+  .ai-founder-trust__badge-placeholder-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size_desktop }}px;
+    height: {{ block.settings.icon_size_desktop }}px;
+    margin-bottom: {{ block.settings.icon_text_spacing }}px;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-founder-trust__badge-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+  }
+
+  .ai-founder-trust__badge-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.badge_text_size_desktop }}px;
+    font-weight: {{ block.settings.badge_font_weight }};
+    color: {{ block.settings.phone_color }};
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-founder-trust__question-{{ ai_gen_id }} {
+      font-size: {{ block.settings.question_font_size_mobile }}px;
+    }
+
+    .ai-founder-trust__phone-link-{{ ai_gen_id }} {
+      font-size: {{ block.settings.phone_font_size_mobile }}px;
+    }
+
+    .ai-founder-trust__badges-{{ ai_gen_id }} {
+      gap: {{ block.settings.badge_spacing_mobile }}px;
+    }
+
+    .ai-founder-trust__badge-image-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size_mobile }}px;
+      height: {{ block.settings.icon_size_mobile }}px;
+    }
+
+    .ai-founder-trust__badge-placeholder-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size_mobile }}px;
+      height: {{ block.settings.icon_size_mobile }}px;
+    }
+
+    .ai-founder-trust__badge-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.badge_text_size_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-founder-trust-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-founder-trust__founder-{{ ai_gen_id }}">
+    <div class="ai-founder-trust__question-{{ ai_gen_id }}">
+      {{ block.settings.question_text }}
+    </div>
+    <a href="tel:{{ block.settings.phone_number }}" class="ai-founder-trust__phone-link-{{ ai_gen_id }}">
+      {{ block.settings.phone_number }}
+    </a>
+  </div>
+
+  <div class="ai-founder-trust__badges-{{ ai_gen_id }}">
+    <div class="ai-founder-trust__badge-{{ ai_gen_id }}">
+      {% if block.settings.badge_1_image %}
+        <img
+          src="{{ block.settings.badge_1_image | image_url: width: 200 }}"
+          alt="{{ block.settings.badge_1_text | escape }}"
+          class="ai-founder-trust__badge-image-{{ ai_gen_id }}"
+          loading="lazy"
+          width="{{ block.settings.icon_size_desktop }}"
+          height="{{ block.settings.icon_size_desktop }}"
+        >
+      {% else %}
+        <div class="ai-founder-trust__badge-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+      <div class="ai-founder-trust__badge-text-{{ ai_gen_id }}">
+        {{ block.settings.badge_1_text }}
+      </div>
+    </div>
+
+    <div class="ai-founder-trust__badge-{{ ai_gen_id }}">
+      {% if block.settings.badge_2_image %}
+        <img
+          src="{{ block.settings.badge_2_image | image_url: width: 200 }}"
+          alt="{{ block.settings.badge_2_text | escape }}"
+          class="ai-founder-trust__badge-image-{{ ai_gen_id }}"
+          loading="lazy"
+          width="{{ block.settings.icon_size_desktop }}"
+          height="{{ block.settings.icon_size_desktop }}"
+        >
+      {% else %}
+        <div class="ai-founder-trust__badge-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+      <div class="ai-founder-trust__badge-text-{{ ai_gen_id }}">
+        {{ block.settings.badge_2_text }}
+      </div>
+    </div>
+
+    <div class="ai-founder-trust__badge-{{ ai_gen_id }}">
+      {% if block.settings.badge_3_image %}
+        <img
+          src="{{ block.settings.badge_3_image | image_url: width: 200 }}"
+          alt="{{ block.settings.badge_3_text | escape }}"
+          class="ai-founder-trust__badge-image-{{ ai_gen_id }}"
+          loading="lazy"
+          width="{{ block.settings.icon_size_desktop }}"
+          height="{{ block.settings.icon_size_desktop }}"
+        >
+      {% else %}
+        <div class="ai-founder-trust__badge-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+      <div class="ai-founder-trust__badge-text-{{ ai_gen_id }}">
+        {{ block.settings.badge_3_text }}
+      </div>
+    </div>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Founder support & badges",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Founder support"
+    },
+    {
+      "type": "text",
+      "id": "question_text",
+      "label": "Question text",
+      "default": "Questions before ordering?"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone number",
+      "default": "(720) 590-7295"
+    },
+    {
+      "type": "range",
+      "id": "question_font_size_desktop",
+      "label": "Question font size (desktop)",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "question_font_size_mobile",
+      "label": "Question font size (mobile)",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "phone_font_size_desktop",
+      "label": "Phone font size (desktop)",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "phone_font_size_mobile",
+      "label": "Phone font size (mobile)",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "question_font_weight",
+      "label": "Question font weight",
+      "min": 400,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "phone_font_weight",
+      "label": "Phone font weight",
+      "min": 400,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "checkbox",
+      "id": "question_underline",
+      "label": "Underline question",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "phone_underline",
+      "label": "Underline phone number",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "question_color",
+      "label": "Question color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "phone_color",
+      "label": "Phone & badge color",
+      "default": "#7D45C6"
+    },
+    {
+      "type": "range",
+      "id": "founder_spacing",
+      "label": "Space below founder support",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Trust badges"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_1_image",
+      "label": "Badge 1 image"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_text",
+      "label": "Badge 1 text",
+      "default": "30-Day Money-Back Guarantee"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_2_image",
+      "label": "Badge 2 image"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_text",
+      "label": "Badge 2 text",
+      "default": "Vegan & Non-GMO"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_3_image",
+      "label": "Badge 3 image"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_text",
+      "label": "Badge 3 text",
+      "default": "Free Shipping"
+    },
+    {
+      "type": "header",
+      "content": "Badge design"
+    },
+    {
+      "type": "range",
+      "id": "badge_text_size_desktop",
+      "label": "Text size (desktop)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "badge_text_size_mobile",
+      "label": "Text size (mobile)",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "badge_font_weight",
+      "label": "Font weight",
+      "min": 400,
+      "max": 900,
+      "step": 100,
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "icon_size_desktop",
+      "label": "Icon size (desktop)",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "label": "Icon size (mobile)",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "icon_text_spacing",
+      "label": "Icon to text spacing",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "badge_spacing_desktop",
+      "label": "Badge spacing (desktop)",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "badge_spacing_mobile",
+      "label": "Badge spacing (mobile)",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "top_padding",
+      "label": "Top padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "bottom_padding",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "side_padding",
+      "label": "Side padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Founder support & badges"
+    }
+  ]
+}
 {% endschema %}
