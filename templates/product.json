@@ -290,6 +290,44 @@
               },
               "blocks": {}
             },
+            "ai_gen_block_e1ce316_M8cEVf": {
+              "type": "ai_gen_block_e1ce316",
+              "settings": {
+                "show_founder_text": true,
+                "question_text": "Questions before ordering?",
+                "link_text": "Text the founders directly →",
+                "phone_number": "",
+                "question_color": "#000000",
+                "link_color": "#7D45C6",
+                "link_hover_color": "#5a1a9a",
+                "founder_text_size": 16,
+                "founder_text_size_mobile": 14,
+                "founder_text_margin": 16,
+                "image_1": "shopify://shop_images/ChatGPT_Image_Jul_17_2026_06_55_08_PM.png",
+                "icon_1": "",
+                "text_1": "Free Returns",
+                "image_2": "shopify://shop_images/ChatGPT_Image_Jul_18_2026_01_55_18_PM.png",
+                "icon_2": "",
+                "text_2": "Secure & Trusted",
+                "image_3": "shopify://shop_images/ChatGPT_Image_Jul_17_2026_06_55_27_PM.png",
+                "icon_3": "",
+                "text_3": "Fast Shipping",
+                "background_color": "#ffffff",
+                "icon_color": "#3c0e66",
+                "text_color": "#000000",
+                "icon_size": 72,
+                "icon_size_mobile": 56,
+                "icon_stroke_width": 1.5,
+                "text_size": 13,
+                "text_size_mobile": 11,
+                "icon_text_gap": 8,
+                "gap": 16,
+                "gap_mobile": 8,
+                "padding_top": 20,
+                "padding_bottom": 20
+              },
+              "blocks": {}
+            },
             "ai_gen_block_2007540_diTwXR": {
               "type": "ai_gen_block_2007540",
               "settings": {
@@ -298,7 +336,7 @@
                 "phone_number": "(615) 767-4458",
                 "font_size": 14,
                 "question_color": "#000000",
-                "link_color": "#7D45C6",
+                "link_color": "#7d45c6",
                 "vertical_spacing": 20,
                 "desktop_width_percent": 100
               },
@@ -339,6 +377,7 @@
             "judge_me_reviews_review_snippet_widget_Upy6V3",
             "buy_buttons_eYQEYi",
             "ai_gen_block_07e45dd_DBK8HC",
+            "ai_gen_block_e1ce316_M8cEVf",
             "ai_gen_block_2007540_diTwXR",
             "ai_gen_block_ad6a54c_UBKy6t"
           ]
