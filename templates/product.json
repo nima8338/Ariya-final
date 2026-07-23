@@ -292,6 +292,7 @@
             },
             "ai_gen_block_206c6c4_AgPmQ3": {
               "type": "ai_gen_block_206c6c4",
+              "disabled": true,
               "settings": {
                 "question_text": "Questions before ordering?",
                 "phone_number": "(720) 590-7295",
