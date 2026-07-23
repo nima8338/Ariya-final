@@ -1,6 +1,378 @@
+{% doc %}
+  @prompt
+    Create a customizable founder-support and trust-badge block for the Calm Nights product page.
+    
+    Founder-support text
+    
+    Place this centered above the trust badges using exactly two lines:
+    
+    Line 1: Questions before ordering?
+    Line 2: Text the founders directly →
+    
+    Styling:
+    
+    Make both lines larger and bold enough to stand out clearly.
+    Use black for the first line.
+    Use Ariya purple #7D45C6 for the second line.
+    Underline the entire second line.
+    Make the second line clickable and open a new text message using sms:[BUSINESS PHONE NUMBER].
+    Do not display the phone number in the visible text.
+    Do not use a button, icon, border, or colored background around the founder-support text.
+    Keep the spacing compact, with a small gap between the founder text and the trust badges.
+    
+    Trust-badge row
+    
+    Under the founder-support text, create a clean three-column trust-badge row on a white background.
+    
+    Badge 1:
+    
+    Text: 30-Day Money-Back Guarantee
+    
+    Badge 2:
+    
+    Text: Vegan & Non-GMO
+    
+    Badge 3:
+    
+    Text: Free Shipping
+    
+    For each badge:
+    
+    Add an image-upload setting so I can insert my own icon or symbol.
+    Display the uploaded icon above the text.
+    Make the uploaded icons noticeably larger and easy to see.
+    Keep all three icon images the same size.
+    Center-align the icon and text.
+    Use Ariya purple #7D45C6 for the badge text.
+    Keep the text clean, readable, and evenly spaced.
+    
+    Keep all three badges side by side in three equal-width columns on mobile and desktop. Make the entire block responsive, balanced, and compact without crowding the text or icons
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-founder-trust-block-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding }}px;
+    text-align: center;
+  }
+
+  .ai-founder-support-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.founder_badge_gap }}px;
+  }
+
+  .ai-founder-line-1-{{ ai_gen_id }} {
+    font-size: {{ block.settings.founder_text_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.founder_line_1_color }};
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+  }
+
+  .ai-founder-line-2-{{ ai_gen_id }} {
+    font-size: {{ block.settings.founder_text_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.founder_line_2_color }};
+    text-decoration: underline;
+    margin: 0;
+    line-height: 1.2;
+    display: inline-block;
+  }
+
+  .ai-founder-line-2-{{ ai_gen_id }}:hover {
+    opacity: 0.8;
+  }
+
+  .ai-trust-badges-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: {{ block.settings.badge_gap }}px;
+    align-items: start;
+  }
+
+  .ai-trust-badge-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: {{ block.settings.icon_text_gap }}px;
+  }
+
+  .ai-trust-badge-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-trust-badge-icon-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-trust-badge-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.badge_text_size }}px;
+    color: {{ block.settings.badge_text_color }};
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-founder-line-1-{{ ai_gen_id }},
+    .ai-founder-line-2-{{ ai_gen_id }} {
+      font-size: {{ block.settings.founder_text_size | times: 0.85 }}px;
+    }
+
+    .ai-trust-badge-icon-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size | times: 0.85 }}px;
+      height: {{ block.settings.icon_size | times: 0.85 }}px;
+    }
+
+    .ai-trust-badge-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.badge_text_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-founder-trust-block-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-founder-support-{{ ai_gen_id }}">
+    <p class="ai-founder-line-1-{{ ai_gen_id }}">{{ block.settings.founder_line_1 }}</p>
+    <a 
+      href="sms:{{ block.settings.business_phone }}" 
+      class="ai-founder-line-2-{{ ai_gen_id }}"
+    >
+      {{ block.settings.founder_line_2 }}
+    </a>
+  </div>
+
+  <div class="ai-trust-badges-{{ ai_gen_id }}">
+    <div class="ai-trust-badge-{{ ai_gen_id }}">
+      {% if block.settings.badge_1_icon %}
+        <div class="ai-trust-badge-icon-{{ ai_gen_id }}">
+          <img 
+            src="{{ block.settings.badge_1_icon | image_url: width: 200 }}" 
+            alt="{{ block.settings.badge_1_text }}"
+            loading="lazy"
+            width="200"
+            height="200"
+          >
+        </div>
+      {% endif %}
+      <div class="ai-trust-badge-text-{{ ai_gen_id }}">{{ block.settings.badge_1_text }}</div>
+    </div>
+
+    <div class="ai-trust-badge-{{ ai_gen_id }}">
+      {% if block.settings.badge_2_icon %}
+        <div class="ai-trust-badge-icon-{{ ai_gen_id }}">
+          <img 
+            src="{{ block.settings.badge_2_icon | image_url: width: 200 }}" 
+            alt="{{ block.settings.badge_2_text }}"
+            loading="lazy"
+            width="200"
+            height="200"
+          >
+        </div>
+      {% endif %}
+      <div class="ai-trust-badge-text-{{ ai_gen_id }}">{{ block.settings.badge_2_text }}</div>
+    </div>
+
+    <div class="ai-trust-badge-{{ ai_gen_id }}">
+      {% if block.settings.badge_3_icon %}
+        <div class="ai-trust-badge-icon-{{ ai_gen_id }}">
+          <img 
+            src="{{ block.settings.badge_3_icon | image_url: width: 200 }}" 
+            alt="{{ block.settings.badge_3_text }}"
+            loading="lazy"
+            width="200"
+            height="200"
+          >
+        </div>
+      {% endif %}
+      <div class="ai-trust-badge-text-{{ ai_gen_id }}">{{ block.settings.badge_3_text }}</div>
+    </div>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Founder and trust badges",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Founder support"
+    },
+    {
+      "type": "text",
+      "id": "founder_line_1",
+      "label": "Line 1",
+      "default": "Questions before ordering?"
+    },
+    {
+      "type": "text",
+      "id": "founder_line_2",
+      "label": "Line 2",
+      "default": "Text the founders directly →"
+    },
+    {
+      "type": "text",
+      "id": "business_phone",
+      "label": "Business phone number"
+    },
+    {
+      "type": "range",
+      "id": "founder_text_size",
+      "label": "Text size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "founder_line_1_color",
+      "label": "Line 1 color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "founder_line_2_color",
+      "label": "Line 2 color",
+      "default": "#7D45C6"
+    },
+    {
+      "type": "range",
+      "id": "founder_badge_gap",
+      "label": "Gap to badges",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Trust badges"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_1_icon",
+      "label": "Badge 1 icon"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_text",
+      "label": "Badge 1 text",
+      "default": "30-Day Money-Back Guarantee"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_2_icon",
+      "label": "Badge 2 icon"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_text",
+      "label": "Badge 2 text",
+      "default": "Vegan & Non-GMO"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_3_icon",
+      "label": "Badge 3 icon"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_text",
+      "label": "Badge 3 text",
+      "default": "Free Shipping"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "badge_text_size",
+      "label": "Badge text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text color",
+      "default": "#7D45C6"
+    },
+    {
+      "type": "range",
+      "id": "icon_text_gap",
+      "label": "Icon to text gap",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "badge_gap",
+      "label": "Badge spacing",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Block style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Founder and trust badges"
+    }
+  ]
+}
 {% endschema %}
