@@ -292,6 +292,7 @@
             },
             "ai_gen_block_c9958a1_q3MLzd": {
               "type": "ai_gen_block_c9958a1",
+              "disabled": true,
               "settings": {
                 "line1_text": "Questions before ordering?",
                 "line2_text": "Call or text the founders:",
@@ -373,7 +374,6 @@
             },
             "ai_gen_block_ad6a54c_UBKy6t": {
               "type": "ai_gen_block_ad6a54c",
-              "disabled": true,
               "settings": {
                 "badge_1_icon": "shopify://shop_images/ChatGPT_Image_Jul_17_2026_06_55_08_PM.png",
                 "badge_1_text": "Free Returns",
