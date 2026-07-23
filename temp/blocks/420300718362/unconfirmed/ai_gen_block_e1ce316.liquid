@@ -1,6 +1,506 @@
+{% doc %}
+  @prompt
+    Add a clean three-column trust badge row directly under the Add to Cart button.
+    
+    Each item should have a simple outlined icon above the text:
+    
+    Shield/check icon
+    30-Day Money-Back Guarantee
+    Leaf icon
+    Vegan & Non-GMO
+    Shipping truck icon
+    Free Shipping
+    
+    Use Ariya’s purple color, keep the background white, center-align everything, and make it clean and easy to read on mobile., make the vegan symbol a leaf icon , change the middle symbol to a leaf symbol, make the middle icon a plant symbol, make the middle symbol a leaf symbole , could you give me the option to insert my own symbols, change the badge icons as an option for me to insert images, make the icon images a bit bigger, make the icon images bigger, the images i insert in needs to be a bit bigger, above the icons Create a clean, minimal founder-support text block using this copy:
+    
+    “Questions before ordering? Text the founders directly →”
+    
+    Design requirements:
+    
+    Center-align the text.
+    Keep the text small, clean, and easy to read.
+    Use black for “Questions before ordering?”
+    Use Ariya purple #7D45C6 for “Text the founders directly →”
+    Make “Text the founders directly →” clickable.
+    The link should open a new text message using: sms:[BUSINESS PHONE NUMBER]
+    Do not use a button, border, background box, or icon.
+    Keep the spacing compact and optimized for mobile and desktop., above the icons put a clean, minimal founder-support text block using this copy:
+    
+    “Questions before ordering? Text the founders directly →”
+    
+    Design requirements:
+    
+    Center-align the text.
+    Keep the text small, clean, and easy to read.
+    Use black for “Questions before ordering?”
+    Use Ariya purple #7D45C6 for “Text the founders directly →”
+    Make “Text the founders directly →” clickable.
+    The link should open a new text message using: sms:[BUSINESS PHONE NUMBER]
+    Do not use a button, border, background box, or icon.
+    Keep the spacing compact and optimized for mobile and desktop., over the badge icons put his
+    
+    “Questions before ordering? Text the founders directly →”
+    
+    Design requirements:
+    
+    Center-align the text.
+    Keep the text small, clean, and easy to read.
+    Use black for “Questions before ordering?”
+    Use Ariya purple #7D45C6 for “Text the founders directly →”
+    Make “Text the founders directly →” clickable.
+    The link should open a new text message using: sms:[BUSINESS PHONE NUMBER]
+    Do not use a button, border, background box, or icon.
+    Keep the spacing compact and optimized for mobile and desktop., the directly should be  on line 2 , can you make the founder contact text bigger and bolder,  underline the link text
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-trust-badges-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: {{ block.settings.padding_top }}px 0 {{ block.settings.padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-founder-text-{{ ai_gen_id }} {
+    text-align: center;
+    font-size: {{ block.settings.founder_text_size }}px;
+    line-height: 1.4;
+    margin-bottom: {{ block.settings.founder_text_margin }}px;
+    font-weight: 600;
+  }
+
+  .ai-founder-text-question-{{ ai_gen_id }} {
+    color: {{ block.settings.question_color }};
+    display: block;
+  }
+
+  .ai-founder-text-link-{{ ai_gen_id }} {
+    color: {{ block.settings.link_color }};
+    text-decoration: underline;
+    display: block;
+  }
+
+  .ai-founder-text-link-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.link_hover_color }};
+  }
+
+  .ai-trust-badges-container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: {{ block.settings.gap }}px;
+    max-width: 100%;
+  }
+
+  .ai-trust-badge-item-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: {{ block.settings.icon_text_gap }}px;
+  }
+
+  .ai-trust-badge-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-trust-badge-icon-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-trust-badge-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke: {{ block.settings.icon_color }};
+    fill: none;
+    stroke-width: {{ block.settings.icon_stroke_width }};
+  }
+
+  .ai-trust-badge-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.3;
+    color: {{ block.settings.text_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-founder-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.founder_text_size_mobile }}px;
+    }
+
+    .ai-trust-badges-container-{{ ai_gen_id }} {
+      gap: {{ block.settings.gap_mobile }}px;
+    }
+
+    .ai-trust-badge-icon-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size_mobile }}px;
+      height: {{ block.settings.icon_size_mobile }}px;
+    }
+
+    .ai-trust-badge-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-trust-badges-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.show_founder_text %}
+    <div class="ai-founder-text-{{ ai_gen_id }}">
+      <span class="ai-founder-text-question-{{ ai_gen_id }}">{{ block.settings.question_text }}</span>
+      <a 
+        href="sms:{{ block.settings.phone_number }}" 
+        class="ai-founder-text-link-{{ ai_gen_id }}"
+      >
+        {{ block.settings.link_text }}
+      </a>
+    </div>
+  {% endif %}
+
+  <div class="ai-trust-badges-container-{{ ai_gen_id }}">
+    <div class="ai-trust-badge-item-{{ ai_gen_id }}">
+      <div class="ai-trust-badge-icon-{{ ai_gen_id }}">
+        {% if block.settings.image_1 != blank %}
+          <img
+            src="{{ block.settings.image_1 | image_url: width: 200 }}"
+            alt="{{ block.settings.text_1 | escape }}"
+            loading="lazy"
+            width="{{ block.settings.icon_size }}"
+            height="{{ block.settings.icon_size }}"
+          >
+        {% elsif block.settings.icon_1 != blank %}
+          {{ block.settings.icon_1 }}
+        {% else %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <polyline points="9 12 11 14 15 10"></polyline>
+          </svg>
+        {% endif %}
+      </div>
+      <div class="ai-trust-badge-text-{{ ai_gen_id }}">{{ block.settings.text_1 }}</div>
+    </div>
+
+    <div class="ai-trust-badge-item-{{ ai_gen_id }}">
+      <div class="ai-trust-badge-icon-{{ ai_gen_id }}">
+        {% if block.settings.image_2 != blank %}
+          <img
+            src="{{ block.settings.image_2 | image_url: width: 200 }}"
+            alt="{{ block.settings.text_2 | escape }}"
+            loading="lazy"
+            width="{{ block.settings.icon_size }}"
+            height="{{ block.settings.icon_size }}"
+          >
+        {% elsif block.settings.icon_2 != blank %}
+          {{ block.settings.icon_2 }}
+        {% else %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C8.5 2 6 4.5 6 8c0 4.5 6 11 6 11s6-6.5 6-11c0-3.5-2.5-6-6-6z"></path>
+            <path d="M12 11c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"></path>
+            <path d="M8 8c0-2.2 1.8-4 4-4"></path>
+          </svg>
+        {% endif %}
+      </div>
+      <div class="ai-trust-badge-text-{{ ai_gen_id }}">{{ block.settings.text_2 }}</div>
+    </div>
+
+    <div class="ai-trust-badge-item-{{ ai_gen_id }}">
+      <div class="ai-trust-badge-icon-{{ ai_gen_id }}">
+        {% if block.settings.image_3 != blank %}
+          <img
+            src="{{ block.settings.image_3 | image_url: width: 200 }}"
+            alt="{{ block.settings.text_3 | escape }}"
+            loading="lazy"
+            width="{{ block.settings.icon_size }}"
+            height="{{ block.settings.icon_size }}"
+          >
+        {% elsif block.settings.icon_3 != blank %}
+          {{ block.settings.icon_3 }}
+        {% else %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13"></rect>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+          </svg>
+        {% endif %}
+      </div>
+      <div class="ai-trust-badge-text-{{ ai_gen_id }}">{{ block.settings.text_3 }}</div>
+    </div>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Trust badges with contact",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Founder contact text"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_founder_text",
+      "label": "Show founder contact text",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "question_text",
+      "label": "Question text",
+      "default": "Questions before ordering?"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "Text the founders directly →"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone number",
+      "info": "Enter phone number with country code (e.g., +12345678900)"
+    },
+    {
+      "type": "color",
+      "id": "question_color",
+      "label": "Question text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#7D45C6"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover color",
+      "default": "#5a1a9a"
+    },
+    {
+      "type": "range",
+      "id": "founder_text_size",
+      "label": "Text size (desktop)",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "founder_text_size_mobile",
+      "label": "Text size (mobile)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "founder_text_margin",
+      "label": "Spacing below text",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Badge 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Icon image"
+    },
+    {
+      "type": "html",
+      "id": "icon_1",
+      "label": "Custom icon SVG"
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "Text",
+      "default": "30-Day Money-Back Guarantee"
+    },
+    {
+      "type": "header",
+      "content": "Badge 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Icon image"
+    },
+    {
+      "type": "html",
+      "id": "icon_2",
+      "label": "Custom icon SVG"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Text",
+      "default": "Vegan & Non-GMO"
+    },
+    {
+      "type": "header",
+      "content": "Badge 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Icon image"
+    },
+    {
+      "type": "html",
+      "id": "icon_3",
+      "label": "Custom icon SVG"
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "Text",
+      "default": "Free Shipping"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size (desktop)",
+      "min": 40,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "label": "Icon size (mobile)",
+      "min": 32,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "icon_stroke_width",
+      "label": "Icon stroke width",
+      "min": 1,
+      "max": 3,
+      "step": 0.5,
+      "unit": "px",
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size (desktop)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text size (mobile)",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "icon_text_gap",
+      "label": "Icon to text spacing",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Badge spacing (desktop)",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Badge spacing (mobile)",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust badges with contact"
+    }
+  ]
+}
 {% endschema %}
