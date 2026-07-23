@@ -290,6 +290,20 @@
               },
               "blocks": {}
             },
+            "ai_gen_block_2007540_diTwXR": {
+              "type": "ai_gen_block_2007540",
+              "settings": {
+                "question_text": "Questions before ordering?",
+                "link_text": "Text the founders directly →",
+                "phone_number": "(615) 767-4458",
+                "font_size": 14,
+                "question_color": "#000000",
+                "link_color": "#7D45C6",
+                "vertical_spacing": 20,
+                "desktop_width_percent": 100
+              },
+              "blocks": {}
+            },
             "ai_gen_block_ad6a54c_UBKy6t": {
               "type": "ai_gen_block_ad6a54c",
               "settings": {
@@ -325,6 +339,7 @@
             "judge_me_reviews_review_snippet_widget_Upy6V3",
             "buy_buttons_eYQEYi",
             "ai_gen_block_07e45dd_DBK8HC",
+            "ai_gen_block_2007540_diTwXR",
             "ai_gen_block_ad6a54c_UBKy6t"
           ]
         }
@@ -801,7 +816,7 @@
             "button_border_radius": 25,
             "background_color": "#ffffff",
             "text_color": "#000000",
-            "purple_color": "#7D45C6",
+            "purple_color": "#7d45c6",
             "purple_hover_color": "#5a1a9a",
             "source_color": "#666666",
             "eyebrow_size": 11,
@@ -840,13 +855,13 @@
             "card_spacing": 12,
             "card_padding": 16,
             "card_border_radius": 12,
-            "background_color": "#F2F2F2",
+            "background_color": "#f2f2f2",
             "card_background": "#ffffff",
             "card_hover_background": "#fafafa",
             "text_color": "#000000",
             "subtitle_color": "#666666",
             "description_color": "#555555",
-            "accent_color": "#7D45C6",
+            "accent_color": "#7d45c6",
             "icon_background": "#f3e8ff",
             "headline_size_mobile": 24,
             "headline_size_desktop": 28,
