@@ -1,6 +1,179 @@
+{% doc %}
+  @prompt
+    Add a clean three-column trust badge row directly under the Add to Cart button.
+    
+    Each item should have a simple outlined icon above the text:
+    
+    Shield/check icon
+    30-Day Money-Back Guarantee
+    Leaf icon
+    Vegan & Non-GMO
+    Shipping truck icon
+    Free Shipping
+    
+    Use Ariya’s purple color, keep the background white, center-align everything, and make it clean and easy to read on mobile., make the vegan symbol a leaf icon , change the middle symbol to a leaf symbol, make the middle icon a plant symbol, make the middle symbol a leaf symbole , could you give me the option to insert my own symbols, change the badge icons as an option for me to insert images, make the icon images a bit bigger, make the icon images bigger, the images i insert in needs to be a bit bigger, above the icons Create a clean, minimal founder-support text block using this copy:
+    
+    “Questions before ordering? Text the founders directly →”
+    
+    Design requirements:
+    
+    Center-align the text.
+    Keep the text small, clean, and easy to read.
+    Use black for “Questions before ordering?”
+    Use Ariya purple #7D45C6 for “Text the founders directly →”
+    Make “Text the founders directly →” clickable.
+    The link should open a new text message using: sms:[BUSINESS PHONE NUMBER]
+    Do not use a button, border, background box, or icon.
+    Keep the spacing compact and optimized for mobile and desktop.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-founder-text-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: {{ block.settings.padding_top }}px 0 {{ block.settings.padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-founder-text-content-{{ ai_gen_id }} {
+    text-align: center;
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.4;
+  }
+
+  .ai-founder-text-question-{{ ai_gen_id }} {
+    color: {{ block.settings.question_color }};
+  }
+
+  .ai-founder-text-link-{{ ai_gen_id }} {
+    color: {{ block.settings.link_color }};
+    text-decoration: none;
+  }
+
+  .ai-founder-text-link-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.link_hover_color }};
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-founder-text-content-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-founder-text-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-founder-text-content-{{ ai_gen_id }}">
+    <span class="ai-founder-text-question-{{ ai_gen_id }}">{{ block.settings.question_text }}</span>
+    <a 
+      href="sms:{{ block.settings.phone_number }}" 
+      class="ai-founder-text-link-{{ ai_gen_id }}"
+    >
+      {{ block.settings.link_text }}
+    </a>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Founder contact text",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "question_text",
+      "label": "Question text",
+      "default": "Questions before ordering?"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "Text the founders directly →"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone number",
+      "info": "Enter phone number with country code (e.g., +12345678900)"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "question_color",
+      "label": "Question text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#7D45C6"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover color",
+      "default": "#5a1a9a"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size (desktop)",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text size (mobile)",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Founder contact text"
+    }
+  ]
+}
 {% endschema %}
