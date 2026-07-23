@@ -292,6 +292,7 @@
             },
             "ai_gen_block_e1ce316_M8cEVf": {
               "type": "ai_gen_block_e1ce316",
+              "disabled": true,
               "settings": {
                 "show_founder_text": true,
                 "question_text": "Questions before ordering?",
@@ -330,6 +331,7 @@
             },
             "ai_gen_block_2007540_diTwXR": {
               "type": "ai_gen_block_2007540",
+              "disabled": true,
               "settings": {
                 "question_text": "Questions before ordering?",
                 "link_text": "Text the founders directly →",
