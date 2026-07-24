@@ -290,8 +290,19 @@
               },
               "blocks": {}
             },
+            "ai_gen_block_1a5a099_U9CeUa": {
+              "type": "ai_gen_block_1a5a099",
+              "settings": {
+                "image": "shopify://shop_images/ChatGPT_Image_Jul_24_2026_12_06_20_PM.png",
+                "border_radius": 8,
+                "desktop_width_percent": 100,
+                "phone_number": "(720) 590-7295"
+              },
+              "blocks": {}
+            },
             "ai_gen_block_bbcdff1_DTiJHC": {
               "type": "ai_gen_block_bbcdff1",
+              "disabled": true,
               "settings": {
                 "founder_line1": "",
                 "founder_phone": "",
@@ -454,6 +465,7 @@
             "judge_me_reviews_review_snippet_widget_Upy6V3",
             "buy_buttons_eYQEYi",
             "ai_gen_block_07e45dd_DBK8HC",
+            "ai_gen_block_1a5a099_U9CeUa",
             "ai_gen_block_bbcdff1_DTiJHC",
             "ai_gen_block_cd4d756_Ekx4Eq",
             "ai_gen_block_206c6c4_AgPmQ3",
