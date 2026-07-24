@@ -292,6 +292,7 @@
             },
             "ai_gen_block_cd4d756_Ekx4Eq": {
               "type": "ai_gen_block_cd4d756",
+              "disabled": true,
               "settings": {
                 "question_text": "Questions? Call or text the founders",
                 "phone_number": "(720) 590-7295",
