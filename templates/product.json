@@ -292,6 +292,7 @@
             },
             "ai_gen_block_1a5a099_U9CeUa": {
               "type": "ai_gen_block_1a5a099",
+              "disabled": true,
               "settings": {
                 "image": "shopify://shop_images/ChatGPT_Image_Jul_24_2026_03_21_30_PM.png",
                 "border_radius": 8,
@@ -302,7 +303,6 @@
             },
             "ai_gen_block_bbcdff1_DTiJHC": {
               "type": "ai_gen_block_bbcdff1",
-              "disabled": true,
               "settings": {
                 "founder_line1": "",
                 "founder_phone": "",
