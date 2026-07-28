@@ -1118,6 +1118,7 @@
         },
         "ai_gen_block_28b940b_b8iwMp": {
           "type": "ai_gen_block_28b940b",
+          "disabled": true,
           "settings": {
             "heading": "WHAT YOU CAN EXPECT",
             "subtext_line_1": "One complete formula.",
