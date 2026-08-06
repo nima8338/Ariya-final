@@ -1275,7 +1275,7 @@
           "settings": {
             "heading": "<strong>US VS. Them</strong>",
             "subtext": "<p>Not overhyped or overpriced. Just comprehensive sleep support in one honest formula.<br/><br/></p>",
-            "image": "shopify://shop_images/ChatGPT_Image_Aug_6_2026_03_05_39_PM.png",
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_6_2026_03_13_25_PM.png",
             "desktop_width_percent": 100,
             "text_alignment": "center",
             "padding_top": 40,
@@ -1296,6 +1296,7 @@
         },
         "ai_gen_block_13b5f83_tbnKyy": {
           "type": "ai_gen_block_13b5f83",
+          "disabled": true,
           "settings": {
             "title": "US VS. Them",
             "subtitle": "Most sleep supplements are designed to sell. Calm Nights was designed to work.",
