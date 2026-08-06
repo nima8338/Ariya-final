@@ -138,9 +138,9 @@
                     "star_spacing": 2,
                     "star_color": "#efcb21",
                     "empty_star_color": "#e8d9f7",
-                    "review_text": "50+ Reviews",
+                    "review_text": "60+ Reviews",
                     "text_size": 14,
-                    "text_color": "#3c0e66",
+                    "text_color": "#000000",
                     "gap": 8,
                     "desktop_width_percent": 100
                   },
