@@ -253,7 +253,7 @@
                 "card_color": "",
                 "stars_color": "",
                 "arrows_color": "",
-                "arrows_background_color": "#7D45C6"
+                "arrows_background_color": "#7d45c6"
               }
             },
             "buy_buttons_eYQEYi": {
@@ -1270,6 +1270,30 @@
           },
           "blocks": {}
         },
+        "ai_gen_block_3c97618_JBwp78": {
+          "type": "ai_gen_block_3c97618",
+          "settings": {
+            "heading": "<strong>US VS. Them</strong>",
+            "subtext": "<p>Not overhyped or overpriced. Just comprehensive sleep support in one honest formula.<br/><br/></p>",
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_6_2026_03_05_39_PM.png",
+            "desktop_width_percent": 100,
+            "text_alignment": "center",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "heading_size": 44,
+            "heading_color": "#000000",
+            "heading_spacing": 15,
+            "subtext_size": 16,
+            "subtext_color": "#000000",
+            "subtext_spacing": 25,
+            "image_max_width": 800,
+            "image_max_width_mobile": 800,
+            "image_border_radius": 8,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        },
         "ai_gen_block_13b5f83_tbnKyy": {
           "type": "ai_gen_block_13b5f83",
           "settings": {
@@ -1433,6 +1457,7 @@
         "ai_gen_block_cfd452c_W9C8A3",
         "ai_gen_block_8c1b4be_NJ8pxA",
         "ai_gen_block_8790b75_nLzrTb",
+        "ai_gen_block_3c97618_JBwp78",
         "ai_gen_block_13b5f83_tbnKyy",
         "ai_gen_block_115c375_rqyCrx",
         "judge_me_reviews_review_widget_xepgRK",
