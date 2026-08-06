@@ -240,20 +240,20 @@
                 "filter_featured": false,
                 "filter_custom_tags": "",
                 "min_star_rating": "5",
-                "show_review_media": true,
+                "show_review_media": false,
                 "max_reviews": 5,
                 "review_length": "medium",
                 "text_size": "medium",
                 "max_width": 1100,
                 "max_image_size": "small",
                 "arrows_visibility": "always_shown",
-                "transition_speed": 5,
+                "transition_speed": 0,
                 "corner_styling": "inherit",
                 "text_color": "",
                 "card_color": "",
                 "stars_color": "",
                 "arrows_color": "",
-                "arrows_background_color": ""
+                "arrows_background_color": "#7D45C6"
               }
             },
             "buy_buttons_eYQEYi": {
