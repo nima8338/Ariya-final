@@ -1,6 +1,159 @@
+{% doc %}
+  @prompt
+    create a button that says secure checkout and when you click it it takes you to check out to buy whatever is in your cart
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-secure-checkout-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  .ai-secure-checkout-{{ ai_gen_id }}__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    min-height: 52px;
+    padding: 14px 24px;
+    border: {{ block.settings.border_width }}px solid {{ block.settings.button_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.text_color }};
+    font-family: inherit;
+    font-size: {{ block.settings.font_size }}px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
+
+  .ai-secure-checkout-{{ ai_gen_id }}__link:hover {
+    background-color: {{ block.settings.hover_color }};
+    border-color: {{ block.settings.hover_color }};
+    color: {{ block.settings.hover_text_color }};
+  }
+
+  .ai-secure-checkout-{{ ai_gen_id }}__link:focus-visible {
+    outline: 3px solid {{ block.settings.focus_color }};
+    outline-offset: 3px;
+  }
+
+  .ai-secure-checkout-{{ ai_gen_id }}__icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-secure-checkout-{{ ai_gen_id }}__link {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<secure-checkout-{{ ai_gen_id }} class="ai-secure-checkout-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <a class="ai-secure-checkout-{{ ai_gen_id }}__link" href="/checkout" aria-label="{{ block.settings.button_label | escape }}">
+    <svg class="ai-secure-checkout-{{ ai_gen_id }}__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+      <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span>{{ block.settings.button_label }}</span>
+  </a>
+</secure-checkout-{{ ai_gen_id }}>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Secure checkout button",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Secure checkout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Background",
+      "default": "#3c0e66"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover background",
+      "default": "#5a1a9a"
+    },
+    {
+      "type": "color",
+      "id": "hover_text_color",
+      "label": "Hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "focus_color",
+      "label": "Focus outline",
+      "default": "#efcb21"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Secure checkout button"
+    }
+  ],
+  "tag": null,
+  "class": "secure-checkout-block"
+}
 {% endschema %}
