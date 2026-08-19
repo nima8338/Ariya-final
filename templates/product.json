@@ -256,6 +256,10 @@
                 "arrows_background_color": "#7d45c6"
               }
             },
+            "appstle_bundles_appstle_volume_discount_bundle_HAfXGE": {
+              "type": "shopify://apps/appstle-bundles/blocks/appstle-volume-discount-bundle/8909921b-2d24-4d68-9b12-9d045d3dcb0a",
+              "settings": {}
+            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -486,6 +490,7 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "judge_me_reviews_review_snippet_widget_Upy6V3",
+            "appstle_bundles_appstle_volume_discount_bundle_HAfXGE",
             "buy_buttons_eYQEYi",
             "ai_gen_block_07e45dd_DBK8HC",
             "ai_gen_block_1a5a099_U9CeUa",
